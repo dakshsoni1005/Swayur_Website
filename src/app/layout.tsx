@@ -4,6 +4,7 @@ import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
+import { SatinCursorBackground } from '@/components/ui/SatinCursorBackground';
 import { companyData } from '@/data/company';
 import { seoData } from '@/data/seo';
 import { siteConfig } from '@/config/site';
@@ -89,7 +90,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className="flex flex-col min-h-screen bg-agri-surface text-agri-text antialiased font-sans">
+      <body className="flex flex-col min-h-screen bg-transparent text-agri-text antialiased font-sans relative selection:bg-agri-accent/20">
+        <SatinCursorBackground />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
