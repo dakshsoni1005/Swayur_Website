@@ -36,6 +36,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
   const productPhotos: Record<string, string> = {
     'bio-npk-consortia': '/images/products/bio-npk-consortia.jpg',
     'bio-zsb': '/images/products/bio-zsb.jpg',
+    'mycorrhiza': '/images/products/mycorrhiza.jpg',
   };
 
   const photoPath = productPhotos[product.slug];
