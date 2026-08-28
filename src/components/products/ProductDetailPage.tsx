@@ -35,14 +35,21 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
     .slice(0, 3);
 
   return (
-    <div className="py-8 sm:py-12 space-y-12 sm:space-y-16">
+    <div className="py-8 sm:py-12 space-y-8 sm:space-y-12">
       <ProductJsonLd product={product} />
 
-      {/* 1. Breadcrumbs */}
+      {/* 1. Back Navigation & Breadcrumbs at Top Left */}
       <Container>
-        <Breadcrumbs
-          items={[{ label: 'Products', href: '/products' }, { label: product.name }]}
-        />
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <Button href="/products" variant="outline" size="sm" className="self-start shadow-2xs bg-white">
+            <ArrowLeft className="w-4 h-4 mr-1.5 text-agri-primary" />
+            Back to Products
+          </Button>
+
+          <Breadcrumbs
+            items={[{ label: 'Products', href: '/products' }, { label: product.name }]}
+          />
+        </div>
       </Container>
 
       {/* 2. Product Hero */}
@@ -129,13 +136,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
               </div>
             </div>
 
-            {/* Primary & Secondary Hero CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+            {/* Primary Action Button */}
+            <div className="pt-2">
               <WhatsAppButton text="WhatsApp for Enquiry" size="lg" className="w-full sm:w-auto" />
-              <Button href="/products" variant="outline" size="lg" className="w-full sm:w-auto">
-                <ArrowLeft className="w-4 h-4 mr-1" />
-                Back to Products
-              </Button>
             </div>
           </div>
         </div>
