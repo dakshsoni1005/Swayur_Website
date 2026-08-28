@@ -177,7 +177,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     // --- Label Cylinder & High-Resolution Texture Mapping ---
     const textureLoader = new THREE.TextureLoader();
     const rawSrc = product.labelTexture || product.image || '/images/products/bio-npk-consortia.jpg';
-    const imageSrc = `${rawSrc}?v=20260829`;
+    const imageSrc = `${rawSrc}?v=20260829_v2`;
 
     textureLoader.load(
       imageSrc,
