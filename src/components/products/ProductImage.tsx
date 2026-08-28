@@ -23,6 +23,9 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   };
 
   if (product.image) {
+    // Append explicit version string to bypass browser disk cache for updated product images
+    const imageUrl = `${product.image}?v=20260828`;
+
     return (
       <div
         className={cn(
@@ -32,9 +35,10 @@ export const ProductImage: React.FC<ProductImageProps> = ({
         )}
       >
         <Image
-          src={product.image}
+          src={imageUrl}
           alt={`${product.name} KshetraPal ${product.category} product`}
           fill
+          unoptimized
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
           priority={priority}
