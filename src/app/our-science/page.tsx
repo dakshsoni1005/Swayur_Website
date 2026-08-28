@@ -1,134 +1,205 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { ShieldCheck, CheckCircle2, Award } from 'lucide-react';
+import {
+  Microscope,
+  FlaskConical,
+  ShieldCheck,
+  Dna,
+  Sprout,
+  Recycle,
+  CheckCircle2,
+  Award,
+  ArrowRight,
+  FileCheck2,
+} from 'lucide-react';
 import { seoData } from '@/data/seo';
+import {
+  scienceAreasData,
+  scienceProcessSteps,
+  qualityPromiseData,
+} from '@/data/science';
 import { Container } from '@/components/layout/Container';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { CTASection } from '@/components/sections/CTASection';
+import { Button } from '@/components/ui/Button';
+import { Badge } from '@/components/ui/Badge';
 
 export const metadata: Metadata = {
-  title: seoData['our-science'].metaTitle,
-  description: seoData['our-science'].metaDescription,
+  title: seoData['our-science']?.metaTitle || 'Our Science & R&D | Swayur Agrotech',
+  description:
+    seoData['our-science']?.metaDescription ||
+    'Discover the applied microbiology, formulation technology, and FCO 1985 quality assurance behind KshetraPal biological inputs.',
 };
 
 export default function OurSciencePage() {
+  const getScienceIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'Microscope':
+        return <Microscope className="w-7 h-7 text-agri-accent" />;
+      case 'FlaskConical':
+        return <FlaskConical className="w-7 h-7 text-agri-accent" />;
+      case 'ShieldCheck':
+        return <ShieldCheck className="w-7 h-7 text-agri-accent" />;
+      case 'Dna':
+        return <Dna className="w-7 h-7 text-agri-accent" />;
+      case 'Sprout':
+        return <Sprout className="w-7 h-7 text-agri-accent" />;
+      default:
+        return <Recycle className="w-7 h-7 text-agri-accent" />;
+    }
+  };
+
   return (
-    <div>
+    <div className="space-y-16 sm:space-y-24 pb-12">
+      {/* 1. Science Hero */}
       <PageHeader
-        badge="Microbiology & Applied Technology"
+        badge="OUR SCIENCE"
         title="Backed by Microbiology. Built for Farms."
-        subtitle="Every KshetraPal product is engineered through applied soil microbiology, formulation science, and rigorous field testing against FCO 1985 standards."
+        subtitle="The science behind KshetraPal products is not theoretical. It is the result of deep expertise in applied microbiology, soil science, and agricultural biotechnology — applied to the real challenges Indian farmers face every season."
         breadcrumbs={[{ label: 'Our Science' }]}
       />
 
-      <div className="py-12 sm:py-16 space-y-16">
-        {/* Intro */}
+      {/* 2. R&D Development Pipeline */}
+      <Container>
+        <div className="space-y-8">
+          <SectionHeading
+            badge="R&D Development Pipeline"
+            title="How Science Moves From Microbe to Farm"
+            subtitle="Every Swayur Agrotech product undergoes a rigorous 5-stage development lifecycle before commercial release."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {scienceProcessSteps.map((proc, idx) => (
+              <Card
+                key={idx}
+                className="flex flex-col justify-between space-y-3 p-5 bg-white border-agri-border relative"
+              >
+                <div className="space-y-2">
+                  <span className="text-xs font-bold text-agri-primary px-2.5 py-1 rounded bg-agri-pale inline-block border border-agri-accent/20">
+                    Stage {proc.stepNumber}
+                  </span>
+                  <h3 className="text-base font-bold text-agri-dark leading-snug">{proc.title}</h3>
+                  <p className="text-xs text-agri-muted leading-relaxed font-normal">
+                    {proc.description}
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Container>
+
+      {/* 3. Core Science Areas (6 Cards) */}
+      <section className="bg-agri-pale/30 py-16 sm:py-24 border-y border-agri-border/60">
         <Container>
-          <div className="max-w-4xl mx-auto space-y-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-agri-dark">
-              Scientific Rigor Applied to Real Farm Challenges
-            </h2>
-            <p className="text-base text-agri-muted leading-relaxed">
-              The science behind KshetraPal products is not theoretical. It is the result of deep expertise in applied microbiology, soil science, and agricultural biotechnology — applied to the real challenges Indian farmers face every season.
-            </p>
-            <p className="text-base text-agri-muted leading-relaxed">
-              Every Swayur Agrotech product goes through rigorous development: organism selection from verified strain collections (MTCC/ATCC registered strains), formulation optimization for Indian agro-climatic conditions, quality testing against FCO standards, and field validation before commercial release.
-            </p>
+          <SectionHeading
+            badge="Core Capability Areas"
+            title="What We Know — Deeply"
+            subtitle="Specialized biotechnology domain expertise powering KshetraPal product formulation and stability."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {scienceAreasData.map((area, idx) => (
+              <Card key={idx} className="space-y-4 p-8 bg-white border-agri-border">
+                <div className="w-14 h-14 rounded-2xl bg-agri-pale flex items-center justify-center">
+                  {getScienceIcon(area.iconName)}
+                </div>
+                <h3 className="text-xl font-bold text-agri-dark">{area.title}</h3>
+                <p className="text-xs sm:text-sm text-agri-muted leading-relaxed font-normal">
+                  {area.description}
+                </p>
+              </Card>
+            ))}
           </div>
         </Container>
+      </section>
 
-        {/* 6 Core Science Areas */}
-        <section className="bg-agri-pale/30 py-12 border-y border-agri-border">
-          <Container>
-            <SectionHeading
-              badge="Core Science Areas"
-              title="What We Know — Deeply"
-              subtitle="Specialized biotechnology domain expertise powering KshetraPal product formulation."
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: '🔬',
-                  title: 'Beneficial Microorganism Science',
-                  desc: 'Deep expertise in selecting, cultivating, and stabilizing agriculturally beneficial bacteria and fungi. We work with nitrogen fixers, phosphate solubilizers, potassium mobilizers, mycorrhizal fungi, biocontrol organisms, and PGPR.',
-                },
-                {
-                  icon: '🧪',
-                  title: 'Biofertilizer Formulation Technology',
-                  desc: 'Advanced liquid and powder formulation expertise — developing products with guaranteed CFU counts, optimized pH ranges, and extended shelf life under Indian storage conditions.',
-                },
-                {
-                  icon: '🌿',
-                  title: 'Biopesticide Development',
-                  desc: 'Expertise in entomopathogenic fungi (Beauveria bassiana), biocontrol bacteria (Pseudomonas fluorescens, Trichoderma viride) and their practical application in Indian crop protection programs.',
-                },
-                {
-                  icon: '🧫',
-                  title: 'Microbial Fermentation',
-                  desc: 'Industrial fermentation knowledge for scaling up beneficial microbial production while maintaining strain viability, purity, and efficacy — from seed culture to commercial batch.',
-                },
-                {
-                  icon: '🌱',
-                  title: 'Soil & Plant Microbiology',
-                  desc: 'Understanding of the complex interactions between soil microbiomes, plant roots, and nutrient cycles — enabling product design that works with nature rather than against it.',
-                },
-                {
-                  icon: '🛡️',
-                  title: 'Biological Crop Protection',
-                  desc: 'Science-based integrated biological crop protection programs — combining biofertilizers, biocontrol agents, and cultural practices for durable, residue-free crop protection.',
-                },
-              ].map((area, idx) => (
-                <Card key={idx} className="space-y-3 bg-white">
-                  <span className="text-3xl">{area.icon}</span>
-                  <h3 className="text-lg font-bold text-agri-dark">{area.title}</h3>
-                  <p className="text-xs sm:text-sm text-agri-muted leading-relaxed">{area.desc}</p>
-                </Card>
-              ))}
-            </div>
-          </Container>
-        </section>
+      {/* 4. Product Development & Strain Integrity */}
+      <Container>
+        <div className="max-w-4xl mx-auto p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-agri-dark via-agri-primary to-[#0A261E] text-white space-y-6 shadow-md">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-agri-accent/20 text-agri-light border border-agri-accent/30 text-xs font-bold uppercase tracking-wider">
+            <Dna className="w-4 h-4 text-agri-light" />
+            <span>Verified Strain Lineage</span>
+          </div>
 
-        {/* Quality Assurance Matrix */}
-        <Container>
-          <div className="max-w-4xl mx-auto space-y-6">
-            <SectionHeading
-              badge="Quality Assurance"
-              title="Our Quality Promise & Standards"
-              subtitle="Every batch of KshetraPal products is quality-tested before release. We guarantee what we print on the label."
-            />
-            <div className="overflow-hidden border border-agri-border rounded-xl bg-white shadow-xs">
-              <table className="w-full text-left text-sm">
-                <thead>
-                  <tr className="bg-agri-pale/80 border-b border-agri-border text-agri-dark font-bold text-xs uppercase tracking-wider">
-                    <th className="py-3.5 px-4 sm:px-6">Quality Parameter</th>
-                    <th className="py-3.5 px-4 sm:px-6">Our Standard & Protocol</th>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
+            MTCC / ATCC Registered Microbial Strains
+          </h2>
+
+          <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
+            We work exclusively with verified microbial strains sourced from registered strain repositories (<strong className="text-white">MTCC / ATCC</strong>). Strains are screened for high enzyme activity, phosphate solubilization capacity, nitrogen fixation rates, and environmental tolerance before scale-up in industrial fermenters.
+          </p>
+
+          <div className="pt-2 flex flex-wrap gap-3">
+            <span className="px-3 py-1.5 rounded-lg bg-agri-primary/80 text-emerald-300 text-xs font-bold border border-agri-primary">
+              ✓ Guaranteed Minimum CFU Counts
+            </span>
+            <span className="px-3 py-1.5 rounded-lg bg-agri-primary/80 text-emerald-300 text-xs font-bold border border-agri-primary">
+              ✓ Zero Contamination Testing
+            </span>
+            <span className="px-3 py-1.5 rounded-lg bg-agri-primary/80 text-emerald-300 text-xs font-bold border border-agri-primary">
+              ✓ Real-time Indian Storage Stability
+            </span>
+          </div>
+        </div>
+      </Container>
+
+      {/* 5. Quality Assurance Matrix ("Our Quality Promise") */}
+      <Container>
+        <div className="max-w-4xl mx-auto space-y-6">
+          <SectionHeading
+            badge="Quality Assurance"
+            title="Our Quality Promise"
+            subtitle="Every batch of KshetraPal products is quality-tested before release. We guarantee what we print on the label."
+          />
+
+          <div className="overflow-hidden border border-agri-border rounded-2xl bg-white shadow-xs">
+            <table className="w-full text-left text-sm border-collapse">
+              <thead>
+                <tr className="bg-agri-dark text-white font-bold text-xs uppercase tracking-wider">
+                  <th className="py-4 px-4 sm:px-6">Quality Parameter</th>
+                  <th className="py-4 px-4 sm:px-6">Our Standard & Protocol</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-agri-border/60">
+                {qualityPromiseData.map((row, idx) => (
+                  <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-agri-pale/20'}>
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-agri-dark">{row.parameter}</td>
+                    <td className="py-3.5 px-4 sm:px-6 font-semibold text-agri-primary">{row.standard}</td>
                   </tr>
-                </thead>
-                <tbody className="divide-y divide-agri-border/60">
-                  {[
-                    { param: 'CFU Count Guarantee', std: 'Minimum guaranteed count printed on label — verified by plating on selective media' },
-                    { param: 'Contamination Testing', std: 'Every batch tested for competing organisms on non-selective media' },
-                    { param: 'pH Verification', std: 'Batch pH tested and confirmed within specification range (5.0–7.0)' },
-                    { param: 'Shelf Life Testing', std: 'Real-time stability testing under Indian storage temperature conditions' },
-                    { param: 'Raw Material Traceability', std: 'Verified strain sources (MTCC/ATCC) — documented lot-wise' },
-                    { param: 'Batch Records', std: 'Full batch documentation available on request via QR code on each pack' },
-                    { param: 'FCO Compliance', std: 'All products manufactured and labeled as per Fertilizer Control Order 1985' },
-                  ].map((row, idx) => (
-                    <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-agri-pale/20'}>
-                      <td className="py-3 px-4 sm:px-6 font-bold text-agri-dark">{row.param}</td>
-                      <td className="py-3 px-4 sm:px-6 font-medium text-agri-primary">{row.std}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Container>
+
+      {/* 6. FCO Compliance Highlight Block */}
+      <Container>
+        <div className="p-6 sm:p-8 rounded-2xl bg-agri-pale/60 border border-agri-accent/30 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <div className="p-3 rounded-xl bg-agri-accent text-white shrink-0">
+              <FileCheck2 className="w-8 h-8" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-agri-dark">Fertilizer Control Order (FCO 1985) Compliant</h3>
+              <p className="text-xs sm:text-sm text-agri-muted mt-1">
+                All products manufactured and labeled strictly as per Fertilizer Control Order 1985 specifications.
+              </p>
             </div>
           </div>
-        </Container>
+          <Badge variant="dark" className="text-xs py-1.5 px-3">
+            FCO Schedule I
+          </Badge>
+        </div>
+      </Container>
 
-        <CTASection />
-      </div>
+      {/* 7. Science-to-Farm CTA */}
+      <CTASection
+        title="Science That Works With Nature"
+        subtitle="Explore our 6 KshetraPal products or get in touch with our agronomy team to learn how biological inputs can restore your farm's soil health."
+      />
     </div>
   );
 }
