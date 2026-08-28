@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { Check } from 'lucide-react';
+import { Check, Star } from 'lucide-react';
 import { cropMatrixData, productCombosData } from '@/data/crops';
 import { seoData } from '@/data/seo';
 import { Container } from '@/components/layout/Container';
@@ -19,6 +19,15 @@ export const metadata: Metadata = {
 };
 
 export default function CropSolutionsPage() {
+  const productsList = [
+    'Bio-NPK',
+    'Bio-ZSB',
+    'Mycorrhiza',
+    'Trichoderma',
+    'Beauveria',
+    'Pseudomonas',
+  ];
+
   return (
     <div className="space-y-16 sm:space-y-24 pb-12">
       {/* 1. Hero Header */}
@@ -82,11 +91,13 @@ export default function CropSolutionsPage() {
           title="All-Crop Suitability Reference Table"
           subtitle="Comprehensive overview showing product compatibility across all 11 major Indian crop groups."
         />
-        <div className="overflow-x-auto border border-agri-border rounded-2xl bg-white shadow-xs">
-          <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[750px]">
+
+        {/* Desktop Table View (lg+) */}
+        <div className="hidden lg:block overflow-hidden border border-agri-border rounded-2xl bg-white shadow-xs">
+          <table className="w-full text-left text-sm border-collapse">
             <thead>
               <tr className="bg-agri-dark text-white font-bold uppercase tracking-wider text-xs">
-                <th className="py-4 px-4 sm:px-6">Crop Group</th>
+                <th className="py-4 px-6">Crop Group</th>
                 <th className="py-4 px-2 text-center">Bio-NPK</th>
                 <th className="py-4 px-2 text-center">Bio-ZSB</th>
                 <th className="py-4 px-2 text-center">Mycorrhiza</th>
@@ -101,7 +112,7 @@ export default function CropSolutionsPage() {
                   key={idx}
                   className={idx % 2 === 0 ? 'bg-white' : 'bg-agri-pale/20 hover:bg-agri-pale/50'}
                 >
-                  <td className="py-3.5 px-4 sm:px-6 font-bold text-agri-dark">
+                  <td className="py-3.5 px-6 font-bold text-agri-dark">
                     {row.cropGroup}
                     {row.recommendedHighlights && (
                       <span className="block text-[11px] text-agri-primary font-semibold mt-0.5">
@@ -131,6 +142,55 @@ export default function CropSolutionsPage() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile / Tablet Stacked Cards View (<lg) */}
+        <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {cropMatrixData.map((row, idx) => (
+            <div
+              key={idx}
+              className="p-5 rounded-2xl bg-white border border-agri-border shadow-2xs space-y-3"
+            >
+              <div className="space-y-1">
+                <h4 className="text-base font-extrabold text-agri-dark">
+                  🌾 {row.cropGroup}
+                </h4>
+                {row.recommendedHighlights && (
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-800 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200">
+                    <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
+                    Highly Recommended: {row.recommendedHighlights.join(', ')}
+                  </span>
+                )}
+              </div>
+
+              <div className="pt-2 border-t border-agri-border/60">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-agri-muted block mb-2">
+                  Suitable Formulations:
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {productsList.map((pName, pIdx) => {
+                    const isHighlyRec = row.recommendedHighlights?.some((h) =>
+                      h.toLowerCase().includes(pName.toLowerCase())
+                    );
+
+                    return (
+                      <span
+                        key={pIdx}
+                        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold ${
+                          isHighlyRec
+                            ? 'bg-amber-100/80 text-amber-900 border border-amber-300 font-extrabold'
+                            : 'bg-agri-pale text-agri-primary border border-agri-accent/20'
+                        }`}
+                      >
+                        <Check className="w-3.5 h-3.5 text-agri-accent shrink-0" />
+                        <span>{pName}</span>
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
 

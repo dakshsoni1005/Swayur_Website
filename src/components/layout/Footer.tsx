@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
                     className="hover:text-white transition-colors flex items-center justify-between group"
                   >
                     <span>{p.name}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-agri-accent" />
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-agri-accent shrink-0" />
                   </Link>
                 </li>
               ))}
@@ -122,11 +122,11 @@ export const Footer: React.FC = () => {
                 </a>
               </div>
 
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2.5 min-w-0">
                 <Mail className="w-4 h-4 text-agri-accent shrink-0" />
                 <a
                   href={`mailto:${companyData.email}`}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors break-all"
                 >
                   {companyData.email}
                 </a>
@@ -140,7 +140,7 @@ export const Footer: React.FC = () => {
                   className="inline-flex items-center gap-1 text-[11px] font-bold text-agri-light hover:underline"
                 >
                   <span>Google Maps: Swayur Agrotech LLP</span>
-                  <ExternalLink className="w-3 h-3" />
+                  <ExternalLink className="w-3 h-3 shrink-0" />
                 </a>
               </div>
             </div>
