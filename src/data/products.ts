@@ -8,6 +8,7 @@ export const productsData: Product[] = [
     category: 'Biofertilizer',
     subcategory: 'Liquid Biofertilizer',
     formulation: 'Liquid',
+    netContent: '1 Litre',
     image: '/images/products/bio-npk-consortia.jpg',
     tagline: "Your soil's complete N-P-K solution — all three macronutrients, one powerful microbial consortia.",
     description:
@@ -90,6 +91,7 @@ export const productsData: Product[] = [
     category: 'Biofertilizer',
     subcategory: 'Zinc Solubilizing Biofertilizer',
     formulation: 'Liquid',
+    netContent: '1 Litre',
     image: '/images/products/bio-zsb.jpg',
     tagline: 'Unlock the hidden zinc in your soil — naturally.',
     description:
@@ -154,6 +156,7 @@ export const productsData: Product[] = [
     category: 'Biofertilizer',
     subcategory: 'Mycorrhizal Biofertilizer',
     formulation: 'Powder (WP)',
+    netContent: '500 gm',
     image: '/images/products/mycorrhiza.jpg',
     tagline: 'Give your roots a superpower — the ancient fungal network that feeds plants better than any fertilizer.',
     description:
@@ -225,6 +228,7 @@ export const productsData: Product[] = [
     category: 'Biopesticide',
     subcategory: 'Biofungicide',
     formulation: 'Liquid',
+    netContent: '1 Litre',
     image: '/images/products/trichoderma-viride.jpg',
     tagline: 'Protect your roots from invisible soil enemies — naturally, safely, effectively.',
     description:
@@ -299,6 +303,7 @@ export const productsData: Product[] = [
     category: 'Biopesticide',
     subcategory: 'Bioinsecticide',
     formulation: 'Liquid',
+    netContent: '1 Litre',
     image: '/images/products/beauveria-bassiana.jpg',
     tagline: "Let nature's own insect hunter protect your crops — without leaving a chemical trace.",
     description:
@@ -376,6 +381,7 @@ export const productsData: Product[] = [
     category: 'Biocontrol',
     subcategory: 'Biopesticide / PGPR',
     formulation: 'Liquid',
+    netContent: '1 Litre',
     image: '/images/products/pseudomonas-fluorescens.jpg',
     tagline: "Your plant's root guardian — the bacteria that fights disease and feeds growth simultaneously.",
     description:

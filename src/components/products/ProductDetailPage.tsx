@@ -9,6 +9,7 @@ import {
   ShieldAlert,
   AlertTriangle,
   Bug,
+  Scale,
 } from 'lucide-react';
 import { Product } from '@/types';
 import { productsData } from '@/data/products';
@@ -69,6 +70,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
                 <Badge variant={product.category === 'Biofertilizer' ? 'green' : 'earth'}>
                   {product.category}
                 </Badge>
+                {product.netContent && (
+                  <span className="inline-flex items-center gap-1 text-xs font-extrabold px-3 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                    <Scale className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                    Net Vol: {product.netContent}
+                  </span>
+                )}
                 <Badge variant="gold">FCO Schedule I Compliant</Badge>
               </div>
               <h1 className="text-3xl sm:text-4xl font-extrabold text-agri-dark tracking-tight">
@@ -83,15 +90,15 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
               {product.description.split('\n\n')[0]}
             </p>
 
-            {/* Dosage & Formulation Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            {/* Dosage, Formulation & Packaging Weight Highlights */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               <div className="p-3.5 rounded-xl bg-agri-pale/80 border border-agri-accent/30 flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-white text-agri-primary shrink-0 shadow-2xs">
                   <Sprout className="w-5 h-5 text-agri-accent" />
                 </div>
                 <div>
                   <span className="text-xs text-agri-muted block font-medium">Recommended Dosage</span>
-                  <strong className="text-sm sm:text-base font-extrabold text-agri-dark">
+                  <strong className="text-sm font-extrabold text-agri-dark">
                     {product.dosage}
                   </strong>
                 </div>
@@ -103,8 +110,20 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
                 </div>
                 <div>
                   <span className="text-xs text-agri-muted block font-medium">Formulation Type</span>
-                  <strong className="text-sm sm:text-base font-extrabold text-agri-dark">
+                  <strong className="text-sm font-extrabold text-agri-dark">
                     {product.formulation}
+                  </strong>
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-agri-pale/80 border border-agri-accent/30 flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-white text-agri-primary shrink-0 shadow-2xs">
+                  <Scale className="w-5 h-5 text-agri-accent" />
+                </div>
+                <div>
+                  <span className="text-xs text-agri-muted block font-medium">Pack Net Vol / Wt</span>
+                  <strong className="text-sm font-extrabold text-agri-dark">
+                    {product.netContent || (product.formulation === 'Liquid' ? '1 Litre' : '500 gm')}
                   </strong>
                 </div>
               </div>
