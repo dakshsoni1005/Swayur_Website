@@ -97,6 +97,7 @@ export const CircularStoryJourney: React.FC = () => {
               stroke="url(#ringGrad)"
               strokeWidth="2.5"
               strokeDasharray="8 6"
+              className="animate-[spin_45s_linear_infinite] origin-[500px_320px]"
             />
           </svg>
 

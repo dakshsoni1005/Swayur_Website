@@ -443,8 +443,16 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
 
   return (
     <div className={`relative w-full h-[420px] sm:h-[500px] rounded-2xl bg-[#F7F8F6] border border-agri-border overflow-hidden select-none touch-none ${className}`}>
+      {/* Animated Continuous Rotating Dotted Background Rings */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+        {/* Outer Dotted Circle (Clockwise Spin) */}
+        <div className="w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] rounded-full border-2 border-dashed border-agri-primary/25 animate-[spin_28s_linear_infinite]" />
+        {/* Inner Dotted Circle (Counter-Clockwise Spin) */}
+        <div className="absolute w-[210px] h-[210px] sm:w-[270px] sm:h-[270px] rounded-full border border-dotted border-agri-accent/35 animate-[spin_18s_linear_infinite_reverse]" />
+      </div>
+
       {/* 3D WebGL Canvas Container */}
-      <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+      <div ref={containerRef} className="relative z-10 w-full h-full cursor-grab active:cursor-grabbing" />
 
       {/* Loading Overlay */}
       {isLoading && (
