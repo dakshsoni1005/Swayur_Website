@@ -20,14 +20,16 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isRotating, setIsRotating] = useState(false);
 
-  // Determine cap color based on product slug
+  // Determine cap color based on prop or product slug (Default: Brown / Dark Brown)
   const getCapColor = useCallback((): number => {
-    if (capColor && capColor !== '#15803d') {
+    if (capColor) {
       return parseInt(capColor.replace('#', '0x'), 16);
     }
     switch (product.slug) {
+      case 'mycorrhiza':
+        return 0x5d3a1a; // Premium Earth Brown for Mycorrhiza
       case 'beauveria-bassiana':
-        return 0xb91c1c; // Deep Red matching Beauveria Bassiana label
+        return 0xb91c1c; // Deep Red
       case 'bio-npk-consortia':
         return 0x15803d; // Dark Green
       case 'bio-zsb':
@@ -36,10 +38,8 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
         return 0x1d4ed8; // Royal Blue
       case 'pseudomonas-fluorescens':
         return 0x111827; // Charcoal Black
-      case 'mycorrhiza':
-        return 0xf3f4f6; // White/Light Gray
       default:
-        return 0xb91c1c; // Default Red for biopesticides
+        return 0x5d3a1a; // Default Brown / Dark Brown
     }
   }, [capColor, product.slug]);
 
@@ -70,7 +70,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xfcfdfc);
 
-    // 2. Camera Setup
+    // 2. Camera Setup (Front 3/4 Product View)
     const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
     camera.position.set(0, 1.6, 6.2);
     camera.lookAt(0, 1.3, 0);
@@ -86,11 +86,11 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
 
     domContainer.appendChild(renderer.domElement);
 
-    // 4. Lighting Setup (Studio Product Photography)
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.25);
+    // 4. Studio Product Photography Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 1.9);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.95);
     keyLight.position.set(4, 7, 5);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 1024;
@@ -98,73 +98,76 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     keyLight.shadow.bias = -0.0001;
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0xe0f2fe, 0.95);
+    const fillLight = new THREE.DirectionalLight(0xe0f2fe, 0.9);
     fillLight.position.set(-5, 4, 3);
     scene.add(fillLight);
 
-    const rimLight = new THREE.DirectionalLight(0xdcfce7, 1.15);
+    const rimLight = new THREE.DirectionalLight(0xdcfce7, 1.1);
     rimLight.position.set(0, 6, -6);
     scene.add(rimLight);
 
-    // 5. Bottle Group Construction
+    // 5. Main Model Group: AgriculturalBottle
     const bottleGroup = new THREE.Group();
+    bottleGroup.name = 'AgriculturalBottle';
     scene.add(bottleGroup);
 
-    // --- Bottle Geometry (Procedural Lathe Profile for White HDPE Bottle) ---
+    // --- BottleBody (Procedural Lathe Profile for White HDPE Container) ---
     const points: THREE.Vector2[] = [];
 
-    // Base bottom
+    // Base flat bottom
     points.push(new THREE.Vector2(0, 0));
     points.push(new THREE.Vector2(0.9, 0));
-    // Bottom bevel
+    // Slightly rounded bottom bevel
     points.push(new THREE.Vector2(0.98, 0.08));
     points.push(new THREE.Vector2(1.0, 0.2));
-    // Cylindrical main body
+    // Wide cylindrical main body (label area)
     points.push(new THREE.Vector2(1.0, 2.3));
-    // Shoulder curve
+    // Smooth rounded shoulder
     points.push(new THREE.Vector2(0.96, 2.5));
     points.push(new THREE.Vector2(0.75, 2.75));
     points.push(new THREE.Vector2(0.55, 2.95));
-    // Neck collar
+    // Short narrow neck
     points.push(new THREE.Vector2(0.52, 3.4));
-    // Thread rim
+    // Screw collar rim
     points.push(new THREE.Vector2(0.55, 3.45));
     points.push(new THREE.Vector2(0.55, 3.55));
     points.push(new THREE.Vector2(0.5, 3.6));
     points.push(new THREE.Vector2(0, 3.6));
 
-    const bottleGeo = new THREE.LatheGeometry(points, 64);
+    const bottleGeo = new THREE.LatheGeometry(points, 128); // 128 segments for smooth cylindrical topology
     
-    // HDPE White Plastic Material
+    // White HDPE Plastic Material (Semi-matte finish)
     const bottleMat = new THREE.MeshStandardMaterial({
       color: 0xffffff,
-      roughness: 0.28,
+      roughness: 0.25,
       metalness: 0.02,
     });
 
     const bottleMesh = new THREE.Mesh(bottleGeo, bottleMat);
+    bottleMesh.name = 'BottleBody';
     bottleMesh.castShadow = true;
     bottleMesh.receiveShadow = true;
     bottleGroup.add(bottleMesh);
 
-    // --- Ridged Screw Cap ---
+    // --- ScrewCap (Cylindrical Ribbed Cap) ---
     const capColorHex = getCapColor();
     const capGroup = new THREE.Group();
-    capGroup.position.set(0, 3.25, 0);
+    capGroup.name = 'ScrewCap';
+    capGroup.position.set(0, 3.28, 0);
 
-    const capBodyGeo = new THREE.CylinderGeometry(0.58, 0.58, 0.55, 48);
+    const capBodyGeo = new THREE.CylinderGeometry(0.58, 0.58, 0.55, 64);
     const capMat = new THREE.MeshStandardMaterial({
       color: capColorHex,
-      roughness: 0.35,
-      metalness: 0.08,
+      roughness: 0.32,
+      metalness: 0.05,
     });
     const capBodyMesh = new THREE.Mesh(capBodyGeo, capMat);
     capBodyMesh.castShadow = true;
     capGroup.add(capBodyMesh);
 
-    // Add 24 vertical ridges around the cap
-    const numRidges = 24;
-    const ridgeGeo = new THREE.BoxGeometry(0.03, 0.5, 0.04);
+    // Vertical grip grooves around cap (32 ribs)
+    const numRidges = 32;
+    const ridgeGeo = new THREE.BoxGeometry(0.025, 0.5, 0.035);
     for (let i = 0; i < numRidges; i++) {
       const angle = (i / numRidges) * Math.PI * 2;
       const ridgeMesh = new THREE.Mesh(ridgeGeo, capMat);
@@ -177,7 +180,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     // --- Label Cylinder & High-Resolution Texture Mapping ---
     const textureLoader = new THREE.TextureLoader();
     const rawSrc = product.labelTexture || product.image || '/images/products/bio-npk-consortia.jpg';
-    const imageSrc = `${rawSrc}?v=20260829_v2`;
+    const imageSrc = `${rawSrc}?v=20260829_v3`;
 
     textureLoader.load(
       imageSrc,
@@ -191,10 +194,10 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
         texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
         const labelHeight = 2.15;
-        const labelRadius = 1.008; // Offset slightly above bottle surface to avoid z-fighting
-        const labelGeo = new THREE.CylinderGeometry(labelRadius, labelRadius, labelHeight, 64, 1, true);
+        const labelRadius = 1.008; // Offset slightly above bottle body to avoid z-fighting
+        const labelGeo = new THREE.CylinderGeometry(labelRadius, labelRadius, labelHeight, 128, 1, true);
 
-        // Map label texture with front/back full coverage
+        // Map label texture with 360° front/back coverage
         const labelMat = new THREE.MeshStandardMaterial({
           map: texture,
           roughness: 0.3,
@@ -203,8 +206,9 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
         });
 
         const labelMesh = new THREE.Mesh(labelGeo, labelMat);
+        labelMesh.name = 'LabelCylinder';
         labelMesh.position.set(0, 1.25, 0);
-        // Align front face of texture directly to camera
+        // Align front face directly to initial camera view
         labelMesh.rotation.y = -Math.PI / 2;
         labelMesh.castShadow = true;
         bottleGroup.add(labelMesh);
@@ -243,7 +247,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     shadowMesh.position.y = -0.02;
     scene.add(shadowMesh);
 
-    // Initial bottle positioning
+    // Center bottle in viewer
     bottleGroup.position.set(0, -0.4, 0);
 
     sceneRef.current = {
@@ -268,7 +272,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
       if (!sceneRef.current) return;
       const ref = sceneRef.current;
 
-      // Damping interpolation
+      // Smooth damping interpolation
       ref.rotationY += (ref.targetRotationY - ref.rotationY) * 0.08;
       ref.rotationX += (ref.targetRotationX - ref.rotationX) * 0.08;
       ref.zoom += (ref.targetZoom - ref.zoom) * 0.1;
