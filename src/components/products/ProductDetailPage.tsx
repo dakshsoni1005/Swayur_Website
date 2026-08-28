@@ -16,6 +16,7 @@ import { Container } from '@/components/layout/Container';
 import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 import { ProductSpecificationTable } from '@/components/products/ProductSpecificationTable';
 import { ProductCard } from '@/components/products/ProductCard';
+import { ProductJsonLd } from '@/components/seo/ProductJsonLd';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -33,6 +34,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
 
   return (
     <div className="py-8 sm:py-12 space-y-12 sm:space-y-16">
+      <ProductJsonLd product={product} />
+
       {/* 1. Breadcrumbs */}
       <Container>
         <Breadcrumbs

@@ -4,7 +4,7 @@ export const siteConfig = {
   name: companyData.name,
   brandName: `${companyData.brand} (${companyData.brandGujarati})`,
   tagline: companyData.tagline,
-  url: 'https://swayuragrotech.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://swayuragrotech.com',
   ogImage: '/images/brand/og-image.jpg',
   description:
     'India\'s emerging science-backed agri-biologicals company — crafting biofertilizers, biopesticides, and microbial solutions that rebuild soil health, boost crop nutrition, and reduce farmer dependence on chemicals.',
