@@ -20,26 +20,26 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isRotating, setIsRotating] = useState(false);
 
-  // Determine cap color based on prop or product slug (Default: Brown / Dark Brown)
+  // Determine cap color based on prop or product slug (Default: BROWN #6B431C)
   const getCapColor = useCallback((): number => {
     if (capColor) {
       return parseInt(capColor.replace('#', '0x'), 16);
     }
     switch (product.slug) {
-      case 'mycorrhiza':
-        return 0x5d3a1a; // Premium Earth Brown for Mycorrhiza
       case 'beauveria-bassiana':
-        return 0xb91c1c; // Deep Red
-      case 'bio-npk-consortia':
-        return 0x15803d; // Dark Green
-      case 'bio-zsb':
-        return 0xd97706; // Golden Mustard Yellow
-      case 'trichoderma-viride':
-        return 0x1d4ed8; // Royal Blue
+        return 0xb51f24; // Deep Red (#B51F24)
       case 'pseudomonas-fluorescens':
-        return 0x111827; // Charcoal Black
+        return 0x111111; // Charcoal Black (#111111)
+      case 'mycorrhiza':
+        return 0x6b431c; // Earth Brown (#6B431C)
+      case 'bio-npk-consortia':
+        return 0x167a3a; // Dark Forest Green (#167A3A)
+      case 'bio-zsb':
+        return 0xd97706; // Golden Mustard Yellow (#D97706)
+      case 'trichoderma-viride':
+        return 0x1d4ed8; // Royal Blue (#1D4ED8)
       default:
-        return 0x5d3a1a; // Default Brown / Dark Brown
+        return 0x6b431c; // Default Cap: BROWN
     }
   }, [capColor, product.slug]);
 
@@ -66,13 +66,13 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     const width = domContainer.clientWidth || 400;
     const height = domContainer.clientHeight || 400;
 
-    // 1. Scene Setup
+    // 1. Scene Setup (#F7F8F6 Background)
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xfcfdfc);
+    scene.background = new THREE.Color(0xf7f8f6);
 
     // 2. Camera Setup (Front 3/4 Product View)
     const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-    camera.position.set(0, 1.6, 6.2);
+    camera.position.set(2.8, 1.8, 5.8);
     camera.lookAt(0, 1.3, 0);
 
     // 3. Renderer Setup
@@ -80,17 +80,20 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMappingExposure = 1.12;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     domContainer.appendChild(renderer.domElement);
 
     // 4. Studio Product Photography Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 1.95);
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0xf7f8f6, 0.6);
+    scene.add(hemiLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.85);
     keyLight.position.set(4, 7, 5);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 1024;
@@ -98,15 +101,11 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     keyLight.shadow.bias = -0.0001;
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0xe0f2fe, 0.9);
-    fillLight.position.set(-5, 4, 3);
-    scene.add(fillLight);
-
-    const rimLight = new THREE.DirectionalLight(0xdcfce7, 1.1);
-    rimLight.position.set(0, 6, -6);
+    const rimLight = new THREE.DirectionalLight(0xdcfce7, 0.85);
+    rimLight.position.set(-4, 5, -5);
     scene.add(rimLight);
 
-    // 5. Main Model Group: AgriculturalBottle
+    // 5. Single Main Model Group: AgriculturalBottle
     const bottleGroup = new THREE.Group();
     bottleGroup.name = 'AgriculturalBottle';
     scene.add(bottleGroup);
@@ -114,13 +113,13 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     // --- BottleBody (Procedural Lathe Profile for White HDPE Container) ---
     const points: THREE.Vector2[] = [];
 
-    // Base flat bottom
+    // Flat stable bottom
     points.push(new THREE.Vector2(0, 0));
     points.push(new THREE.Vector2(0.9, 0));
-    // Slightly rounded bottom bevel
+    // Rounded bottom bevel
     points.push(new THREE.Vector2(0.98, 0.08));
     points.push(new THREE.Vector2(1.0, 0.2));
-    // Wide cylindrical main body (label area)
+    // Slightly tapered wide cylindrical main body
     points.push(new THREE.Vector2(1.0, 2.3));
     // Smooth rounded shoulder
     points.push(new THREE.Vector2(0.96, 2.5));
@@ -128,19 +127,19 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     points.push(new THREE.Vector2(0.55, 2.95));
     // Short narrow neck
     points.push(new THREE.Vector2(0.52, 3.4));
-    // Screw collar rim
+    // Collar rim
     points.push(new THREE.Vector2(0.55, 3.45));
     points.push(new THREE.Vector2(0.55, 3.55));
     points.push(new THREE.Vector2(0.5, 3.6));
     points.push(new THREE.Vector2(0, 3.6));
 
-    const bottleGeo = new THREE.LatheGeometry(points, 128); // 128 segments for smooth cylindrical topology
+    const bottleGeo = new THREE.LatheGeometry(points, 128); // 128 segments for smooth cylindrical geometry
     
-    // White HDPE Plastic Material (Semi-matte finish)
+    // White HDPE Plastic Material (#F5F5F2, Roughness 0.6, Metalness 0)
     const bottleMat = new THREE.MeshStandardMaterial({
-      color: 0xffffff,
-      roughness: 0.25,
-      metalness: 0.02,
+      color: 0xf5f5f2,
+      roughness: 0.6,
+      metalness: 0.0,
     });
 
     const bottleMesh = new THREE.Mesh(bottleGeo, bottleMat);
@@ -149,7 +148,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     bottleMesh.receiveShadow = true;
     bottleGroup.add(bottleMesh);
 
-    // --- ScrewCap (Cylindrical Ribbed Cap) ---
+    // --- ScrewCap (Single Ribbed Cap) ---
     const capColorHex = getCapColor();
     const capGroup = new THREE.Group();
     capGroup.name = 'ScrewCap';
@@ -158,8 +157,8 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     const capBodyGeo = new THREE.CylinderGeometry(0.58, 0.58, 0.55, 64);
     const capMat = new THREE.MeshStandardMaterial({
       color: capColorHex,
-      roughness: 0.32,
-      metalness: 0.05,
+      roughness: 0.6,
+      metalness: 0.0,
     });
     const capBodyMesh = new THREE.Mesh(capBodyGeo, capMat);
     capBodyMesh.castShadow = true;
@@ -177,49 +176,51 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     }
     bottleGroup.add(capGroup);
 
-    // --- Label Cylinder & High-Resolution Texture Mapping ---
+    // --- Dedicated Label Cylinder & Dynamic Texture Mapping ---
     const textureLoader = new THREE.TextureLoader();
-    const rawSrc = product.labelTexture || product.image || '/images/products/bio-npk-consortia.jpg';
-    const imageSrc = `${rawSrc}?v=20260829_v3`;
+    const rawSrc = product.labelTexture || product.image;
 
-    textureLoader.load(
-      imageSrc,
-      (texture) => {
-        texture.colorSpace = THREE.SRGBColorSpace;
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.ClampToEdgeWrapping;
-        texture.minFilter = THREE.LinearMipmapLinearFilter;
-        texture.magFilter = THREE.LinearFilter;
-        texture.generateMipmaps = true;
-        texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    if (rawSrc) {
+      const imageSrc = `${rawSrc}?v=20260829_v4`;
+      textureLoader.load(
+        imageSrc,
+        (texture) => {
+          texture.colorSpace = THREE.SRGBColorSpace;
+          texture.wrapS = THREE.RepeatWrapping;
+          texture.wrapT = THREE.ClampToEdgeWrapping;
+          texture.minFilter = THREE.LinearMipmapLinearFilter;
+          texture.magFilter = THREE.LinearFilter;
+          texture.generateMipmaps = true;
+          texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
-        const labelHeight = 2.15;
-        const labelRadius = 1.008; // Offset slightly above bottle body to avoid z-fighting
-        const labelGeo = new THREE.CylinderGeometry(labelRadius, labelRadius, labelHeight, 128, 1, true);
+          const labelHeight = 2.15;
+          const labelRadius = 1.008; // Offset slightly above bottle body to avoid z-fighting
+          const labelGeo = new THREE.CylinderGeometry(labelRadius, labelRadius, labelHeight, 128, 1, true);
 
-        // Map label texture with 360° front/back coverage
-        const labelMat = new THREE.MeshStandardMaterial({
-          map: texture,
-          roughness: 0.3,
-          metalness: 0.0,
-          side: THREE.FrontSide,
-        });
+          const labelMat = new THREE.MeshStandardMaterial({
+            map: texture,
+            roughness: 0.4,
+            metalness: 0.0,
+            side: THREE.FrontSide,
+          });
 
-        const labelMesh = new THREE.Mesh(labelGeo, labelMat);
-        labelMesh.name = 'LabelCylinder';
-        labelMesh.position.set(0, 1.25, 0);
-        // Align front face directly to initial camera view
-        labelMesh.rotation.y = -Math.PI / 2;
-        labelMesh.castShadow = true;
-        bottleGroup.add(labelMesh);
+          const labelMesh = new THREE.Mesh(labelGeo, labelMat);
+          labelMesh.name = 'LabelCylinder';
+          labelMesh.position.set(0, 1.25, 0);
+          labelMesh.rotation.y = -Math.PI / 2;
+          labelMesh.castShadow = true;
+          bottleGroup.add(labelMesh);
 
-        setIsLoading(false);
-      },
-      undefined,
-      () => {
-        setIsLoading(false);
-      }
-    );
+          setIsLoading(false);
+        },
+        undefined,
+        () => {
+          setIsLoading(false);
+        }
+      );
+    } else {
+      queueMicrotask(() => setIsLoading(false));
+    }
 
     // --- Floor Soft Contact Shadow ---
     const shadowCanvas = document.createElement('canvas');
@@ -228,8 +229,8 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     const ctx = shadowCanvas.getContext('2d');
     if (ctx) {
       const gradient = ctx.createRadialGradient(128, 128, 10, 128, 128, 120);
-      gradient.addColorStop(0, 'rgba(15, 23, 42, 0.28)');
-      gradient.addColorStop(0.5, 'rgba(15, 23, 42, 0.12)');
+      gradient.addColorStop(0, 'rgba(15, 23, 42, 0.25)');
+      gradient.addColorStop(0.5, 'rgba(15, 23, 42, 0.10)');
       gradient.addColorStop(1, 'rgba(15, 23, 42, 0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 256, 256);
@@ -247,7 +248,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     shadowMesh.position.y = -0.02;
     scene.add(shadowMesh);
 
-    // Center bottle in viewer
+    // Position bottle centered in viewer
     bottleGroup.position.set(0, -0.4, 0);
 
     sceneRef.current = {
@@ -266,7 +267,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
       animId: 0,
     };
 
-    // --- Animation Loop ---
+    // --- Render & Animation Loop ---
     let autoRotateAngle = 0;
     const animate = () => {
       if (!sceneRef.current) return;
@@ -294,7 +295,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
 
     animate();
 
-    // --- Touch & Pointer Event Listeners ---
+    // --- Touch & Pointer Controls ---
     const handlePointerDown = (e: PointerEvent) => {
       if (!sceneRef.current) return;
       sceneRef.current.isDragging = true;
@@ -390,13 +391,13 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
   };
 
   return (
-    <div className={`relative w-full h-[400px] sm:h-[480px] rounded-2xl bg-gradient-to-br from-agri-pale/60 via-white to-emerald-50/40 border border-agri-border overflow-hidden select-none touch-none ${className}`}>
+    <div className={`relative w-full h-[400px] sm:h-[480px] rounded-2xl bg-[#F7F8F6] border border-agri-border overflow-hidden select-none touch-none ${className}`}>
       {/* 3D WebGL Canvas Container */}
       <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
       {/* Loading Overlay */}
       {isLoading && (
-        <div className="absolute inset-0 bg-white/80 backdrop-blur-xs flex flex-col items-center justify-center space-y-3 z-20">
+        <div className="absolute inset-0 bg-[#F7F8F6]/90 backdrop-blur-xs flex flex-col items-center justify-center space-y-3 z-20">
           <div className="w-10 h-10 rounded-full border-3 border-agri-accent border-t-transparent animate-spin" />
           <span className="text-xs font-bold text-agri-dark uppercase tracking-wider">
             Loading Interactive 3D Model...
