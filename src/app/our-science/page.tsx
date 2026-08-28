@@ -12,7 +12,6 @@ import {
 import { seoData } from '@/data/seo';
 import {
   scienceAreasData,
-  scienceProcessSteps,
   qualityPromiseData,
 } from '@/data/science';
 import { Container } from '@/components/layout/Container';
@@ -20,6 +19,7 @@ import { PageHeader } from '@/components/layout/PageHeader';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { CTASection } from '@/components/sections/CTASection';
+import { PipelineSection } from '@/components/science/PipelineSection';
 import { Badge } from '@/components/ui/Badge';
 
 export const metadata: Metadata = {
@@ -58,34 +58,7 @@ export default function OurSciencePage() {
       />
 
       {/* 2. R&D Development Pipeline */}
-      <Container>
-        <div className="space-y-8">
-          <SectionHeading
-            badge="R&D Development Pipeline"
-            title="How Science Moves From Microbe to Farm"
-            subtitle="Every Swayur Agrotech product undergoes a rigorous 5-stage development lifecycle before commercial release."
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {scienceProcessSteps.map((proc, idx) => (
-              <Card
-                key={idx}
-                className="flex flex-col justify-between space-y-3 p-5 bg-white border-agri-border relative"
-              >
-                <div className="space-y-2">
-                  <span className="text-xs font-bold text-agri-primary px-2.5 py-1 rounded bg-agri-pale inline-block border border-agri-accent/20">
-                    Stage {proc.stepNumber}
-                  </span>
-                  <h3 className="text-base font-bold text-agri-dark leading-snug">{proc.title}</h3>
-                  <p className="text-xs text-agri-muted leading-relaxed font-normal">
-                    {proc.description}
-                  </p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Container>
+      <PipelineSection />
 
       {/* 3. Core Science Areas (6 Cards) */}
       <section className="bg-agri-pale/30 py-16 sm:py-24 border-y border-agri-border/60">
