@@ -15,6 +15,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     'bio-npk-consortia': '/images/products/bio-npk-consortia.jpg',
     'bio-zsb': '/images/products/bio-zsb.jpg',
     'mycorrhiza': '/images/products/mycorrhiza.jpg',
+    'trichoderma-viride': '/images/products/trichoderma-viride.jpg',
   };
 
   const photoPath = productPhotos[product.slug];
@@ -27,7 +28,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="relative aspect-4/3 w-full rounded-xl bg-agri-pale/40 border border-agri-border/60 overflow-hidden flex items-center justify-center p-2">
             <Image
               src={photoPath}
-              alt={`${product.name} KshetraPal Container`}
+              alt={`${product.name} KshetraPal Bottle`}
               width={240}
               height={240}
               className="object-contain max-h-40 group-hover:scale-105 transition-transform duration-300"

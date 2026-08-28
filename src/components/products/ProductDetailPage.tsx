@@ -37,6 +37,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
     'bio-npk-consortia': '/images/products/bio-npk-consortia.jpg',
     'bio-zsb': '/images/products/bio-zsb.jpg',
     'mycorrhiza': '/images/products/mycorrhiza.jpg',
+    'trichoderma-viride': '/images/products/trichoderma-viride.jpg',
   };
 
   const photoPath = productPhotos[product.slug];
@@ -62,7 +63,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
                 <div className="relative w-full h-full min-h-[320px]">
                   <Image
                     src={photoPath}
-                    alt={`${product.name} KshetraPal Biofertilizer Bottle`}
+                    alt={`${product.name} KshetraPal Bottle`}
                     fill
                     className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
                     priority
