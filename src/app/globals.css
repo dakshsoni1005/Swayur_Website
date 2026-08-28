@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-agri-dark: #0F382C;
+  --color-agri-primary: #174E3C;
+  --color-agri-medium: #226D54;
+  --color-agri-accent: #2E8B57;
+  --color-agri-light: #48BB78;
+  --color-agri-pale: #F0F6F3;
+  --color-agri-surface: #FAFBF8;
+  --color-agri-gold: #D4AF37;
+  --color-agri-earth: #8B5E3C;
+  --color-agri-text: #1C2622;
+  --color-agri-muted: #4A5852;
+  --color-agri-border: #E1E8E4;
+}
+
+:root {
+  --background: #FAFBF8;
+  --foreground: #1C2622;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFBF8;
+}
+::-webkit-scrollbar-thumb {
+  background: #226D54;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0F382C;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #2E8B57;
+  outline-offset: 2px;
+}
