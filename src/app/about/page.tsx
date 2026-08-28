@@ -13,13 +13,14 @@ import {
 } from 'lucide-react';
 import { companyData } from '@/data/company';
 import { seoData } from '@/data/seo';
-import { aboutStorySteps, coreValuesData } from '@/data/about';
+import { coreValuesData } from '@/data/about';
 import { Container } from '@/components/layout/Container';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { BiologicalComparison } from '@/components/sections/BiologicalComparison';
 import { CTASection } from '@/components/sections/CTASection';
+import { CircularStoryJourney } from '@/components/about/CircularStoryJourney';
 import { Badge } from '@/components/ui/Badge';
 
 export const metadata: Metadata = {
@@ -103,31 +104,7 @@ export default function AboutPage() {
       </Container>
 
       {/* 3. Our Story ("The Journey Begins in the Soil") */}
-      <section className="bg-agri-pale/30 py-16 sm:py-24 border-y border-agri-border/60">
-        <Container>
-          <SectionHeading
-            badge="Our Story"
-            title="The Journey Begins in the Soil"
-            subtitle="Swayur Agrotech LLP was founded by agricultural scientists and agri-entrepreneurs to address decades of soil degradation in Indian farming."
-          />
-
-          <div className="space-y-6 max-w-4xl mx-auto">
-            {aboutStorySteps.map((stepItem, idx) => (
-              <Card key={idx} className="flex flex-col sm:flex-row items-start gap-5 p-6 bg-white border-agri-border shadow-2xs">
-                <div className="w-10 h-10 rounded-xl bg-agri-dark text-white flex items-center justify-center font-extrabold text-sm shrink-0">
-                  {stepItem.step}
-                </div>
-                <div className="space-y-1.5">
-                  <h3 className="text-lg font-bold text-agri-dark">{stepItem.title}</h3>
-                  <p className="text-sm text-agri-muted leading-relaxed font-normal">
-                    {stepItem.description}
-                  </p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <CircularStoryJourney />
 
       {/* 4. Mission & Vision */}
       <Container>
