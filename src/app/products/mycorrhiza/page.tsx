@@ -8,8 +8,12 @@ import { ProductDetailPage } from '@/components/products/ProductDetailPage';
 const product = productsData.find((p) => p.slug === 'mycorrhiza')!;
 
 export const metadata: Metadata = {
-  title: seoData.mycorrhiza.metaTitle,
-  description: seoData.mycorrhiza.metaDescription,
+  title: seoData.mycorrhiza?.metaTitle || 'Mycorrhiza Biofertilizer | KshetraPal',
+  description: seoData.mycorrhiza?.metaDescription || product?.description.slice(0, 150),
+  openGraph: {
+    title: product?.name,
+    description: product?.tagline,
+  },
 };
 
 export default function MycorrhizaPage() {

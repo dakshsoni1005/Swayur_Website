@@ -8,8 +8,12 @@ import { ProductDetailPage } from '@/components/products/ProductDetailPage';
 const product = productsData.find((p) => p.slug === 'trichoderma-viride')!;
 
 export const metadata: Metadata = {
-  title: seoData['trichoderma-viride'].metaTitle,
-  description: seoData['trichoderma-viride'].metaDescription,
+  title: seoData['trichoderma-viride']?.metaTitle || 'Trichoderma viride Biofungicide | KshetraPal',
+  description: seoData['trichoderma-viride']?.metaDescription || product?.description.slice(0, 150),
+  openGraph: {
+    title: product?.name,
+    description: product?.tagline,
+  },
 };
 
 export default function TrichodermaViridePage() {

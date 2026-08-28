@@ -8,8 +8,12 @@ import { ProductDetailPage } from '@/components/products/ProductDetailPage';
 const product = productsData.find((p) => p.slug === 'bio-zsb')!;
 
 export const metadata: Metadata = {
-  title: seoData['bio-zsb'].metaTitle,
-  description: seoData['bio-zsb'].metaDescription,
+  title: seoData['bio-zsb']?.metaTitle || 'Bio-ZSB | Zinc Solubilizing Biofertilizer',
+  description: seoData['bio-zsb']?.metaDescription || product?.description.slice(0, 150),
+  openGraph: {
+    title: product?.name,
+    description: product?.tagline,
+  },
 };
 
 export default function BioZsbPage() {

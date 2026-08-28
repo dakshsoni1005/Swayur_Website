@@ -64,6 +64,7 @@ export const productsData: Product[] = [
       'Repeat application as recommended by crop advisory',
       'Avoid direct mixing with chemical fungicides or pesticides',
     ],
+    safetyWarning: 'Avoid direct mixing with chemical fungicides or pesticides.',
     recommendedCrops: [
       'Cereals (Wheat, Rice, Maize)',
       'Pulses (Soybean, Gram, Groundnut)',
@@ -80,7 +81,6 @@ export const productsData: Product[] = [
     storage: 'Cool, dry place. Away from direct sunlight.',
     fcoCompliant: true,
     ctaText: 'Buy Now / Inquire',
-    pdfReference: '/docs/bio-npk-consortia-label.pdf',
   },
   {
     id: 'bio-zsb',
@@ -127,6 +127,7 @@ export const productsData: Product[] = [
       'Apply at early vegetative stage; repeat at flowering stage',
       'Avoid direct mixing with chemical fungicides',
     ],
+    safetyWarning: 'Avoid direct mixing with chemical fungicides.',
     recommendedCrops: [
       'Cereals',
       'Pulses',
@@ -143,7 +144,6 @@ export const productsData: Product[] = [
     storage: 'Cool, dry place away from direct sunlight.',
     fcoCompliant: true,
     ctaText: 'Buy Now / Inquire',
-    pdfReference: '/docs/bio-zsb-label.pdf',
   },
   {
     id: 'mycorrhiza',
@@ -253,6 +253,16 @@ export const productsData: Product[] = [
       'Promotes healthy crop growth and maintains good productivity',
       'Compatible with irrigation systems and organic farming programs',
     ],
+    targetPestsOrDiseasesTitle: 'Target Soil-borne Pathogens',
+    targetPestsOrDiseases: [
+      'Fusarium (Wilt)',
+      'Verticillium',
+      'Phytophthora',
+      'Rhizoctonia (Root Rot)',
+      'Sclerotium',
+      'Alternaria',
+      'Damping-off Disease',
+    ],
     dosage: '500 ml per acre',
     directionsForUse: [
       'Mix with irrigation water and apply through drip irrigation',
@@ -260,6 +270,7 @@ export const productsData: Product[] = [
       'Apply at early vegetative stage; repeat as recommended based on disease pressure',
       'DO NOT mix directly with chemical fungicides',
     ],
+    safetyWarning: 'DO NOT mix directly with chemical fungicides.',
     recommendedCrops: [
       'Cereals',
       'Pulses',
@@ -276,7 +287,6 @@ export const productsData: Product[] = [
     storage: 'Cool, dry place. Away from direct sunlight.',
     fcoCompliant: true,
     ctaText: 'Buy Now / Inquire',
-    pdfReference: '/docs/disease-control-guide.pdf',
   },
   {
     id: 'beauveria-bassiana',
@@ -316,6 +326,17 @@ export const productsData: Product[] = [
       'Reduces chemical insecticide applications and overall crop protection costs',
       'Supports certified organic farming and food safety compliance',
     ],
+    targetPestsOrDiseasesTitle: 'Target Insect Pests',
+    targetPestsOrDiseases: [
+      'Whitefly',
+      'Aphids',
+      'Thrips',
+      'Mealybugs',
+      'Mites',
+      'Soil-dwelling Grubs',
+      'Caterpillars',
+      'Stem Borers',
+    ],
     dosage: '500 ml per acre',
     directionsForUse: [
       'Dilute in water and apply as a thorough foliar spray',
@@ -325,6 +346,7 @@ export const productsData: Product[] = [
       'Apply during evening hours to protect spore viability from UV exposure',
       'Do NOT mix directly with chemical fungicides',
     ],
+    safetyWarning: 'Do NOT mix directly with chemical fungicides.',
     recommendedCrops: [
       'Cereals',
       'Pulses',
@@ -341,7 +363,6 @@ export const productsData: Product[] = [
     storage: 'Cool, dry place. Away from direct sunlight.',
     fcoCompliant: true,
     ctaText: 'Buy Now / Inquire',
-    pdfReference: '/docs/pest-identification-guide.pdf',
   },
   {
     id: 'pseudomonas-fluorescens',
@@ -381,6 +402,15 @@ export const productsData: Product[] = [
       'Produces siderophores that improve iron availability',
       'Dual benefit: disease control + growth promotion in one product',
     ],
+    targetPestsOrDiseasesTitle: 'Target Diseases & Pathogens',
+    targetPestsOrDiseases: [
+      'Fusarium Wilt',
+      'Pythium Root Rot',
+      'Rhizoctonia',
+      'Stem Rot',
+      'Damping-off Disease',
+      'Bacterial Leaf Blight (Rice)',
+    ],
     dosage: '500 ml per acre',
     directionsForUse: [
       'Mix with irrigation water and apply through drip irrigation',
@@ -389,6 +419,7 @@ export const productsData: Product[] = [
       'Especially effective as a seedling dip at transplanting',
       'Avoid direct mixing with chemical fungicides',
     ],
+    safetyWarning: 'Avoid direct mixing with chemical fungicides.',
     recommendedCrops: [
       'Cereals (especially Rice)',
       'Pulses',
@@ -405,6 +436,5 @@ export const productsData: Product[] = [
     storage: 'Cool, dry place. Away from direct sunlight.',
     fcoCompliant: true,
     ctaText: 'Buy Now / Inquire',
-    pdfReference: '/docs/crop-disease-guide.pdf',
   },
 ];

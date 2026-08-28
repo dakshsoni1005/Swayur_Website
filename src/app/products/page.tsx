@@ -4,7 +4,7 @@ import { productsData } from '@/data/products';
 import { seoData } from '@/data/seo';
 import { Container } from '@/components/layout/Container';
 import { PageHeader } from '@/components/layout/PageHeader';
-import { ProductGrid } from '@/components/products/ProductGrid';
+import { ProductFilter } from '@/components/products/ProductFilter';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { CTASection } from '@/components/sections/CTASection';
 
@@ -17,9 +17,9 @@ export default function ProductsPage() {
   return (
     <div>
       <PageHeader
-        badge="KshetraPal Product Range"
-        title="Biofertilizers & Biopesticides for Sustainable Agriculture"
-        subtitle="Six scientifically formulated, FCO 1985 compliant biological products engineered for Indian crops and soil conditions."
+        badge="KHETRAPAL RANGE"
+        title="The KshetraPal Range"
+        subtitle="KshetraPal — meaning &ldquo;Protector of the Field&rdquo; — is Swayur Agrotech's flagship product brand. Each product in the KshetraPal range is developed using advanced microbial science, formulated for Indian agro-climatic conditions, and manufactured to FCO 1985 quality standards."
         breadcrumbs={[{ label: 'Products' }]}
       />
 
@@ -27,13 +27,16 @@ export default function ProductsPage() {
         <Container>
           <SectionHeading
             badge="All 6 Products"
-            title="Explore the Complete KshetraPal Range"
-            subtitle="Click on any product card to view composition, dosage, application instructions, and crop suitability."
+            title="Explore Biofertilizers & Biopesticides"
+            subtitle="Filter by category or click on any product card for detailed technical composition, dosage, application methods, and crop compatibility."
           />
-          <ProductGrid products={productsData} />
+          <ProductFilter products={productsData} />
         </Container>
 
-        <CTASection />
+        <CTASection
+          title="Need Product Advisory for Your Farm?"
+          subtitle="Talk to our agronomy team to select the right biological inputs for your crop and soil situation."
+        />
       </div>
     </div>
   );

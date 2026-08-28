@@ -47,6 +47,9 @@ export interface Product {
   fcoCompliant: boolean;
   ctaText?: string;
   pdfReference?: string;
+  targetPestsOrDiseases?: string[];
+  targetPestsOrDiseasesTitle?: string;
+  safetyWarning?: string;
 }
 
 export interface CropMatrixItem {
