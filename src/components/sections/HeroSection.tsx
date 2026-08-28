@@ -8,10 +8,7 @@ import { Badge } from '@/components/ui/Badge';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-agri-pale via-white to-white pt-12 sm:pt-16 lg:pt-24 pb-16 sm:pb-20">
-      {/* Background Decorative Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(#2E7D32_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.04] pointer-events-none" />
-
+    <section className="relative overflow-hidden bg-transparent pt-12 sm:pt-16 lg:pt-24 pb-16 sm:pb-20">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Value Proposition & CTAs */}
@@ -74,7 +71,7 @@ export const HeroSection: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Product Range Feature Card */}
-              <div className="relative rounded-3xl bg-white p-8 border-2 border-agri-accent/30 shadow-xl space-y-6">
+              <div className="relative rounded-3xl bg-white/90 backdrop-blur-md p-8 border-2 border-agri-accent/30 shadow-xl space-y-6">
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-2xl bg-agri-pale flex items-center justify-center text-agri-primary font-bold text-xl">
                     🌱

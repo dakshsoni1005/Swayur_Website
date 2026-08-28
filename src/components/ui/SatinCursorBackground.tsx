@@ -9,14 +9,14 @@ export const SatinCursorBackground: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
     let animationFrameId: number;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Mouse tracking with smooth lerp interpolation
+    // Mouse position with smooth Lerp interpolation
     const mouse = {
       x: width / 2,
       y: height / 2,
@@ -53,113 +53,121 @@ export const SatinCursorBackground: React.FC = () => {
       document.body.addEventListener('mouseleave', handleMouseLeave);
     }
 
-    // Ribbed satin wave parameters
-    const waveCount = 14;
+    // Satin fold parameters
+    const foldCount = 16;
     let time = 0;
 
     const render = () => {
-      time += 0.008;
+      time += 0.006;
 
-      // Smooth Lerp for cursor light
+      // Lerp smooth mouse position
       if (!isTouchDevice && mouse.isHovering) {
         mouse.x += (mouse.targetX - mouse.x) * 0.08;
         mouse.y += (mouse.targetY - mouse.y) * 0.08;
       } else {
-        // Subtle ambient drifting if touch or idle
-        mouse.targetX = width / 2 + Math.sin(time * 0.5) * (width * 0.2);
-        mouse.targetY = height / 2 + Math.cos(time * 0.4) * (height * 0.2);
+        // Idle ambient gentle movement
+        mouse.targetX = width / 2 + Math.sin(time * 0.5) * (width * 0.15);
+        mouse.targetY = height / 2 + Math.cos(time * 0.3) * (height * 0.15);
         mouse.x += (mouse.targetX - mouse.x) * 0.03;
         mouse.y += (mouse.targetY - mouse.y) * 0.03;
       }
 
-      // Base off-white canvas fill
-      ctx.fillStyle = '#FAFCFA';
+      // Base pure white fill
+      ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, width, height);
 
-      // Draw subtle vertical flowing satin ribbons
-      const colWidth = width / (waveCount - 1);
+      const colWidth = width / (foldCount - 1);
+      const spotRadius = 380;
 
-      for (let i = 0; i < waveCount; i++) {
+      // Render vertical satin fabric folds
+      for (let i = 0; i < foldCount; i++) {
         const baseX = i * colWidth;
-        const waveOffset = Math.sin(time + i * 0.6) * 25;
-        const waveX = baseX + waveOffset;
 
-        // Distance from cursor light
-        const dx = waveX - mouse.x;
-        const dy = height / 2 - mouse.y;
-        const distSq = dx * dx + dy * dy;
-        const lightEffect = Math.max(0, 1 - Math.sqrt(distSq) / 600);
+        // Wave curve vertices along Y axis
+        const segments = 20;
+        const points: { x: number; y: number; light: number }[] = [];
 
-        // Ribbon Gradient (Soft pearl white, light gray, soft sage tint)
-        const gradient = ctx.createLinearGradient(waveX - colWidth, 0, waveX + colWidth, height);
-        
-        const alphaBase = 0.03 + Math.sin(time * 0.5 + i) * 0.01 + lightEffect * 0.04;
-        
-        gradient.addColorStop(0, `rgba(240, 245, 241, ${alphaBase})`);
-        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${alphaBase * 1.5})`);
-        gradient.addColorStop(1, `rgba(235, 242, 237, ${alphaBase})`);
+        for (let s = 0; s <= segments; s++) {
+          const py = (s / segments) * height;
+          const wavePhase = time + i * 0.5 + (py / height) * Math.PI * 1.5;
+          const px = baseX + Math.sin(wavePhase) * 35;
 
-        ctx.fillStyle = gradient;
+          // Distance to mouse cursor
+          const dx = px - mouse.x;
+          const dy = py - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const light = Math.max(0, 1 - dist / spotRadius);
 
-        // Curve path for vertical satin wave
-        ctx.beginPath();
-        ctx.moveTo(waveX - colWidth * 0.8, 0);
+          points.push({ x: px, y: py, light });
+        }
 
-        const cp1x = waveX + Math.sin(time + i) * 40;
-        const cp1y = height * 0.33;
-        const cp2x = waveX - Math.cos(time + i) * 40;
-        const cp2y = height * 0.66;
-        const endX = waveX + Math.sin(time + i * 0.5) * 20;
+        // Draw vertical satin fold ribbon
+        for (let s = 0; s < segments; s++) {
+          const p1 = points[s];
+          const p2 = points[s + 1];
 
-        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, endX, height);
-        ctx.lineTo(endX + colWidth * 1.2, height);
+          const avgLight = (p1.light + p2.light) * 0.5;
 
-        const rcp2x = cp2x + colWidth * 1.2;
-        const rcp1x = cp1x + colWidth * 1.2;
-        ctx.bezierCurveTo(rcp2x, cp2y, rcp1x, cp1y, waveX + colWidth * 0.4, 0);
-        ctx.closePath();
-        ctx.fill();
+          // Dynamic colors reacting to cursor light (White satin with pearl-gray shadows & glossy highlights)
+          const shadowAlpha = 0.06 + (1 - avgLight) * 0.04 + Math.sin(time + i) * 0.015;
+          const highlightAlpha = 0.15 + avgLight * 0.35;
+
+          const ribbonGrad = ctx.createLinearGradient(p1.x - colWidth * 0.6, p1.y, p1.x + colWidth * 0.6, p2.y);
+          ribbonGrad.addColorStop(0, `rgba(215, 225, 218, ${shadowAlpha})`);
+          ribbonGrad.addColorStop(0.4, `rgba(255, 255, 255, ${highlightAlpha})`);
+          ribbonGrad.addColorStop(0.7, `rgba(235, 242, 237, ${shadowAlpha * 0.8})`);
+          ribbonGrad.addColorStop(1, `rgba(210, 220, 214, ${shadowAlpha})`);
+
+          ctx.fillStyle = ribbonGrad;
+          ctx.beginPath();
+          ctx.moveTo(p1.x - colWidth * 0.5, p1.y);
+          ctx.lineTo(p1.x + colWidth * 0.5, p1.y);
+          ctx.lineTo(p2.x + colWidth * 0.5, p2.y);
+          ctx.lineTo(p2.x - colWidth * 0.5, p2.y);
+          ctx.closePath();
+          ctx.fill();
+        }
       }
 
-      // Cursor-following soft circular spotlight
-      const spotRadius = Math.min(width, height) * 0.35;
-      const spotGlow = ctx.createRadialGradient(
-        mouse.x,
-        mouse.y,
-        0,
-        mouse.x,
-        mouse.y,
-        spotRadius
-      );
+      // Soft circular cursor light spotlight
+      if (!isTouchDevice && mouse.isHovering) {
+        const spotGlow = ctx.createRadialGradient(
+          mouse.x,
+          mouse.y,
+          0,
+          mouse.x,
+          mouse.y,
+          spotRadius
+        );
 
-      // Soft white satin highlight with delicate contrast ring
-      spotGlow.addColorStop(0, 'rgba(255, 255, 255, 0.85)');
-      spotGlow.addColorStop(0.3, 'rgba(244, 249, 245, 0.45)');
-      spotGlow.addColorStop(0.7, 'rgba(225, 235, 228, 0.15)');
-      spotGlow.addColorStop(1, 'rgba(250, 252, 250, 0)');
+        spotGlow.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+        spotGlow.addColorStop(0.35, 'rgba(245, 250, 246, 0.6)');
+        spotGlow.addColorStop(0.7, 'rgba(230, 240, 234, 0.2)');
+        spotGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
-      ctx.fillStyle = spotGlow;
-      ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, spotRadius, 0, Math.PI * 2);
-      ctx.fill();
+        ctx.fillStyle = spotGlow;
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, spotRadius, 0, Math.PI * 2);
+        ctx.fill();
 
-      // Delicate subtle shadow rim for cursor depth on white background
-      const shadowRim = ctx.createRadialGradient(
-        mouse.x,
-        mouse.y,
-        spotRadius * 0.4,
-        mouse.x,
-        mouse.y,
-        spotRadius * 0.95
-      );
-      shadowRim.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      shadowRim.addColorStop(0.8, 'rgba(46, 125, 50, 0.015)');
-      shadowRim.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        // Delicate subtle shadow contrast ring around cursor spotlight for 3D depth on white
+        const ringGlow = ctx.createRadialGradient(
+          mouse.x,
+          mouse.y,
+          spotRadius * 0.5,
+          mouse.x,
+          mouse.y,
+          spotRadius
+        );
+        ringGlow.addColorStop(0, 'rgba(0, 0, 0, 0)');
+        ringGlow.addColorStop(0.75, 'rgba(30, 80, 50, 0.025)');
+        ringGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
-      ctx.fillStyle = shadowRim;
-      ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, spotRadius, 0, Math.PI * 2);
-      ctx.fill();
+        ctx.fillStyle = ringGlow;
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, spotRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
       animationFrameId = requestAnimationFrame(render);
     };
