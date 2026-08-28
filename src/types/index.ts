@@ -34,6 +34,7 @@ export interface Product {
   category: 'Biofertilizer' | 'Biopesticide' | 'Biocontrol';
   subcategory?: string;
   formulation: 'Liquid' | 'Powder (WP)';
+  image?: string;
   tagline: string;
   description: string;
   composition: CompositionItem[];

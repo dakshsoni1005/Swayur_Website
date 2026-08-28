@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowRight, Check } from 'lucide-react';
 import { Product } from '@/types';
+import { ProductImage } from '@/components/products/ProductImage';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 
@@ -11,32 +11,11 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const productPhotos: Record<string, string> = {
-    'bio-npk-consortia': '/images/products/bio-npk-consortia.jpg',
-    'bio-zsb': '/images/products/bio-zsb.jpg',
-    'mycorrhiza': '/images/products/mycorrhiza.jpg',
-    'trichoderma-viride': '/images/products/trichoderma-viride.jpg',
-    'beauveria-bassiana': '/images/products/beauveria-bassiana.jpg',
-    'pseudomonas-fluorescens': '/images/products/pseudomonas-fluorescens.jpg',
-  };
-
-  const photoPath = productPhotos[product.slug];
-
   return (
     <Card className="flex flex-col justify-between h-full group border-agri-border hover:border-agri-accent/50 transition-all duration-300 shadow-2xs hover:shadow-md bg-white">
       <div className="space-y-4 p-6">
-        {/* Product Image / Graphic Thumbnail */}
-        {photoPath && (
-          <div className="relative aspect-4/3 w-full rounded-xl bg-agri-pale/40 border border-agri-border/60 overflow-hidden flex items-center justify-center p-2">
-            <Image
-              src={photoPath}
-              alt={`${product.name} KshetraPal Bottle`}
-              width={240}
-              height={240}
-              className="object-contain max-h-40 group-hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-        )}
+        {/* Centralized Product Image */}
+        <ProductImage product={product} size="md" />
 
         {/* Header Badges */}
         <div className="flex items-center justify-between gap-2">

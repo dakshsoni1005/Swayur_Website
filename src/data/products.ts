@@ -8,6 +8,7 @@ export const productsData: Product[] = [
     category: 'Biofertilizer',
     subcategory: 'Liquid Biofertilizer',
     formulation: 'Liquid',
+    image: '/images/products/bio-npk-consortia.jpg',
     tagline: "Your soil's complete N-P-K solution — all three macronutrients, one powerful microbial consortia.",
     description:
       'Bio-NPK Consortia is the foundation of the KshetraPal range. This advanced liquid biofertilizer combines three groups of scientifically selected, high-performance beneficial bacteria — nitrogen fixers, phosphate solubilizers, and potassium mobilizers — into a single powerful consortia product.\n\nWhile chemical NPK fertilizers supply nutrients directly, Bio-NPK Consortia works differently and more sustainably: it activates and multiplies the biological processes in the soil that make nutrients naturally available to plant roots. The result is better nutrition, stronger plants, and progressively improving soil health season after season.',
@@ -89,6 +90,7 @@ export const productsData: Product[] = [
     category: 'Biofertilizer',
     subcategory: 'Zinc Solubilizing Biofertilizer',
     formulation: 'Liquid',
+    image: '/images/products/bio-zsb.jpg',
     tagline: 'Unlock the hidden zinc in your soil — naturally.',
     description:
       'Zinc is essential for over 300 enzyme functions in plants — yet most Indian soils have abundant zinc that is simply locked in insoluble forms unavailable to plant roots. Bio-ZSB solves this with Zinc Solubilizing Bacteria (ZSB) that convert unavailable soil zinc into plant-available forms, ensuring your crops get the zinc they need without additional chemical input.\n\nZinc deficiency in Indian crops causes stunted growth, yellowing leaves (chlorosis), reduced grain fill, and significant yield losses. Bio-ZSB provides a cost-effective, sustainable solution to one of India\'s most widespread micronutrient problems.',
@@ -152,6 +154,7 @@ export const productsData: Product[] = [
     category: 'Biofertilizer',
     subcategory: 'Mycorrhizal Biofertilizer',
     formulation: 'Powder (WP)',
+    image: '/images/products/mycorrhiza.jpg',
     tagline: 'Give your roots a superpower — the ancient fungal network that feeds plants better than any fertilizer.',
     description:
       'Mycorrhizal fungi are one of nature\'s most powerful agricultural tools. These beneficial fungi form a symbiotic relationship with plant roots, extending microscopic threads (hyphae) far beyond the root zone — dramatically increasing the plant\'s effective nutrient and water absorption surface area by up to 700%.\n\nKshetraPal Mycorrhiza contains carefully cultivated Endomycorrhizal (VAM — Vesicular Arbuscular Mycorrhizal) spores in a powder carrier, ready for easy application at planting, transplanting, or by soil drenching. This product is particularly transformative for horticulture, vegetables, and plantation crops where root health determines yield quality.',
@@ -222,6 +225,7 @@ export const productsData: Product[] = [
     category: 'Biopesticide',
     subcategory: 'Biofungicide',
     formulation: 'Liquid',
+    image: '/images/products/trichoderma-viride.jpg',
     tagline: 'Protect your roots from invisible soil enemies — naturally, safely, effectively.',
     description:
       'Trichoderma viride is one of the world\'s most extensively researched and field-proven biocontrol organisms. This beneficial fungus establishes itself in the root zone and actively suppresses harmful soil-borne fungal pathogens through multiple mechanisms: direct parasitism, antibiotic production, and competitive exclusion.\n\nKshetraPal Trichoderma viride is formulated as a liquid for easy application through drip irrigation or soil drenching — making it practical for all farm types and scales. It simultaneously protects crops from fungal diseases AND promotes healthy root development, making it both a protective and growth-promoting input.',
@@ -295,6 +299,7 @@ export const productsData: Product[] = [
     category: 'Biopesticide',
     subcategory: 'Bioinsecticide',
     formulation: 'Liquid',
+    image: '/images/products/beauveria-bassiana.jpg',
     tagline: "Let nature's own insect hunter protect your crops — without leaving a chemical trace.",
     description:
       'Beauveria bassiana is an entomopathogenic (insect-attacking) fungus found naturally in soils worldwide. When applied to crops, its spores attach to the cuticle of target insects, germinate, penetrate inside, and ultimately control the pest population — with no chemical residue on the crop or in the soil.\n\nKshetraPal Beauveria bassiana is the sustainable answer to insecticide resistance, residue concerns in export crops, and the growing demand for organic pest management. It is effective against a wide range of economically damaging insect pests and is safe for beneficial insects, soil organisms, and humans.',
@@ -371,6 +376,7 @@ export const productsData: Product[] = [
     category: 'Biocontrol',
     subcategory: 'Biopesticide / PGPR',
     formulation: 'Liquid',
+    image: '/images/products/pseudomonas-fluorescens.jpg',
     tagline: "Your plant's root guardian — the bacteria that fights disease and feeds growth simultaneously.",
     description:
       'Pseudomonas fluorescens is a highly versatile plant growth-promoting rhizobacterium (PGPR) with dual action: it colonizes the root zone and suppresses harmful soil-borne pathogens while simultaneously releasing compounds that stimulate plant growth. This makes it a uniquely valuable addition to any biological crop protection program.\n\nWell-established in Indian agriculture research — particularly for rice crops where it provides natural protection against bacterial leaf blight — KshetraPal Pseudomonas fluorescens delivers reliable results across a wide crop range.',
