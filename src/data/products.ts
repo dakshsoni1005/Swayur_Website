@@ -94,6 +94,7 @@ export const productsData: Product[] = [
     formulation: 'Liquid',
     netContent: '1 Litre',
     image: '/images/products/bio-zsb.jpg',
+    labelTexture: '/images/products/bio-zsb-label-template.png',
     tagline: 'Unlock the hidden zinc in your soil — naturally.',
     description:
       'Zinc is essential for over 300 enzyme functions in plants — yet most Indian soils have abundant zinc that is simply locked in insoluble forms unavailable to plant roots. Bio-ZSB solves this with Zinc Solubilizing Bacteria (ZSB) that convert unavailable soil zinc into plant-available forms, ensuring your crops get the zinc they need without additional chemical input.\n\nZinc deficiency in Indian crops causes stunted growth, yellowing leaves (chlorosis), reduced grain fill, and significant yield losses. Bio-ZSB provides a cost-effective, sustainable solution to one of India\'s most widespread micronutrient problems.',
