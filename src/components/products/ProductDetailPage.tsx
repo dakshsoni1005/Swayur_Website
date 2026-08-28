@@ -1,5 +1,8 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -10,6 +13,8 @@ import {
   AlertTriangle,
   Bug,
   Scale,
+  RotateCw,
+  Image as ImageIcon,
 } from 'lucide-react';
 import { Product } from '@/types';
 import { productsData } from '@/data/products';
@@ -24,11 +29,29 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 
+// Dynamically import 3D WebGL viewer with SSR disabled
+const Product3DViewer = dynamic(
+  () => import('@/components/products/Product3DViewer').then((mod) => mod.Product3DViewer),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[400px] sm:h-[480px] rounded-2xl bg-agri-pale/40 border border-agri-border flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2">
+          <div className="w-8 h-8 rounded-full border-2 border-agri-accent border-t-transparent animate-spin" />
+          <span className="text-xs font-bold text-agri-dark uppercase">Loading 3D Canvas...</span>
+        </div>
+      </div>
+    ),
+  }
+);
+
 interface ProductDetailPageProps {
   product: Product;
 }
 
 export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product }) => {
+  const [viewMode, setViewMode] = useState<'3d' | '2d'>('3d');
+
   // Related products filtering (3 items excluding current product)
   const relatedProducts = productsData
     .filter((p) => p.id !== product.id)
@@ -55,18 +78,42 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
       {/* 2. Product Hero */}
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-white p-6 sm:p-10 rounded-3xl border border-agri-border shadow-xs">
-          {/* Left Column: Centralized Product Hero Image */}
+          {/* Left Column: Interactive 3D Model / 2D Studio Photo Visual */}
           <div className="lg:col-span-5 space-y-4">
+            {/* View Mode Selector Tabs */}
+            <div className="flex items-center justify-between p-1 rounded-xl bg-agri-pale/80 border border-agri-border/80">
+              <button
+                onClick={() => setViewMode('3d')}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
+                  viewMode === '3d'
+                    ? 'bg-agri-dark text-white shadow-xs'
+                    : 'text-agri-muted hover:text-agri-dark'
+                }`}
+              >
+                <RotateCw className="w-3.5 h-3.5" />
+                <span>3D Interactive</span>
+              </button>
+
+              <button
+                onClick={() => setViewMode('2d')}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
+                  viewMode === '2d'
+                    ? 'bg-agri-dark text-white shadow-xs'
+                    : 'text-agri-muted hover:text-agri-dark'
+                }`}
+              >
+                <ImageIcon className="w-3.5 h-3.5" />
+                <span>Studio Photo</span>
+              </button>
+            </div>
+
+            {/* Display Component */}
             <div className="relative">
-              <ProductImage product={product} size="lg" priority />
-              <div className="absolute top-4 left-4 z-10">
-                <Badge variant={product.category === 'Biofertilizer' ? 'green' : 'earth'}>
-                  {product.category}
-                </Badge>
-              </div>
-              <div className="absolute top-4 right-4 z-10">
-                <Badge variant="dark">{product.formulation}</Badge>
-              </div>
+              {viewMode === '3d' ? (
+                <Product3DViewer product={product} />
+              ) : (
+                <ProductImage product={product} size="lg" priority />
+              )}
             </div>
           </div>
 
