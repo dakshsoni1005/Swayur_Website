@@ -17,6 +17,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     'mycorrhiza': '/images/products/mycorrhiza.jpg',
     'trichoderma-viride': '/images/products/trichoderma-viride.jpg',
     'beauveria-bassiana': '/images/products/beauveria-bassiana.jpg',
+    'pseudomonas-fluorescens': '/images/products/pseudomonas-fluorescens.jpg',
   };
 
   const photoPath = productPhotos[product.slug];
