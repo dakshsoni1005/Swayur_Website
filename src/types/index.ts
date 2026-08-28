@@ -70,9 +70,12 @@ export interface ProductCombo {
 }
 
 export interface FAQItem {
+  id: string;
   question: string;
   answer: string;
-  category: 'About Biological Products' | 'Using KshetraPal Products' | 'For Dealers' | 'General';
+  category: 'About Biological Products' | 'Using KshetraPal Products' | 'For Dealers';
+  answerPoints?: string[];
+  relatedProductSlugs?: string[];
 }
 
 export interface PageSEO {
