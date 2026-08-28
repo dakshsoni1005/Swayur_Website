@@ -70,10 +70,10 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xf7f8f6);
 
-    // 2. Camera Setup (Front 3/4 Product View)
-    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-    camera.position.set(2.8, 1.8, 5.8);
-    camera.lookAt(0, 1.3, 0);
+    // 2. Camera Setup (Centered on Label & Bottle Geometry)
+    const camera = new THREE.PerspectiveCamera(36, width / height, 0.05, 100);
+    camera.position.set(0, 1.25, 5.8);
+    camera.lookAt(0, 1.25, 0);
 
     // 3. Renderer Setup
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
@@ -87,10 +87,10 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     domContainer.appendChild(renderer.domElement);
 
     // 4. Studio Product Photography Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.15);
     scene.add(ambientLight);
 
-    const hemiLight = new THREE.HemisphereLight(0xffffff, 0xf7f8f6, 0.6);
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0xf7f8f6, 0.65);
     scene.add(hemiLight);
 
     const keyLight = new THREE.DirectionalLight(0xffffff, 1.85);
@@ -166,7 +166,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
 
     // Vertical grip grooves around cap (32 ribs)
     const numRidges = 32;
-    const ridgeGeo = new THREE.BoxGeometry(0.025, 0.5, 0.035);
+    const ridgeGeo = new THREE.BoxGeometry(0.025, 0.5, 0.04);
     for (let i = 0; i < numRidges; i++) {
       const angle = (i / numRidges) * Math.PI * 2;
       const ridgeMesh = new THREE.Mesh(ridgeGeo, capMat);
@@ -181,7 +181,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     const rawSrc = product.labelTexture || product.image;
 
     if (rawSrc) {
-      const imageSrc = `${rawSrc}?v=20260829_v4`;
+      const imageSrc = `${rawSrc}?v=20260829_v5`;
       textureLoader.load(
         imageSrc,
         (texture) => {
@@ -245,11 +245,11 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     });
     const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
     shadowMesh.rotation.x = -Math.PI / 2;
-    shadowMesh.position.y = -0.02;
+    shadowMesh.position.y = -0.58;
     scene.add(shadowMesh);
 
-    // Position bottle centered in viewer
-    bottleGroup.position.set(0, -0.4, 0);
+    // Center bottle perfectly in viewer
+    bottleGroup.position.set(0, -0.55, 0);
 
     sceneRef.current = {
       scene,
@@ -260,8 +260,8 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
       targetRotationY: 0,
       rotationX: 0,
       rotationY: 0,
-      targetZoom: 6.2,
-      zoom: 6.2,
+      targetZoom: 5.8,
+      zoom: 5.8,
       isDragging: false,
       previousMousePosition: { x: 0, y: 0 },
       animId: 0,
@@ -309,7 +309,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
       const deltaY = e.clientY - sceneRef.current.previousMousePosition.y;
 
       sceneRef.current.targetRotationY += deltaX * 0.01;
-      sceneRef.current.targetRotationX = Math.max(-0.35, Math.min(0.35, sceneRef.current.targetRotationX + deltaY * 0.008));
+      sceneRef.current.targetRotationX = Math.max(-0.3, Math.min(0.3, sceneRef.current.targetRotationX + deltaY * 0.008));
 
       sceneRef.current.previousMousePosition = { x: e.clientX, y: e.clientY };
     };
@@ -324,7 +324,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
       if (!sceneRef.current) return;
       e.preventDefault();
       const zoomDelta = e.deltaY * 0.005;
-      sceneRef.current.targetZoom = Math.max(3.8, Math.min(9.0, sceneRef.current.targetZoom + zoomDelta));
+      sceneRef.current.targetZoom = Math.max(4.2, Math.min(8.5, sceneRef.current.targetZoom + zoomDelta));
     };
 
     domContainer.addEventListener('pointerdown', handlePointerDown);
@@ -366,13 +366,13 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
   // Controls helper functions
   const handleZoomIn = () => {
     if (sceneRef.current) {
-      sceneRef.current.targetZoom = Math.max(3.8, sceneRef.current.targetZoom - 1.2);
+      sceneRef.current.targetZoom = Math.max(4.2, sceneRef.current.targetZoom - 1.0);
     }
   };
 
   const handleZoomOut = () => {
     if (sceneRef.current) {
-      sceneRef.current.targetZoom = Math.min(9.0, sceneRef.current.targetZoom + 1.2);
+      sceneRef.current.targetZoom = Math.min(8.5, sceneRef.current.targetZoom + 1.0);
     }
   };
 
@@ -382,7 +382,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
       sceneRef.current.targetRotationY = 0;
       sceneRef.current.rotationX = 0;
       sceneRef.current.rotationY = 0;
-      sceneRef.current.targetZoom = 6.2;
+      sceneRef.current.targetZoom = 5.8;
     }
   };
 
@@ -391,7 +391,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
   };
 
   return (
-    <div className={`relative w-full h-[400px] sm:h-[480px] rounded-2xl bg-[#F7F8F6] border border-agri-border overflow-hidden select-none touch-none ${className}`}>
+    <div className={`relative w-full h-[420px] sm:h-[500px] rounded-2xl bg-[#F7F8F6] border border-agri-border overflow-hidden select-none touch-none ${className}`}>
       {/* 3D WebGL Canvas Container */}
       <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
@@ -405,20 +405,20 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
         </div>
       )}
 
-      {/* Helper Badge Overlay */}
-      <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-        <span className="px-3 py-1 rounded-full bg-agri-dark/90 text-white font-extrabold text-[11px] shadow-sm flex items-center gap-1.5">
+      {/* Top Helper Badge */}
+      <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
+        <span className="px-3 py-1 rounded-full bg-agri-dark/90 text-white font-extrabold text-[11px] shadow-xs flex items-center gap-1.5 backdrop-blur-xs">
           <RotateCw className="w-3.5 h-3.5 text-agri-accent animate-spin-slow" />
           360° Interactive 3D Model
         </span>
       </div>
 
-      {/* Interactive Controls Overlay */}
-      <div className="absolute bottom-4 right-4 z-10 flex items-center gap-1.5 p-1.5 rounded-xl bg-white/90 backdrop-blur-md border border-agri-border shadow-md">
+      {/* Compact Interactive Controls Overlay */}
+      <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1 p-1 rounded-xl bg-white/95 backdrop-blur-md border border-agri-border shadow-sm">
         <button
           onClick={handleZoomIn}
           title="Zoom In (+)"
-          className="p-2 rounded-lg hover:bg-agri-pale text-agri-dark transition-colors"
+          className="p-1.5 rounded-lg hover:bg-agri-pale text-agri-dark transition-colors"
         >
           <ZoomIn className="w-4 h-4" />
         </button>
@@ -426,7 +426,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
         <button
           onClick={handleZoomOut}
           title="Zoom Out (−)"
-          className="p-2 rounded-lg hover:bg-agri-pale text-agri-dark transition-colors"
+          className="p-1.5 rounded-lg hover:bg-agri-pale text-agri-dark transition-colors"
         >
           <ZoomOut className="w-4 h-4" />
         </button>
@@ -434,7 +434,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
         <button
           onClick={toggleAutoRotate}
           title="Toggle 360° Auto-Rotation"
-          className={`p-2 rounded-lg transition-colors ${isRotating ? 'bg-agri-pale text-agri-primary font-bold' : 'hover:bg-agri-pale text-agri-dark'}`}
+          className={`p-1.5 rounded-lg transition-colors ${isRotating ? 'bg-agri-pale text-agri-primary font-bold' : 'hover:bg-agri-pale text-agri-dark'}`}
         >
           <RotateCw className="w-4 h-4" />
         </button>
@@ -442,15 +442,15 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
         <button
           onClick={handleReset}
           title="Reset View"
-          className="p-2 rounded-lg hover:bg-agri-pale text-agri-dark transition-colors border-l border-agri-border/60 ml-1 pl-2.5"
+          className="p-1.5 rounded-lg hover:bg-agri-pale text-agri-dark transition-colors border-l border-agri-border/60 ml-0.5 pl-2"
         >
           <RefreshCw className="w-4 h-4" />
         </button>
       </div>
 
       {/* Drag Instruction Banner */}
-      <div className="absolute bottom-4 left-4 z-10 hidden sm:block">
-        <span className="text-[11px] font-semibold text-agri-muted bg-white/80 backdrop-blur-xs px-2.5 py-1 rounded-lg border border-agri-border/60">
+      <div className="absolute bottom-3 left-3 z-10 hidden sm:block">
+        <span className="text-[11px] font-semibold text-agri-muted bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-lg border border-agri-border/60 shadow-2xs">
           💡 Drag mouse / finger to rotate bottle 360°
         </span>
       </div>
