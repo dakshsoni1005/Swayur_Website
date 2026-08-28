@@ -2,11 +2,11 @@ import React from 'react';
 import { Phone, Mail, MapPin, ExternalLink } from 'lucide-react';
 import { companyData } from '@/data/company';
 import { Card } from '@/components/ui/Card';
+import { GoogleMapEmbed } from '@/components/contact/GoogleMapEmbed';
 
 export const ContactInfo: React.FC = () => {
-  const mapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    'Swayur Agrotech LLP 306 Shriram Complex Vallabh Vidyanagar Anand Gujarat'
-  )}`;
+  const directMapsUrl =
+    'https://www.google.com/maps/place/Swayur+Agrotech+LLP/@22.5315834,72.9538916,17z/data=!3m1!4b1!4m6!3m5!1s0x395e4d010d0ce825:0xb321fd17142a7cbb!8m2!3d22.5315834!4d72.9538916!16s%2Fg%2F11zdrsj1v9';
 
   return (
     <div className="space-y-6">
@@ -81,17 +81,20 @@ export const ContactInfo: React.FC = () => {
 
             <div className="pt-1">
               <a
-                href={mapsSearchUrl}
+                href={directMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-extrabold text-agri-primary hover:text-agri-accent transition-colors"
               >
-                <span>Get Directions on Google Maps</span>
+                <span>Open Direct Location on Google Maps</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
         </Card>
+
+        {/* Embedded Interactive Map Card */}
+        <GoogleMapEmbed />
 
         {/* Registration Details */}
         <div className="p-4 rounded-xl bg-agri-pale/40 border border-agri-border text-xs text-agri-dark space-y-1">

@@ -6,9 +6,8 @@ import { productsData } from '@/data/products';
 import { Container } from '@/components/layout/Container';
 
 export const Footer: React.FC = () => {
-  const mapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    'Swayur Agrotech LLP 306 Shriram Complex Vallabh Vidyanagar Anand Gujarat'
-  )}`;
+  const directMapsUrl =
+    'https://www.google.com/maps/place/Swayur+Agrotech+LLP/@22.5315834,72.9538916,17z/data=!3m1!4b1!4m6!3m5!1s0x395e4d010d0ce825:0xb321fd17142a7cbb!8m2!3d22.5315834!4d72.9538916!16s%2Fg%2F11zdrsj1v9';
 
   return (
     <footer className="bg-agri-dark text-white pt-16 pb-12 border-t border-agri-primary/30">
@@ -135,12 +134,12 @@ export const Footer: React.FC = () => {
 
               <div className="pt-2">
                 <a
-                  href={mapsSearchUrl}
+                  href={directMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-[11px] font-bold text-agri-light hover:underline"
                 >
-                  <span>Get Directions on Google Maps</span>
+                  <span>Google Maps: Swayur Agrotech LLP</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
