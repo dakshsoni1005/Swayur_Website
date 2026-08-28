@@ -33,7 +33,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
     .filter((p) => p.id !== product.id)
     .slice(0, 3);
 
-  const hasRealPhoto = product.slug === 'bio-npk-consortia';
+  const productPhotos: Record<string, string> = {
+    'bio-npk-consortia': '/images/products/bio-npk-consortia.jpg',
+    'bio-zsb': '/images/products/bio-zsb.jpg',
+  };
+
+  const photoPath = productPhotos[product.slug];
 
   return (
     <div className="py-8 sm:py-12 space-y-12 sm:space-y-16">
@@ -52,10 +57,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
           {/* Left Column: Product Visual / High-Res Bottle Image */}
           <div className="lg:col-span-5 space-y-4">
             <div className="relative aspect-4/3 sm:aspect-square w-full rounded-2xl bg-gradient-to-br from-agri-pale via-white to-emerald-50/50 border border-agri-border flex flex-col items-center justify-center p-6 text-center overflow-hidden group">
-              {hasRealPhoto ? (
+              {photoPath ? (
                 <div className="relative w-full h-full min-h-[320px]">
                   <Image
-                    src="/images/products/bio-npk-consortia.jpg"
+                    src={photoPath}
                     alt={`${product.name} KshetraPal Biofertilizer Bottle`}
                     fill
                     className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
