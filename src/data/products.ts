@@ -160,6 +160,7 @@ export const productsData: Product[] = [
     formulation: 'Powder (WP)',
     netContent: '500 gm',
     image: '/images/products/mycorrhiza.jpg',
+    labelTexture: '/images/products/mycorrhiza-label-template.png',
     tagline: 'Give your roots a superpower — the ancient fungal network that feeds plants better than any fertilizer.',
     description:
       'Mycorrhizal fungi are one of nature\'s most powerful agricultural tools. These beneficial fungi form a symbiotic relationship with plant roots, extending microscopic threads (hyphae) far beyond the root zone — dramatically increasing the plant\'s effective nutrient and water absorption surface area by up to 700%.\n\nKshetraPal Mycorrhiza contains carefully cultivated Endomycorrhizal (VAM — Vesicular Arbuscular Mycorrhizal) spores in a powder carrier, ready for easy application at planting, transplanting, or by soil drenching. This product is particularly transformative for horticulture, vegetables, and plantation crops where root health determines yield quality.',
