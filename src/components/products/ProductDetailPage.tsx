@@ -38,6 +38,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
     'bio-zsb': '/images/products/bio-zsb.jpg',
     'mycorrhiza': '/images/products/mycorrhiza.jpg',
     'trichoderma-viride': '/images/products/trichoderma-viride.jpg',
+    'beauveria-bassiana': '/images/products/beauveria-bassiana.jpg',
   };
 
   const photoPath = productPhotos[product.slug];
