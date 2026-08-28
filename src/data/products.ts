@@ -309,7 +309,7 @@ export const productsData: Product[] = [
     formulation: 'Liquid',
     netContent: '1 Litre',
     image: '/images/products/beauveria-bassiana.jpg',
-    labelTexture: '/images/products/beauveria-bassiana-label-template.png',
+    labelTexture: '/images/products/beauveria-bassiana.jpg',
     tagline: "Let nature's own insect hunter protect your crops — without leaving a chemical trace.",
     description:
       'Beauveria bassiana is an entomopathogenic (insect-attacking) fungus found naturally in soils worldwide. When applied to crops, its spores attach to the cuticle of target insects, germinate, penetrate inside, and ultimately control the pest population — with no chemical residue on the crop or in the soil.\n\nKshetraPal Beauveria bassiana is the sustainable answer to insecticide resistance, residue concerns in export crops, and the growing demand for organic pest management. It is effective against a wide range of economically damaging insect pests and is safe for beneficial insects, soil organisms, and humans.',
