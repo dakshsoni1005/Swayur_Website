@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { Check, Star } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { cropMatrixData, productCombosData } from '@/data/crops';
 import { seoData } from '@/data/seo';
 import { Container } from '@/components/layout/Container';

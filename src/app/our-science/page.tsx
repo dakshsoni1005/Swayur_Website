@@ -7,9 +7,6 @@ import {
   Dna,
   Sprout,
   Recycle,
-  CheckCircle2,
-  Award,
-  ArrowRight,
   FileCheck2,
 } from 'lucide-react';
 import { seoData } from '@/data/seo';
@@ -23,7 +20,6 @@ import { PageHeader } from '@/components/layout/PageHeader';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { CTASection } from '@/components/sections/CTASection';
-import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 
 export const metadata: Metadata = {

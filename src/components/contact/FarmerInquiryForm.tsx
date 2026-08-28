@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, MessageSquare, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+import { MessageSquare, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
 import { cropOptionsData } from '@/data/crops';
 import { productsData } from '@/data/products';
 import { validateFarmerForm } from '@/lib/validation';
@@ -243,7 +243,7 @@ export const FarmerInquiryForm: React.FC = () => {
               <CheckCircle2 className="w-4 h-4 text-emerald-600" /> WhatsApp launch initiated!
             </p>
             <p className="text-xs text-emerald-700">
-              If WhatsApp didn't open automatically, click the link below:
+              If WhatsApp didn&apos;t open automatically, click the link below:
             </p>
             <a
               href={generatedUrl}

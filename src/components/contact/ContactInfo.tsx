@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, ExternalLink, Clock, Building2, ShieldCheck } from 'lucide-react';
+import { Phone, Mail, MapPin, ExternalLink } from 'lucide-react';
 import { companyData } from '@/data/company';
 import { Card } from '@/components/ui/Card';
 

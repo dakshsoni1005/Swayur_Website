@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Sprout, BookOpen, Microscope, Mail, ArrowRight } from 'lucide-react';
+import { Sprout, BookOpen, Microscope, Mail } from 'lucide-react';
 import { faqData } from '@/data/faq';
 import { seoData } from '@/data/seo';
 import { Container } from '@/components/layout/Container';

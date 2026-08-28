@@ -7,10 +7,8 @@ import {
   Package,
   Clock,
   ShieldAlert,
-  FileText,
   AlertTriangle,
   Bug,
-  HelpCircle,
 } from 'lucide-react';
 import { Product } from '@/types';
 import { productsData } from '@/data/products';
@@ -84,7 +82,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
                 {product.name}
               </h1>
               <p className="text-sm sm:text-base font-semibold text-agri-primary italic">
-                "{product.tagline}"
+                &ldquo;{product.tagline}&rdquo;
               </p>
             </div>
 

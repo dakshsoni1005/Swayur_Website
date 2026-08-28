@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Search, ChevronDown, CheckCircle2, ArrowRight, Sprout } from 'lucide-react';
+import { Search, ChevronDown, ArrowRight, Sprout } from 'lucide-react';
 import { FAQItem } from '@/types';
 import { productsData } from '@/data/products';
 import { cn } from '@/lib/utils';

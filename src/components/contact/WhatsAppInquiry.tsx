@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, Clock, ArrowRight } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import { companyData } from '@/data/company';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 

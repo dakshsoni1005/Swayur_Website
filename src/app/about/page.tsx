@@ -7,14 +7,9 @@ import {
   Sprout,
   Leaf,
   Lightbulb,
-  CheckCircle2,
-  ArrowRight,
   ShieldCheck,
-  Building2,
   FileText,
   MapPin,
-  Phone,
-  Mail,
 } from 'lucide-react';
 import { companyData } from '@/data/company';
 import { seoData } from '@/data/seo';
@@ -25,8 +20,6 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { BiologicalComparison } from '@/components/sections/BiologicalComparison';
 import { CTASection } from '@/components/sections/CTASection';
-import { Button } from '@/components/ui/Button';
-import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { Badge } from '@/components/ui/Badge';
 
 export const metadata: Metadata = {
@@ -73,10 +66,10 @@ export default function AboutPage() {
               Rooted in Natural Vitality & Science
             </h2>
             <p className="text-base text-agri-muted leading-relaxed font-normal">
-              The name <strong className="text-agri-dark font-bold">"Swayur"</strong> is rooted in the Sanskrit concept of self-sustained, natural vitality. That philosophy runs through every product we make and every farmer we serve.
+              The name <strong className="text-agri-dark font-bold">&ldquo;Swayur&rdquo;</strong> is rooted in the Sanskrit concept of self-sustained, natural vitality. That philosophy runs through every product we make and every farmer we serve.
             </p>
             <p className="text-base text-agri-muted leading-relaxed font-normal">
-              Operating under the product brand <strong className="text-agri-dark font-bold">KshetraPal ({companyData.brandGujarati})</strong> — meaning <em className="text-agri-primary font-semibold font-serif">"Protector of the Field"</em> — we develop biofertilizers, biopesticides, and microbial consortia designed specifically for Indian agro-climatic conditions, Indian crops, and Indian farmers.
+              Operating under the product brand <strong className="text-agri-dark font-bold">KshetraPal ({companyData.brandGujarati})</strong> — meaning <em className="text-agri-primary font-semibold font-serif">&ldquo;Protector of the Field&rdquo;</em> — we develop biofertilizers, biopesticides, and microbial consortia designed specifically for Indian agro-climatic conditions, Indian crops, and Indian farmers.
             </p>
             <div className="pt-2 flex flex-wrap gap-3">
               <Badge variant="green">FCO 1985 Compliant</Badge>
@@ -92,7 +85,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-2xl font-bold text-agri-dark">{companyData.name}</h3>
               <p className="text-sm text-agri-muted leading-relaxed">
-                "{companyData.tagline}"
+                &ldquo;{companyData.tagline}&rdquo;
               </p>
               <div className="space-y-3 pt-2 text-xs text-agri-dark font-medium border-t border-agri-border/60">
                 <div className="flex items-center gap-2">
@@ -174,7 +167,7 @@ export default function AboutPage() {
               </div>
             </div>
             <p className="text-sm sm:text-base text-agri-muted leading-relaxed font-normal">
-              To become India's most trusted name in agricultural biologicals — recognized by farmers for results, by scientists for integrity, and by the industry for innovation — building a sustainable agriculture ecosystem from the ground up.
+              To become India&apos;s most trusted name in agricultural biologicals — recognized by farmers for results, by scientists for integrity, and by the industry for innovation — building a sustainable agriculture ecosystem from the ground up.
             </p>
           </Card>
         </div>

@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Sprout, Star, ChevronDown, CheckCircle2, ArrowRight } from 'lucide-react';
-import { cropOptionsData, productCombosData, CropOption } from '@/data/crops';
+import { Star, ChevronDown } from 'lucide-react';
+import { cropOptionsData, productCombosData } from '@/data/crops';
 import { productsData } from '@/data/products';
 import { ProductCard } from '@/components/products/ProductCard';
-import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { Button } from '@/components/ui/Button';
