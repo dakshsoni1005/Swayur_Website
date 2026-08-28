@@ -309,6 +309,7 @@ export const productsData: Product[] = [
     formulation: 'Liquid',
     netContent: '1 Litre',
     image: '/images/products/beauveria-bassiana.jpg',
+    labelTexture: '/images/products/beauveria-bassiana-label-template.png',
     tagline: "Let nature's own insect hunter protect your crops — without leaving a chemical trace.",
     description:
       'Beauveria bassiana is an entomopathogenic (insect-attacking) fungus found naturally in soils worldwide. When applied to crops, its spores attach to the cuticle of target insects, germinate, penetrate inside, and ultimately control the pest population — with no chemical residue on the crop or in the soil.\n\nKshetraPal Beauveria bassiana is the sustainable answer to insecticide resistance, residue concerns in export crops, and the growing demand for organic pest management. It is effective against a wide range of economically damaging insect pests and is safe for beneficial insects, soil organisms, and humans.',
@@ -387,6 +388,7 @@ export const productsData: Product[] = [
     formulation: 'Liquid',
     netContent: '1 Litre',
     image: '/images/products/pseudomonas-fluorescens.jpg',
+    labelTexture: '/images/products/pseudomonas-fluorescens-label-template.png',
     tagline: "Your plant's root guardian — the bacteria that fights disease and feeds growth simultaneously.",
     description:
       'Pseudomonas fluorescens is a highly versatile plant growth-promoting rhizobacterium (PGPR) with dual action: it colonizes the root zone and suppresses harmful soil-borne pathogens while simultaneously releasing compounds that stimulate plant growth. This makes it a uniquely valuable addition to any biological crop protection program.\n\nWell-established in Indian agriculture research — particularly for rice crops where it provides natural protection against bacterial leaf blight — KshetraPal Pseudomonas fluorescens delivers reliable results across a wide crop range.',
