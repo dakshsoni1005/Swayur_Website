@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Check } from 'lucide-react';
 import { Product } from '@/types';
 import { Badge } from '@/components/ui/Badge';
@@ -10,9 +11,24 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const hasRealPhoto = product.slug === 'bio-npk-consortia';
+
   return (
     <Card className="flex flex-col justify-between h-full group border-agri-border hover:border-agri-accent/50 transition-all duration-300 shadow-2xs hover:shadow-md bg-white">
       <div className="space-y-4 p-6">
+        {/* Product Image / Graphic Thumbnail */}
+        {hasRealPhoto && (
+          <div className="relative aspect-4/3 w-full rounded-xl bg-agri-pale/40 border border-agri-border/60 overflow-hidden flex items-center justify-center p-2">
+            <Image
+              src="/images/products/bio-npk-consortia.jpg"
+              alt={`${product.name} KshetraPal Bottle`}
+              width={240}
+              height={240}
+              className="object-contain max-h-40 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        )}
+
         {/* Header Badges */}
         <div className="flex items-center justify-between gap-2">
           <Badge variant={product.category === 'Biofertilizer' ? 'green' : 'earth'}>

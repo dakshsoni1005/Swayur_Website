@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -32,6 +33,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
     .filter((p) => p.id !== product.id)
     .slice(0, 3);
 
+  const hasRealPhoto = product.slug === 'bio-npk-consortia';
+
   return (
     <div className="py-8 sm:py-12 space-y-12 sm:space-y-16">
       <ProductJsonLd product={product} />
@@ -46,27 +49,41 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
       {/* 2. Product Hero */}
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-white p-6 sm:p-10 rounded-3xl border border-agri-border shadow-xs">
-          {/* Left Column: Product Visual / Graphic Placeholder */}
+          {/* Left Column: Product Visual / High-Res Bottle Image */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="relative aspect-4/3 sm:aspect-square w-full rounded-2xl bg-gradient-to-br from-agri-pale via-white to-emerald-50/50 border border-agri-border flex flex-col items-center justify-center p-8 text-center overflow-hidden group">
-              <div className="w-24 h-24 sm:w-32 sm:32 rounded-3xl bg-agri-dark text-white flex items-center justify-center font-bold text-4xl sm:text-5xl shadow-md group-hover:scale-105 transition-transform duration-300">
-                {product.category === 'Biofertilizer' ? '🌱' : '🛡️'}
-              </div>
-              <div className="mt-6 space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-agri-muted block">
-                  KshetraPal (ક્ષેત્રપાલ)
-                </span>
-                <h3 className="text-xl font-extrabold text-agri-dark">{product.name}</h3>
-                <span className="text-xs font-semibold text-agri-accent block">
-                  {product.subcategory || product.category}
-                </span>
-              </div>
-              <div className="absolute top-4 left-4">
+            <div className="relative aspect-4/3 sm:aspect-square w-full rounded-2xl bg-gradient-to-br from-agri-pale via-white to-emerald-50/50 border border-agri-border flex flex-col items-center justify-center p-6 text-center overflow-hidden group">
+              {hasRealPhoto ? (
+                <div className="relative w-full h-full min-h-[320px]">
+                  <Image
+                    src="/images/products/bio-npk-consortia.jpg"
+                    alt={`${product.name} KshetraPal Biofertilizer Bottle`}
+                    fill
+                    className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                    priority
+                  />
+                </div>
+              ) : (
+                <>
+                  <div className="w-24 h-24 sm:w-32 sm:32 rounded-3xl bg-agri-dark text-white flex items-center justify-center font-bold text-4xl sm:text-5xl shadow-md group-hover:scale-105 transition-transform duration-300">
+                    {product.category === 'Biofertilizer' ? '🌱' : '🛡️'}
+                  </div>
+                  <div className="mt-6 space-y-1">
+                    <span className="text-xs font-bold uppercase tracking-wider text-agri-muted block">
+                      KshetraPal (ક્ષેત્રપાલ)
+                    </span>
+                    <h3 className="text-xl font-extrabold text-agri-dark">{product.name}</h3>
+                    <span className="text-xs font-semibold text-agri-accent block">
+                      {product.subcategory || product.category}
+                    </span>
+                  </div>
+                </>
+              )}
+              <div className="absolute top-4 left-4 z-10">
                 <Badge variant={product.category === 'Biofertilizer' ? 'green' : 'earth'}>
                   {product.category}
                 </Badge>
               </div>
-              <div className="absolute top-4 right-4">
+              <div className="absolute top-4 right-4 z-10">
                 <Badge variant="dark">{product.formulation}</Badge>
               </div>
             </div>
