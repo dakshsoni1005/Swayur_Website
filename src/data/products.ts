@@ -232,6 +232,7 @@ export const productsData: Product[] = [
     formulation: 'Liquid',
     netContent: '1 Litre',
     image: '/images/products/trichoderma-viride.jpg',
+    labelTexture: '/images/products/trichoderma-viride-label-template.png',
     tagline: 'Protect your roots from invisible soil enemies — naturally, safely, effectively.',
     description:
       'Trichoderma viride is one of the world\'s most extensively researched and field-proven biocontrol organisms. This beneficial fungus establishes itself in the root zone and actively suppresses harmful soil-borne fungal pathogens through multiple mechanisms: direct parasitism, antibiotic production, and competitive exclusion.\n\nKshetraPal Trichoderma viride is formulated as a liquid for easy application through drip irrigation or soil drenching — making it practical for all farm types and scales. It simultaneously protects crops from fungal diseases AND promotes healthy root development, making it both a protective and growth-promoting input.',
