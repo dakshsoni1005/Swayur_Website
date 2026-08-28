@@ -10,6 +10,7 @@ export const productsData: Product[] = [
     formulation: 'Liquid',
     netContent: '1 Litre',
     image: '/images/products/bio-npk-consortia.jpg',
+    labelTexture: '/images/products/bio-npk-label-template.png',
     tagline: "Your soil's complete N-P-K solution — all three macronutrients, one powerful microbial consortia.",
     description:
       'Bio-NPK Consortia is the foundation of the KshetraPal range. This advanced liquid biofertilizer combines three groups of scientifically selected, high-performance beneficial bacteria — nitrogen fixers, phosphate solubilizers, and potassium mobilizers — into a single powerful consortia product.\n\nWhile chemical NPK fertilizers supply nutrients directly, Bio-NPK Consortia works differently and more sustainably: it activates and multiplies the biological processes in the soil that make nutrients naturally available to plant roots. The result is better nutrition, stronger plants, and progressively improving soil health season after season.',

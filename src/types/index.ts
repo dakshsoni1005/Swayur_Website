@@ -36,6 +36,7 @@ export interface Product {
   formulation: 'Liquid' | 'Powder (WP)';
   netContent?: string;
   image?: string;
+  labelTexture?: string;
   tagline: string;
   description: string;
   composition: CompositionItem[];

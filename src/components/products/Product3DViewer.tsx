@@ -147,7 +147,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
     bottleMesh.receiveShadow = true;
     bottleGroup.add(bottleMesh);
 
-    // --- Ridged Screw Cap (Red for Beauveria Bassiana) ---
+    // --- Ridged Screw Cap ---
     const capColorHex = getCapColor();
     const capGroup = new THREE.Group();
     capGroup.position.set(0, 3.25, 0);
@@ -176,7 +176,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
 
     // --- Label Cylinder & High-Resolution Texture Mapping ---
     const textureLoader = new THREE.TextureLoader();
-    const imageSrc = product.image || '/images/products/beauveria-bassiana.jpg';
+    const imageSrc = product.labelTexture || product.image || '/images/products/bio-npk-consortia.jpg';
 
     textureLoader.load(
       imageSrc,
@@ -355,7 +355,7 @@ export const Product3DViewer: React.FC<Product3DViewerProps> = ({
         }
       }
     };
-  }, [product.image, product.slug, capColor, isRotating, getCapColor]);
+  }, [product.image, product.labelTexture, product.slug, capColor, isRotating, getCapColor]);
 
   // Controls helper functions
   const handleZoomIn = () => {
