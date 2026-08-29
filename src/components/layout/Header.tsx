@@ -31,104 +31,118 @@ export const Header: React.FC = () => {
   }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-40 w-full transition-all duration-200 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-agri-border/60 py-2'
-          : 'bg-white/90 backdrop-blur-md border-b border-agri-border py-2.5 sm:py-3'
-      }`}
-    >
-      <Container>
-        <div className="flex items-center justify-between gap-4 w-full">
-          {/* Official Swayur Agrotech Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group focus:outline-none py-0.5">
-            <Image
-              src="/images/brand/swayur-agrotech-official-logo.png"
-              alt="Swayur Agrotech"
-              width={600}
-              height={400}
-              priority
-              className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-transform group-hover:scale-105"
-            />
-          </Link>
+    <header className="sticky top-0 z-40 w-full transition-all duration-200 bg-white border-b border-agri-border shadow-xs">
+      {/* Tier 1: Main Header (Official Swayur Agrotech Logo + Top Brand Badges) */}
+      <div className="py-2.5 sm:py-3.5 border-b border-agri-border/60 bg-white">
+        <Container>
+          <div className="flex items-center justify-between gap-4 w-full">
+            {/* Left: Official Swayur Agrotech Logo */}
+            <Link href="/" className="flex items-center gap-3 shrink-0 group focus:outline-none py-0.5">
+              <Image
+                src="/images/brand/swayur-agrotech-official-logo.png"
+                alt="Swayur Agrotech"
+                width={600}
+                height={400}
+                priority
+                className="h-12 sm:h-14 md:h-16 lg:h-18 w-auto object-contain transition-transform group-hover:scale-105"
+              />
+            </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink-0">
-            {siteConfig.navLinks.map((link) => {
-              const isActive = pathname === link.href;
+            {/* Top Right Quick Brand Badges & FCO Compliance */}
+            <div className="hidden lg:flex items-center gap-3 shrink-0">
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-agri-pale text-agri-primary border border-agri-accent/30 flex items-center gap-1.5">
+                🌱 {companyData.brand} ({companyData.brandGujarati}) — Biological Inputs
+              </span>
+              <span className="text-xs font-semibold text-agri-muted">
+                FCO 1985 Schedule I Compliant
+              </span>
+            </div>
 
-              if (link.dropdown) {
-                return (
-                  <div
-                    key={link.name}
-                    className="relative"
-                    onMouseEnter={() => setProductsHover(true)}
-                    onMouseLeave={() => setProductsHover(false)}
-                  >
-                    <Link
-                      href={link.href}
-                      className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
-                        pathname.startsWith('/products')
-                          ? 'text-agri-accent font-bold bg-agri-pale/80'
-                          : 'text-agri-dark hover:text-agri-primary hover:bg-agri-pale/50'
-                      }`}
+            {/* Mobile Hamburger Toggle & Quick WhatsApp CTA */}
+            <div className="flex items-center gap-2 lg:hidden shrink-0">
+              <WhatsAppButton text="WhatsApp" size="sm" className="sm:hidden whitespace-nowrap" />
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(true)}
+                aria-label="Open mobile menu"
+                className="p-2 rounded-lg text-agri-dark hover:bg-agri-pale focus:outline-none border border-agri-border"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Tier 2: Subheader Navigation Bar (Navigation Links + Call + WhatsApp CTAs) */}
+      <div className="hidden lg:block bg-agri-pale/40 py-2 border-t border-white/60">
+        <Container>
+          <div className="flex items-center justify-between gap-4 w-full">
+            {/* Navigation Buttons in Subheader */}
+            <nav className="flex items-center gap-1 xl:gap-2">
+              {siteConfig.navLinks.map((link) => {
+                const isActive = pathname === link.href;
+
+                if (link.dropdown) {
+                  return (
+                    <div
+                      key={link.name}
+                      className="relative"
+                      onMouseEnter={() => setProductsHover(true)}
+                      onMouseLeave={() => setProductsHover(false)}
                     >
-                      <span>{link.name}</span>
-                      <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productsHover ? 'transform rotate-180 text-agri-accent' : ''}`} />
-                    </Link>
+                      <Link
+                        href={link.href}
+                        className={`inline-flex items-center gap-1 px-3 xl:px-4 py-2 text-xs xl:text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
+                          pathname.startsWith('/products')
+                            ? 'bg-agri-dark text-white shadow-xs'
+                            : 'text-agri-dark hover:text-agri-primary hover:bg-white/80'
+                        }`}
+                      >
+                        <span>{link.name}</span>
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productsHover ? 'transform rotate-180 text-agri-accent' : ''}`} />
+                      </Link>
 
-                    {/* Products Hover Dropdown */}
-                    {productsHover && (
-                      <div className="absolute top-full left-0 pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                        <ProductsDropdown onClose={() => setProductsHover(false)} />
-                      </div>
-                    )}
-                  </div>
+                      {/* Products Hover Dropdown */}
+                      {productsHover && (
+                        <div className="absolute top-full left-0 pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                          <ProductsDropdown onClose={() => setProductsHover(false)} />
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`px-3 xl:px-4 py-2 text-xs xl:text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
+                      isActive
+                        ? 'bg-agri-dark text-white shadow-xs'
+                        : 'text-agri-dark hover:text-agri-primary hover:bg-white/80'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
                 );
-              }
+              })}
+            </nav>
 
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`px-2.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
-                    isActive
-                      ? 'text-agri-accent font-bold bg-agri-pale/80'
-                      : 'text-agri-dark hover:text-agri-primary hover:bg-agri-pale/50'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Right Header CTAs */}
-          <div className="hidden sm:flex items-center gap-2.5 xl:gap-3 shrink-0">
-            <a
-              href={`tel:${companyData.phone}`}
-              className="hidden xl:flex items-center gap-1.5 text-xs font-bold text-agri-muted hover:text-agri-primary transition-colors whitespace-nowrap"
-            >
-              <Phone className="w-3.5 h-3.5 text-agri-accent shrink-0" />
-              <span>{companyData.phone}</span>
-            </a>
-            <WhatsAppButton text="WhatsApp Us" size="sm" className="whitespace-nowrap" />
+            {/* Right Side Call & WhatsApp CTAs in Subheader */}
+            <div className="flex items-center gap-3 shrink-0">
+              <a
+                href={`tel:${companyData.phone}`}
+                className="flex items-center gap-1.5 text-xs xl:text-sm font-extrabold text-agri-dark hover:text-agri-primary transition-colors whitespace-nowrap bg-white px-3 py-1.5 rounded-lg border border-agri-border/60 shadow-2xs"
+              >
+                <Phone className="w-3.5 h-3.5 text-agri-accent shrink-0" />
+                <span>{companyData.phone}</span>
+              </a>
+              <WhatsAppButton text="WhatsApp Us" size="sm" className="whitespace-nowrap shadow-xs" />
+            </div>
           </div>
-
-          {/* Mobile Hamburger Toggle */}
-          <div className="flex items-center gap-2 lg:hidden shrink-0">
-            <WhatsAppButton text="WhatsApp" size="sm" className="sm:hidden whitespace-nowrap" />
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              aria-label="Open mobile menu"
-              className="p-2 rounded-lg text-agri-dark hover:bg-agri-pale focus:outline-none border border-agri-border"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
-          </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
 
       {/* Mobile Drawer */}
       <MobileNavigation isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
