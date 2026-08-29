@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { X, ChevronDown, Phone, Mail } from 'lucide-react';
 import { siteConfig } from '@/config/site';
@@ -23,23 +22,23 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
 
   return (
     <div className="fixed inset-0 z-50 lg:hidden flex flex-col bg-white">
-      {/* Drawer Header with Official Swayur Agrotech Logo */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-agri-border bg-white shadow-2xs">
-        <Link href="/" onClick={onClose} className="flex items-center">
-          <Image
-            src="/images/brand/swayur-logo.png"
-            alt="Swayur Agrotech"
-            width={1024}
-            height={99}
-            className="h-[38px] w-auto object-contain"
-          />
-        </Link>
+      {/* Drawer Header */}
+      <div className="flex items-center justify-between px-4 py-4 border-b border-agri-border bg-agri-dark text-white">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-agri-accent flex items-center justify-center font-bold text-white text-lg">
+            K
+          </div>
+          <div>
+            <span className="font-bold text-base block leading-tight">{companyData.brand}</span>
+            <span className="text-xs text-agri-light block">{companyData.brandGujarati}</span>
+          </div>
+        </div>
         <button
           onClick={onClose}
           aria-label="Close mobile navigation menu"
-          className="p-2 rounded-xl text-agri-dark hover:bg-agri-pale focus:outline-none border border-agri-border/80"
+          className="p-2 rounded-lg text-white hover:bg-agri-primary focus:outline-none"
         >
-          <X className="w-5 h-5" />
+          <X className="w-6 h-6" />
         </button>
       </div>
 
