@@ -103,13 +103,21 @@ export const Header: React.FC = () => {
             })}
           </nav>
 
-          {/* 3. Right: Only Phone & WhatsApp CTAs */}
-          <div className="hidden sm:flex items-center gap-2.5 xl:gap-3 shrink-0">
+          {/* 3. Right: Official KshetraPal Brand Logo + Phone Icon Link + WhatsApp Icon CTA */}
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <Image
+              src="/images/brand/kshetrapal-official-logo.png"
+              alt="KshetraPal Brand Logo"
+              width={600}
+              height={200}
+              priority
+              className="h-8 sm:h-10 lg:h-11 w-auto object-contain transition-transform hover:scale-105"
+            />
             <a
               href={`tel:${companyData.phone}`}
-              className="hidden sm:flex items-center gap-1.5 text-xs xl:text-sm font-extrabold text-agri-dark hover:text-agri-primary transition-colors whitespace-nowrap bg-agri-pale/80 px-3 py-1.5 rounded-xl border border-agri-border/60 shadow-2xs"
+              className="flex items-center gap-1.5 text-xs xl:text-sm font-extrabold text-agri-dark hover:text-agri-primary transition-colors whitespace-nowrap bg-agri-pale/80 px-2.5 py-1.5 rounded-xl border border-agri-border/60 shadow-2xs"
             >
-              <Phone className="w-3.5 h-3.5 text-agri-accent shrink-0" />
+              <Phone className="w-4 h-4 text-agri-accent shrink-0" />
               <span>{companyData.phone}</span>
             </a>
             <WhatsAppButton text="WhatsApp" size="sm" className="whitespace-nowrap shadow-xs" />
