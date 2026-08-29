@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import {
   Target,
   Eye,
@@ -81,8 +82,15 @@ export default function AboutPage() {
 
           <div className="lg:col-span-5">
             <Card className="p-8 bg-gradient-to-br from-agri-pale/90 via-white to-emerald-50/50 border-2 border-agri-accent/30 space-y-6 shadow-sm">
-              <div className="w-14 h-14 rounded-2xl bg-agri-dark text-white flex items-center justify-center font-bold text-2xl shadow-xs">
-                🌱
+              <div className="pt-1">
+                <Image
+                  src="/images/brand/swayur-agrotech-official-logo.png"
+                  alt="Swayur Agrotech Official Logo"
+                  width={400}
+                  height={160}
+                  priority
+                  className="h-14 sm:h-18 w-auto object-contain"
+                />
               </div>
               <h3 className="text-2xl font-bold text-agri-dark">{companyData.name}</h3>
               <p className="text-sm text-agri-muted leading-relaxed">
