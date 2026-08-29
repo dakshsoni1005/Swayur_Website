@@ -88,100 +88,39 @@ export const CropSelector: React.FC = () => {
         </div>
       </div>
 
-      {/* Corporate Visual Crop Pills Selection Grid */}
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-            Crop Selection Matrix
-          </h3>
-          <span className="text-xs font-extrabold text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
-            {cropOptionsData.length} Crop Categories
-          </span>
-        </div>
-
-        {/* Professional Crop Selection Pills */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {cropOptionsData.map((crop) => {
-            const isSelected = crop.id === selectedCropId;
-
-            return (
-              <button
-                key={crop.id}
-                type="button"
-                onClick={() => setSelectedCropId(crop.id)}
-                className={cn(
-                  'p-3.5 rounded-2xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between space-y-2.5 group shadow-2xs focus:outline-none',
-                  isSelected
-                    ? 'bg-[#0d472a] text-white border-[#0d472a] ring-4 ring-emerald-100 shadow-md scale-[1.02]'
-                    : 'bg-white text-slate-800 border-slate-200 hover:border-emerald-600/40 hover:bg-emerald-50/40'
-                )}
-              >
-                <div className="flex items-center justify-between w-full">
-                  <div
-                    className={cn(
-                      'p-1.5 rounded-lg shrink-0 transition-colors',
-                      isSelected ? 'bg-white/10 text-white' : 'bg-emerald-50 text-emerald-700'
-                    )}
-                  >
-                    <Sprout className="w-4 h-4" />
-                  </div>
-                  <div
-                    className={cn(
-                      'w-2 h-2 rounded-full transition-all',
-                      isSelected ? 'bg-amber-400 ring-4 ring-amber-400/30' : 'bg-slate-300 group-hover:bg-emerald-500'
-                    )}
-                  />
-                </div>
-
-                <div>
-                  <h4
-                    className={cn(
-                      'text-xs font-extrabold leading-snug line-clamp-1',
-                      isSelected ? 'text-white' : 'text-slate-900 group-hover:text-emerald-700'
-                    )}
-                  >
-                    {crop.name}
-                  </h4>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Selected Crop Agronomic Detail Banner */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0d472a] via-emerald-900 to-[#0d472a] text-white shadow-xl space-y-4 relative overflow-hidden border border-emerald-600/30">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
-            <div className="flex items-center gap-3.5">
-              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shrink-0">
-                <Sprout className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-400 px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/30">
-                    Selected Crop
-                  </span>
-                  <span className="text-xs text-slate-300 font-bold">
-                    {recommendedProducts.length} Formulations
-                  </span>
-                </div>
-                <h4 className="text-2xl sm:text-3xl font-black text-white mt-1">
-                  {selectedCrop.name}
-                </h4>
-              </div>
+      {/* Selected Crop Agronomic Detail Banner */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0d472a] via-emerald-900 to-[#0d472a] text-white shadow-xl space-y-4 relative overflow-hidden border border-emerald-600/30">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
+          <div className="flex items-center gap-3.5">
+            <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shrink-0">
+              <Sprout className="w-7 h-7 text-white" />
             </div>
-
-            <WhatsAppButton
-              text={`Inquire Bio Solutions for ${selectedCrop.name}`}
-              size="md"
-              className="shrink-0 shadow-lg"
-            />
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-black uppercase tracking-wider text-amber-400 px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/30">
+                  Selected Crop
+                </span>
+                <span className="text-xs text-slate-300 font-bold">
+                  {recommendedProducts.length} Formulations
+                </span>
+              </div>
+              <h4 className="text-2xl sm:text-3xl font-black text-white mt-1">
+                {selectedCrop.name}
+              </h4>
+            </div>
           </div>
 
-          <div className="pt-2 border-t border-white/10 relative z-10">
-            <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed max-w-3xl">
-              <strong className="text-amber-400 font-extrabold">Agronomic Focus:</strong> {selectedCrop.description}
-            </p>
-          </div>
+          <WhatsAppButton
+            text={`Inquire Bio Solutions for ${selectedCrop.name}`}
+            size="md"
+            className="shrink-0 shadow-lg"
+          />
+        </div>
+
+        <div className="pt-2 border-t border-white/10 relative z-10">
+          <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed max-w-3xl">
+            <strong className="text-amber-400 font-extrabold">Agronomic Focus:</strong> {selectedCrop.description}
+          </p>
         </div>
       </div>
 
