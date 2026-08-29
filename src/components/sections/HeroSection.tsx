@@ -55,7 +55,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Primary Action Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-              <Button href="/products" variant="primary" size="lg" className="w-full sm:w-auto shadow-md">
+              <Button href="/products#explore-products" variant="primary" size="lg" className="w-full sm:w-auto shadow-md">
                 Explore KshetraPal Products
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
