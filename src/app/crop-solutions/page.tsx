@@ -29,16 +29,8 @@ export default function CropSolutionsPage() {
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-12">
-      {/* 1. Hero Header */}
-      <PageHeader
-        badge="Crop Advisory System"
-        title="The Right Product for Every Crop"
-        subtitle="Biological inputs work best when matched precisely to crop requirements and growth stage. Select your crop below for customized product recommendations, dosage guides, and proven product packs."
-        breadcrumbs={[{ label: 'Crop Solutions' }]}
-      />
-
-      {/* 2. Interactive Crop Selector & Recommendation Engine */}
+    <div className="space-y-16 sm:space-y-24 pt-6 pb-12">
+      {/* 1. Interactive Crop Selector & Recommendation Engine */}
       <Container>
         <CropSelector />
       </Container>
