@@ -19,7 +19,7 @@ export const PipelineSection: React.FC = () => {
   const [activeStageIndex, setActiveStageIndex] = useState<number>(0);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Auto-progress stages every 4 seconds unless hovered/scrolled
+  // Auto-progress stages every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStageIndex((prev) => (prev + 1) % scienceProcessSteps.length);
@@ -30,7 +30,7 @@ export const PipelineSection: React.FC = () => {
   // Scientific Smart Art Stage Icons
   const getStageSmartArtIcon = (stepNumber: string, isActive: boolean, isCompleted: boolean) => {
     const iconClass = cn(
-      'w-6 h-6 transition-all duration-300',
+      'w-5 h-5 sm:w-6 sm:h-6 transition-all duration-300',
       isActive
         ? 'text-emerald-700 scale-110'
         : isCompleted
@@ -67,23 +67,23 @@ export const PipelineSection: React.FC = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative py-16 sm:py-24 bg-gradient-to-b from-white via-emerald-50/20 to-white overflow-hidden border-y border-slate-200">
+    <section ref={sectionRef} className="relative py-12 sm:py-20 lg:py-24 bg-gradient-to-b from-white via-emerald-50/20 to-white overflow-hidden border-y border-slate-200">
       {/* Background Soft Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-gradient-to-r from-emerald-500/5 via-amber-500/5 to-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[850px] h-[450px] bg-gradient-to-r from-emerald-500/5 via-amber-500/5 to-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      <Container className="relative z-10">
-        {/* Header (Preserved Content) */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100/80 text-emerald-900 text-xs font-black uppercase tracking-wider border border-emerald-300/60 shadow-2xs">
+      <Container className="relative z-10 px-4 sm:px-6">
+        {/* Header */}
+        <div className="max-w-3xl mx-auto text-center space-y-3 mb-10 sm:mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-emerald-100/80 text-emerald-900 text-[11px] sm:text-xs font-black uppercase tracking-wider border border-emerald-300/60 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
             R&D DEVELOPMENT PIPELINE
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
             How Science Moves From Microbe to Farm
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+          <p className="text-xs sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
             Every Swayur Agrotech product undergoes a rigorous 5-stage development lifecycle before commercial release.
           </p>
         </div>
@@ -104,7 +104,6 @@ export const PipelineSection: React.FC = () => {
             {scienceProcessSteps.map((step, idx) => {
               const isActive = idx === activeStageIndex;
               const isCompleted = idx < activeStageIndex;
-              const isFuture = idx > activeStageIndex;
               const isLast = idx === scienceProcessSteps.length - 1;
 
               return (
@@ -204,72 +203,86 @@ export const PipelineSection: React.FC = () => {
           </div>
         </div>
 
-        {/* MOBILE SMART ART: Vertical Timeline Layout (<lg) */}
-        <div className="lg:hidden max-w-xl mx-auto relative pl-8 space-y-6 border-l-2 border-emerald-500/40">
+        {/* MOBILE & TABLET SMART ART: 100% Responsive Vertical Flow (<lg) */}
+        <div className="lg:hidden space-y-3.5 max-w-lg mx-auto">
           {scienceProcessSteps.map((step, idx) => {
             const isActive = idx === activeStageIndex;
             const isCompleted = idx < activeStageIndex;
+            const isLast = idx === scienceProcessSteps.length - 1;
 
             return (
-              <div
-                key={step.stepNumber}
-                onClick={() => setActiveStageIndex(idx)}
-                className={cn(
-                  'relative p-5 rounded-2xl bg-white border transition-all duration-300 cursor-pointer shadow-2xs',
-                  isActive
-                    ? 'border-2 border-emerald-600 ring-2 ring-emerald-100 shadow-md bg-gradient-to-br from-white via-emerald-50/30 to-white'
-                    : isCompleted
-                    ? 'border-emerald-300'
-                    : 'border-slate-200 opacity-80'
-                )}
-              >
-                {/* Vertical Timeline Stage Marker Dot */}
+              <div key={step.stepNumber} className="space-y-3">
                 <div
+                  onClick={() => setActiveStageIndex(idx)}
                   className={cn(
-                    'absolute -left-[33px] top-6 w-5 h-5 rounded-full bg-white border-2 flex items-center justify-center shadow-xs transition-colors',
+                    'p-4 sm:p-5 rounded-2xl bg-white border transition-all duration-300 cursor-pointer shadow-2xs relative overflow-hidden',
                     isActive
-                      ? 'border-emerald-600 ring-2 ring-emerald-200'
+                      ? 'border-2 border-emerald-600 ring-2 ring-emerald-100 shadow-md bg-gradient-to-br from-white via-emerald-50/30 to-white'
                       : isCompleted
-                      ? 'border-emerald-600 bg-emerald-600 text-white'
-                      : 'border-slate-300'
+                      ? 'border-emerald-300'
+                      : 'border-slate-200'
                   )}
                 >
-                  {isCompleted ? (
-                    <CheckCircle2 className="w-3.5 h-3.5 text-white" />
-                  ) : (
-                    <div className={cn('w-1.5 h-1.5 rounded-full', isActive ? 'bg-emerald-600' : 'bg-slate-400')} />
-                  )}
-                </div>
+                  {/* Top Accent Bar */}
+                  <div
+                    className={cn(
+                      'absolute top-0 left-0 right-0 h-1',
+                      isActive ? 'bg-emerald-600' : isCompleted ? 'bg-emerald-500' : 'bg-slate-200'
+                    )}
+                  />
 
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <span
-                      className={cn(
-                        'px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider',
-                        isActive
-                          ? 'bg-[#0d472a] text-white'
-                          : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-                      )}
-                    >
-                      Stage {step.stepNumber}
-                    </span>
+                  <div className="flex items-start justify-between gap-3 pt-1">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={cn(
+                          'w-10 h-10 rounded-xl flex items-center justify-center border shrink-0',
+                          isActive
+                            ? 'bg-emerald-100 border-emerald-400 text-emerald-800 shadow-xs'
+                            : isCompleted
+                            ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
+                            : 'bg-slate-50 border-slate-200 text-slate-400'
+                        )}
+                      >
+                        {getStageSmartArtIcon(step.stepNumber, isActive, isCompleted)}
+                      </div>
 
-                    <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700">
-                      {getStageSmartArtIcon(step.stepNumber, isActive, isCompleted)}
+                      <div>
+                        <span
+                          className={cn(
+                            'px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider',
+                            isActive
+                              ? 'bg-[#0d472a] text-white'
+                              : isCompleted
+                              ? 'bg-emerald-600 text-white'
+                              : 'bg-slate-100 text-slate-600'
+                          )}
+                        >
+                          Stage {step.stepNumber}
+                        </span>
+                        <h3 className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5">
+                          {step.title}
+                        </h3>
+                      </div>
                     </div>
+
+                    {isCompleted ? (
+                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 shrink-0 mt-1" />
+                    ) : (
+                      <span className="text-xs font-bold text-slate-400 mt-1">0{idx + 1}</span>
+                    )}
                   </div>
 
-                  <h3 className="text-base font-extrabold text-slate-900">{step.title}</h3>
-
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  <p className="text-xs text-slate-600 leading-relaxed font-normal pt-2">
                     {step.description}
                   </p>
                 </div>
 
                 {/* Downward Direction Arrow between mobile stages */}
-                {idx < scienceProcessSteps.length - 1 && (
-                  <div className="flex justify-center -mb-9 pt-3">
-                    <ChevronDown className="w-4 h-4 text-emerald-500 animate-bounce" />
+                {!isLast && (
+                  <div className="flex justify-center py-0.5">
+                    <div className="w-6 h-6 rounded-full bg-white border border-slate-200 shadow-2xs flex items-center justify-center text-emerald-600">
+                      <ChevronDown className="w-3.5 h-3.5 animate-bounce" />
+                    </div>
                   </div>
                 )}
               </div>
