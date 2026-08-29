@@ -24,15 +24,19 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
   return (
     <div className="fixed inset-0 z-50 lg:hidden flex flex-col bg-white">
       {/* Drawer Header with Official Swayur Agrotech Logo */}
-      <div className="flex items-center justify-between px-4 py-3.5 border-b border-agri-border bg-agri-dark text-white">
-        <Link href="/" onClick={onClose} className="flex items-center shrink-0">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-agri-border bg-agri-dark text-white">
+        <Link href="/" onClick={onClose} className="flex items-center gap-2">
           <Image
-            src="/images/brand/swayur-official-logo.png"
+            src="/images/brand/swayur-agrotech-official-logo.png"
             alt="Swayur Agrotech"
             width={600}
             height={400}
-            className="h-10 w-auto object-contain bg-white rounded-lg px-2.5 py-1 shadow-2xs"
+            className="h-10 w-auto object-contain bg-white rounded-md p-1"
           />
+          <div>
+            <span className="font-extrabold text-base block leading-tight">{companyData.brand}</span>
+            <span className="text-xs text-agri-light block">{companyData.brandGujarati}</span>
+          </div>
         </Link>
         <button
           onClick={onClose}

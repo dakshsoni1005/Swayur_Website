@@ -35,15 +35,15 @@ export const Header: React.FC = () => {
       className={`sticky top-0 z-40 w-full transition-all duration-200 ${
         isScrolled
           ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-agri-border/60 py-2'
-          : 'bg-white/90 backdrop-blur-md border-b border-agri-border py-3'
+          : 'bg-white/90 backdrop-blur-md border-b border-agri-border py-2.5 sm:py-3'
       }`}
     >
       <Container>
         <div className="flex items-center justify-between gap-4 w-full">
           {/* Official Swayur Agrotech Logo */}
-          <Link href="/" className="flex items-center shrink-0 group focus:outline-none py-0.5">
+          <Link href="/" className="flex items-center gap-3 shrink-0 group focus:outline-none py-0.5">
             <Image
-              src="/images/brand/swayur-official-logo.png"
+              src="/images/brand/swayur-agrotech-official-logo.png"
               alt="Swayur Agrotech"
               width={600}
               height={400}
