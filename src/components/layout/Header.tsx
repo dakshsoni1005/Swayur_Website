@@ -4,11 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, ChevronDown, Phone } from 'lucide-react';
+import { Menu, ChevronDown } from 'lucide-react';
 import { siteConfig } from '@/config/site';
-import { companyData } from '@/data/company';
 import { Container } from '@/components/layout/Container';
-import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { ProductsDropdown } from '@/components/navigation/ProductsDropdown';
 import { MobileNavigation } from '@/components/navigation/MobileNavigation';
 
@@ -103,7 +101,7 @@ export const Header: React.FC = () => {
             })}
           </nav>
 
-          {/* 3. Right: Official KshetraPal Brand Logo + Phone Icon Link + WhatsApp Icon CTA */}
+          {/* 3. Right: Official KshetraPal Brand Logo */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <Image
               src="/images/brand/kshetrapal-official-logo.png"
@@ -113,19 +111,10 @@ export const Header: React.FC = () => {
               priority
               className="h-8 sm:h-10 lg:h-11 w-auto object-contain transition-transform hover:scale-105"
             />
-            <a
-              href={`tel:${companyData.phone}`}
-              className="flex items-center gap-1.5 text-xs xl:text-sm font-extrabold text-agri-dark hover:text-agri-primary transition-colors whitespace-nowrap bg-agri-pale/80 px-2.5 py-1.5 rounded-xl border border-agri-border/60 shadow-2xs"
-            >
-              <Phone className="w-4 h-4 text-agri-accent shrink-0" />
-              <span>{companyData.phone}</span>
-            </a>
-            <WhatsAppButton text="WhatsApp" size="sm" className="whitespace-nowrap shadow-xs" />
           </div>
 
           {/* Mobile Hamburger Toggle */}
           <div className="flex items-center gap-2 lg:hidden shrink-0">
-            <WhatsAppButton text="WhatsApp" size="sm" className="sm:hidden whitespace-nowrap" />
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
