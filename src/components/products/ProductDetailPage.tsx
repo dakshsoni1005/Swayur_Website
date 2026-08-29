@@ -50,7 +50,7 @@ interface ProductDetailPageProps {
 }
 
 export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product }) => {
-  const [viewMode, setViewMode] = useState<'3d' | '2d'>('3d');
+  const [viewMode, setViewMode] = useState<'3d' | '2d'>('2d');
 
   // Related products filtering (3 items excluding current product)
   const relatedProducts = productsData
@@ -83,18 +83,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
             {/* View Mode Selector Tabs */}
             <div className="flex items-center justify-between p-1 rounded-xl bg-agri-pale/80 border border-agri-border/80">
               <button
-                onClick={() => setViewMode('3d')}
-                className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
-                  viewMode === '3d'
-                    ? 'bg-agri-dark text-white shadow-xs'
-                    : 'text-agri-muted hover:text-agri-dark'
-                }`}
-              >
-                <RotateCw className="w-3.5 h-3.5" />
-                <span>3D Interactive</span>
-              </button>
-
-              <button
                 onClick={() => setViewMode('2d')}
                 className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
                   viewMode === '2d'
@@ -104,6 +92,18 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
               >
                 <ImageIcon className="w-3.5 h-3.5" />
                 <span>Studio Photo</span>
+              </button>
+
+              <button
+                onClick={() => setViewMode('3d')}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
+                  viewMode === '3d'
+                    ? 'bg-agri-dark text-white shadow-xs'
+                    : 'text-agri-muted hover:text-agri-dark'
+                }`}
+              >
+                <RotateCw className="w-3.5 h-3.5" />
+                <span>3D Interactive</span>
               </button>
             </div>
 
