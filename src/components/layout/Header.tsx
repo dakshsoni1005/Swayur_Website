@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, ChevronDown, Phone } from 'lucide-react';
 import { siteConfig } from '@/config/site';
@@ -31,34 +32,28 @@ export const Header: React.FC = () => {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all duration-200 ${
+      className={`sticky top-0 z-40 w-full transition-all duration-200 bg-white ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-agri-border/60 py-2.5'
-          : 'bg-white/90 backdrop-blur-md border-b border-agri-border py-3.5'
+          ? 'shadow-md border-b border-agri-border/80 py-2 sm:py-2.5'
+          : 'border-b border-agri-border py-2.5 sm:py-3.5'
       }`}
     >
       <Container>
         <div className="flex items-center justify-between gap-4 w-full">
-          {/* Logo & Brand */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group focus:outline-none">
-            <div className="w-10 h-10 rounded-xl bg-agri-dark text-white flex items-center justify-center font-bold text-xl shadow-xs group-hover:bg-agri-primary transition-colors shrink-0">
-              🌱
-            </div>
-            <div className="flex flex-col shrink-0">
-              <div className="flex items-baseline gap-1.5">
-                <span className="font-bold text-base sm:text-lg lg:text-xl tracking-tight text-agri-dark group-hover:text-agri-primary transition-colors whitespace-nowrap">
-                  Swayur Agrotech
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-agri-muted whitespace-nowrap">
-                <span className="text-agri-accent font-bold">{companyData.brand}</span>
-                <span>({companyData.brandGujarati})</span>
-              </div>
-            </div>
+          {/* Official Swayur Agrotech Logo */}
+          <Link href="/" className="flex items-center shrink-0 focus:outline-none py-0.5">
+            <Image
+              src="/images/brand/swayur-logo.png"
+              alt="Swayur Agrotech"
+              width={1024}
+              height={99}
+              priority
+              className="h-[36px] xs:h-[40px] sm:h-[44px] md:h-[48px] lg:h-[54px] xl:h-[60px] w-auto object-contain transition-all"
+            />
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink-0">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0">
             {siteConfig.navLinks.map((link) => {
               const isActive = pathname === link.href;
 
@@ -72,7 +67,7 @@ export const Header: React.FC = () => {
                   >
                     <Link
                       href={link.href}
-                      className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
+                      className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
                         pathname.startsWith('/products')
                           ? 'text-agri-accent font-bold bg-agri-pale/80'
                           : 'text-agri-dark hover:text-agri-primary hover:bg-agri-pale/50'
@@ -96,7 +91,7 @@ export const Header: React.FC = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-2.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
+                  className={`px-3 py-2 text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
                     isActive
                       ? 'text-agri-accent font-bold bg-agri-pale/80'
                       : 'text-agri-dark hover:text-agri-primary hover:bg-agri-pale/50'
@@ -109,7 +104,7 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Right Header CTAs */}
-          <div className="hidden sm:flex items-center gap-2.5 xl:gap-3 shrink-0">
+          <div className="hidden sm:flex items-center gap-3 shrink-0">
             <a
               href={`tel:${companyData.phone}`}
               className="hidden xl:flex items-center gap-1.5 text-xs font-bold text-agri-muted hover:text-agri-primary transition-colors whitespace-nowrap"
@@ -117,19 +112,19 @@ export const Header: React.FC = () => {
               <Phone className="w-3.5 h-3.5 text-agri-accent shrink-0" />
               <span>{companyData.phone}</span>
             </a>
-            <WhatsAppButton text="WhatsApp Us" size="sm" className="whitespace-nowrap" />
+            <WhatsAppButton text="WhatsApp Us" size="sm" className="whitespace-nowrap shadow-xs" />
           </div>
 
           {/* Mobile Hamburger Toggle */}
           <div className="flex items-center gap-2 lg:hidden shrink-0">
-            <WhatsAppButton text="WhatsApp" size="sm" className="sm:hidden whitespace-nowrap" />
+            <WhatsAppButton text="WhatsApp" size="sm" className="sm:hidden text-xs py-1.5 px-3 whitespace-nowrap shadow-2xs" />
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open mobile menu"
-              className="p-2 rounded-lg text-agri-dark hover:bg-agri-pale focus:outline-none border border-agri-border"
+              className="p-2 rounded-xl text-agri-dark hover:bg-agri-pale focus:outline-none border border-agri-border/80 bg-white"
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>
