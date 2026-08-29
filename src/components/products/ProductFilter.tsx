@@ -22,7 +22,7 @@ export const ProductFilter: React.FC<ProductFilterProps> = ({ products }) => {
   return (
     <div className="space-y-8">
       {/* Category Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-xl bg-agri-pale/80 border border-agri-border/60 max-w-xl mx-auto">
+      <div className="flex items-center sm:justify-center gap-2 p-1.5 rounded-xl bg-agri-pale/80 border border-agri-border/60 max-w-xl mx-auto overflow-x-auto no-scrollbar w-full whitespace-nowrap">
         {categories.map((cat) => {
           const isActive = selectedCategory === cat;
           const count =

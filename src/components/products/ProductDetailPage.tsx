@@ -215,9 +215,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
               {product.targetPestsOrDiseases.map((target, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1.5 rounded-lg bg-white border border-amber-300 text-xs sm:text-sm font-bold text-amber-900 shadow-2xs"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-amber-300 text-xs sm:text-sm font-bold text-amber-950 shadow-2xs"
                 >
-                  🎯 {target}
+                  <Bug className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                  {target}
                 </span>
               ))}
             </div>
@@ -300,9 +301,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
                 {product.applicationMethods.map((method, idx) => (
                   <span
                     key={idx}
-                    className="px-3 py-1.5 rounded-lg bg-white border border-agri-border text-xs sm:text-sm font-semibold text-agri-primary shadow-2xs"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-agri-border text-xs sm:text-sm font-bold text-agri-primary shadow-2xs"
                   >
-                    💧 {method}
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    {method}
                   </span>
                 ))}
               </div>
@@ -322,9 +324,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
             {product.recommendedCrops.map((crop, idx) => (
               <span
                 key={idx}
-                className="px-3.5 py-2 rounded-xl bg-white border border-agri-border text-xs sm:text-sm font-semibold text-agri-dark shadow-2xs hover:border-agri-accent/40 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-agri-border text-xs sm:text-sm font-bold text-agri-dark shadow-2xs hover:border-agri-accent/40 transition-colors"
               >
-                🌾 {crop}
+                <Sprout className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                {crop}
               </span>
             ))}
           </div>
