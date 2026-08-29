@@ -71,33 +71,33 @@ export const CircularStoryJourney: React.FC = () => {
         {/* DESKTOP VIEW: COMPACT FIT CIRCULAR JOURNEY LAYOUT (lg+)       */}
         {/* ============================================================ */}
         <div
-          className="hidden lg:block relative max-w-5xl mx-auto h-[480px]"
+          className="hidden lg:block relative max-w-5xl mx-auto h-[540px]"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* SVG Connecting Circular Ring */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible" viewBox="0 0 900 480">
+          {/* SVG Connecting Circular Ring Passing Through All 5 Cards */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible" viewBox="0 0 920 540">
             <defs>
               <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#2E8B57" stopOpacity="0.4" />
-                <stop offset="50%" stopColor="#D4AF37" stopOpacity="0.5" />
-                <stop offset="100%" stopColor="#2E8B57" stopOpacity="0.4" />
+                <stop offset="0%" stopColor="#15803d" stopOpacity="0.6" />
+                <stop offset="50%" stopColor="#d97706" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#15803d" stopOpacity="0.6" />
               </linearGradient>
             </defs>
             <circle
-              cx="450"
-              cy="240"
-              r="180"
+              cx="460"
+              cy="270"
+              r="225"
               fill="none"
               stroke="url(#ringGrad)"
               strokeWidth="2.5"
-              strokeDasharray="6 5"
-              className="animate-[spin_45s_linear_infinite] origin-[450px_240px]"
+              strokeDasharray="7 5"
+              className="animate-[spin_45s_linear_infinite] origin-[460px_270px]"
             />
           </svg>
 
           {/* Central Swayur Brand Circle with Official Logo Image */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-48 h-48 rounded-full bg-white border-2 border-agri-accent/40 shadow-xl flex flex-col items-center justify-center p-4 text-center space-y-1.5 group transition-all duration-300">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-52 h-52 rounded-full bg-white border-2 border-agri-accent/40 shadow-xl flex flex-col items-center justify-center p-4 text-center space-y-1.5 group transition-all duration-300">
             <Image
               src="/images/brand/swayur-agrotech-official-logo.png"
               alt="Swayur Agrotech Official Logo"
@@ -111,17 +111,17 @@ export const CircularStoryJourney: React.FC = () => {
             </p>
           </div>
 
-          {/* 5 Circular Stage Cards Positioned Clockwise */}
+          {/* 5 Circular Stage Cards Positioned Clockwise along Ring Orbit */}
           {aboutStorySteps.map((step, idx) => {
             const isActive = idx === activeStepIndex;
 
-            // Radial positions fitted inside 480px height container
+            // Radial positions along r=225 ring orbit
             const positions = [
               'top-0 left-1/2 -translate-x-1/2',
-              'top-[14%] right-[2%]',
-              'bottom-[4%] right-[4%]',
-              'bottom-[4%] left-[4%]',
-              'top-[14%] left-[2%]',
+              'top-[16%] right-[1%]',
+              'bottom-[5%] right-[3%]',
+              'bottom-[5%] left-[3%]',
+              'top-[16%] left-[1%]',
             ];
 
             return (
