@@ -33,13 +33,6 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
             height={400}
             className="h-10 w-auto object-contain bg-white rounded-md p-1"
           />
-          <Image
-            src="/images/brand/kshetrapal-official-logo.png"
-            alt="KshetraPal"
-            width={600}
-            height={200}
-            className="h-8 w-auto object-contain bg-white/90 rounded-md p-0.5"
-          />
         </Link>
         <button
           onClick={onClose}
