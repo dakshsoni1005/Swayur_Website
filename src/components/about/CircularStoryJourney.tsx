@@ -96,22 +96,16 @@ export const CircularStoryJourney: React.FC = () => {
             />
           </svg>
 
-          {/* Central Swayur Brand Circle with Official Logo Badge */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-48 h-48 rounded-full bg-white border-2 border-agri-accent/40 shadow-xl flex flex-col items-center justify-center p-3.5 text-center space-y-1 group transition-all duration-300">
+          {/* Central Swayur Brand Circle with Official Logo Image */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-48 h-48 rounded-full bg-white border-2 border-agri-accent/40 shadow-xl flex flex-col items-center justify-center p-4 text-center space-y-1.5 group transition-all duration-300">
             <Image
-              src="/images/brand/swayur-logo-badge.png"
-              alt="Swayur Logo Badge"
-              width={80}
-              height={80}
+              src="/images/brand/swayur-agrotech-official-logo.png"
+              alt="Swayur Agrotech Official Logo"
+              width={300}
+              height={180}
               priority
-              className="w-12 h-12 object-contain transition-transform group-hover:scale-105"
+              className="h-20 w-auto object-contain transition-transform group-hover:scale-105"
             />
-            <div>
-              <h3 className="text-base font-extrabold text-agri-dark tracking-tight leading-none">SWAYUR</h3>
-              <span className="text-[10px] font-black uppercase tracking-wider text-agri-primary block pt-0.5">
-                AGROTECH LLP
-              </span>
-            </div>
             <p className="text-[10px] text-agri-muted italic font-serif leading-tight">
               &ldquo;{companyData.tagline}&rdquo;
             </p>
@@ -182,21 +176,15 @@ export const CircularStoryJourney: React.FC = () => {
 
         {/* Mobile & Tablet Vertical Layout */}
         <div className="lg:hidden space-y-6 max-w-xl mx-auto">
-          <div className="p-5 rounded-2xl bg-white border-2 border-agri-accent/30 shadow-sm text-center space-y-1.5">
+          <div className="p-5 rounded-2xl bg-white border-2 border-agri-accent/30 shadow-sm text-center space-y-2">
             <Image
-              src="/images/brand/swayur-logo-badge.png"
-              alt="Swayur Logo Badge"
-              width={80}
-              height={80}
+              src="/images/brand/swayur-agrotech-official-logo.png"
+              alt="Swayur Agrotech Official Logo"
+              width={300}
+              height={180}
               priority
-              className="w-12 h-12 object-contain mx-auto"
+              className="h-16 w-auto object-contain mx-auto"
             />
-            <div>
-              <h3 className="text-base font-extrabold text-agri-dark tracking-tight leading-none">SWAYUR</h3>
-              <span className="text-[10px] font-black uppercase tracking-wider text-agri-primary block pt-0.5">
-                AGROTECH LLP
-              </span>
-            </div>
             <p className="text-xs text-agri-muted italic font-serif">
               &ldquo;{companyData.tagline}&rdquo;
             </p>
