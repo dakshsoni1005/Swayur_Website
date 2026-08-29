@@ -53,37 +53,7 @@ export const Header: React.FC = () => {
           {/* 2. Center: All Navigation Links (Home, About, Products, Our Science, Crop Solutions, FAQ, Contact) */}
           <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-1.5 grow px-2">
             {siteConfig.navLinks.map((link) => {
-              const isActive = pathname === link.href;
-
-              if (link.dropdown) {
-                return (
-                  <div
-                    key={link.name}
-                    className="relative"
-                    onMouseEnter={() => setProductsHover(true)}
-                    onMouseLeave={() => setProductsHover(false)}
-                  >
-                    <Link
-                      href={link.href}
-                      className={`inline-flex items-center gap-1 px-2.5 xl:px-3.5 py-2 text-xs xl:text-sm font-bold rounded-xl transition-all whitespace-nowrap ${
-                        pathname.startsWith('/products')
-                          ? 'bg-agri-dark text-white shadow-xs'
-                          : 'text-agri-dark hover:text-agri-primary hover:bg-agri-pale/80'
-                      }`}
-                    >
-                      <span>{link.name}</span>
-                      <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productsHover ? 'transform rotate-180 text-agri-accent' : ''}`} />
-                    </Link>
-
-                    {/* Products Hover Dropdown */}
-                    {productsHover && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                        <ProductsDropdown onClose={() => setProductsHover(false)} />
-                      </div>
-                    )}
-                  </div>
-                );
-              }
+              const isActive = pathname === link.href || (link.href === '/products' && pathname.startsWith('/products'));
 
               return (
                 <Link
