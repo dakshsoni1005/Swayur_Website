@@ -24,7 +24,7 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-agri-dark tracking-tight leading-[1.1]">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-agri-dark tracking-tight leading-[1.15]">
               Revitalise Soil, <br className="hidden sm:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-agri-dark via-agri-primary to-agri-accent">
                 Sustain Life.

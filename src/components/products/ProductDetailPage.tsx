@@ -132,7 +132,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product })
                 )}
                 <Badge variant="gold">FCO Schedule I Compliant</Badge>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-agri-dark tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-agri-dark tracking-tight">
                 {product.name}
               </h1>
               <p className="text-sm sm:text-base font-semibold text-agri-primary italic">

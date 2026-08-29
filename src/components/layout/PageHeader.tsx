@@ -28,7 +28,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
               {badge}
             </span>
           )}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-agri-dark tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-agri-dark tracking-tight leading-tight">
             {title}
           </h1>
           {subtitle && (

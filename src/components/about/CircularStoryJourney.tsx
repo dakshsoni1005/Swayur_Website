@@ -57,7 +57,7 @@ export const CircularStoryJourney: React.FC = () => {
             OUR STORY
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-agri-dark tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-agri-dark tracking-tight leading-tight">
             The Journey Begins in the Soil
           </h2>
 

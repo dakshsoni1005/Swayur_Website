@@ -35,7 +35,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
               Get Expert Agronomy Support
             </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-agri-dark leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-agri-dark leading-tight">
               {title}
             </h2>
 
