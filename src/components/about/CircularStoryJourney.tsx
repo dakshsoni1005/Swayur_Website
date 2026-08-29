@@ -71,30 +71,32 @@ export const CircularStoryJourney: React.FC = () => {
         {/* DESKTOP VIEW: COMPACT FIT CIRCULAR JOURNEY LAYOUT (lg+)       */}
         {/* ============================================================ */}
         <div
-          className="hidden lg:block relative max-w-5xl mx-auto h-[540px]"
+          className="hidden lg:block relative max-w-5xl mx-auto h-[560px]"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* SVG Connecting Circular Ring Passing Through All 5 Cards */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible" viewBox="0 0 920 540">
-            <defs>
-              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#15803d" stopOpacity="0.6" />
-                <stop offset="50%" stopColor="#d97706" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#15803d" stopOpacity="0.6" />
-              </linearGradient>
-            </defs>
-            <circle
-              cx="460"
-              cy="270"
-              r="225"
-              fill="none"
-              stroke="url(#ringGrad)"
-              strokeWidth="2.5"
-              strokeDasharray="7 5"
-              className="animate-[spin_45s_linear_infinite] origin-[460px_270px]"
-            />
-          </svg>
+          {/* SVG Concentric Circular Ring (520px Diameter, Perfect Center) */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] pointer-events-none z-0">
+            <svg className="w-full h-full overflow-visible" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#15803d" stopOpacity="0.5" />
+                  <stop offset="50%" stopColor="#d97706" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#15803d" stopOpacity="0.5" />
+                </linearGradient>
+              </defs>
+              <circle
+                cx="50"
+                cy="50"
+                r="46"
+                fill="none"
+                stroke="url(#ringGrad)"
+                strokeWidth="0.8"
+                strokeDasharray="2.5 1.8"
+                className="animate-[spin_50s_linear_infinite] origin-[50px_50px]"
+              />
+            </svg>
+          </div>
 
           {/* Central Swayur Brand Circle with Official Logo Image */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-52 h-52 rounded-full bg-white border-2 border-agri-accent/40 shadow-xl flex flex-col items-center justify-center p-4 text-center space-y-1.5 group transition-all duration-300">
@@ -115,13 +117,13 @@ export const CircularStoryJourney: React.FC = () => {
           {aboutStorySteps.map((step, idx) => {
             const isActive = idx === activeStepIndex;
 
-            // Radial positions along r=225 ring orbit
+            // Clockwise radial positions passing through ring orbit
             const positions = [
               'top-0 left-1/2 -translate-x-1/2',
-              'top-[16%] right-[1%]',
-              'bottom-[5%] right-[3%]',
-              'bottom-[5%] left-[3%]',
-              'top-[16%] left-[1%]',
+              'top-[12%] right-[1.5%]',
+              'bottom-[8%] right-[3.5%]',
+              'bottom-[8%] left-[3.5%]',
+              'top-[12%] left-[1.5%]',
             ];
 
             return (
