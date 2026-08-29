@@ -75,15 +75,19 @@ export const CircularStoryJourney: React.FC = () => {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Concentric Spinning Dashed Orbit Ring (580px Diameter) */}
+          {/* Concentric Spinning Dashed Orbit Ring with Process Arrowheads (580px Diameter) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[580px] h-[580px] pointer-events-none z-0">
             <svg className="w-full h-full overflow-visible" viewBox="0 0 100 100">
               <defs>
                 <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#15803d" stopOpacity="0.7" />
-                  <stop offset="50%" stopColor="#d97706" stopOpacity="0.7" />
-                  <stop offset="100%" stopColor="#15803d" stopOpacity="0.7" />
+                  <stop offset="0%" stopColor="#15803d" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#d97706" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#15803d" stopOpacity="0.8" />
                 </linearGradient>
+
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#15803d" />
+                </marker>
 
                 <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                   <feGaussianBlur stdDeviation="2" result="blur" />
@@ -91,47 +95,53 @@ export const CircularStoryJourney: React.FC = () => {
                 </filter>
               </defs>
 
-              {/* Background Orbit Ring */}
+              {/* Background Process Orbit Ring */}
               <circle
                 cx="50"
                 cy="50"
                 r="46"
                 fill="none"
                 stroke="url(#ringGrad)"
-                strokeWidth="1.2"
-                strokeDasharray="2.5 1.8"
+                strokeWidth="1.5"
+                strokeDasharray="6 4"
                 className="animate-[spin_40s_linear_infinite] origin-[50px_50px]"
               />
 
-              {/* Active Animated Process Pulse Arc */}
+              {/* Active Animated Process Arrowhead Pulse Arc */}
               <circle
                 cx="50"
                 cy="50"
                 r="46"
                 fill="none"
                 stroke="#10b981"
-                strokeWidth="2"
-                strokeDasharray="20 70"
+                strokeWidth="2.5"
+                strokeDasharray="25 65"
                 strokeLinecap="round"
+                markerEnd="url(#arrow)"
                 filter="url(#glow)"
                 className="animate-[spin_6s_linear_infinite] origin-[50px_50px]"
               />
             </svg>
           </div>
 
-          {/* Central Swayur Brand Circle with Official Logo & Pulsing Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-48 h-48 rounded-full bg-white border-2 border-emerald-500/50 shadow-2xl flex flex-col items-center justify-center p-4 text-center space-y-1.5 group transition-all duration-300 ring-4 ring-emerald-500/20">
-            <Image
-              src="/images/brand/swayur-agrotech-official-logo.png"
-              alt="Swayur Agrotech Official Logo"
-              width={280}
-              height={160}
-              priority
-              className="h-16 sm:h-18 w-auto object-contain transition-transform group-hover:scale-105"
-            />
-            <p className="text-[10px] text-agri-muted italic font-serif leading-tight">
-              &ldquo;{companyData.tagline}&rdquo;
-            </p>
+          {/* Central Swayur Brand Circle with 3-Arrow Revolving Process Loop */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
+            {/* Outer Revolving 3-Arrow Process Ring */}
+            <div className="absolute -inset-4 border-2 border-dashed border-emerald-500/50 rounded-full animate-[spin_25s_linear_infinite]" />
+
+            <div className="w-48 h-48 rounded-full bg-white border-2 border-emerald-500/60 shadow-2xl flex flex-col items-center justify-center p-4 text-center space-y-1.5 group transition-all duration-300 ring-4 ring-emerald-500/20">
+              <Image
+                src="/images/brand/swayur-agrotech-official-logo.png"
+                alt="Swayur Agrotech Official Logo"
+                width={280}
+                height={160}
+                priority
+                className="h-16 sm:h-18 w-auto object-contain transition-transform group-hover:scale-105"
+              />
+              <p className="text-[10px] text-agri-muted italic font-serif leading-tight">
+                &ldquo;{companyData.tagline}&rdquo;
+              </p>
+            </div>
           </div>
 
           {/* 5 Stage Cards Positioned Clockwise Around Circle */}
