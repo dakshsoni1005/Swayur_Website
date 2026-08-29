@@ -19,10 +19,10 @@ export const Footer: React.FC = () => {
           alt="Swayur Agrotech Agricultural Field"
           fill
           sizes="100vw"
-          className="object-cover object-[center_35%] brightness-95 contrast-105"
+          className="object-cover object-[center_15%] brightness-95 contrast-105"
         />
-        {/* Parrot Green 60% Opacity Overlay Layer */}
-        <div className="absolute inset-0 bg-[#0d4d2d]/60 bg-gradient-to-b from-[#0b3b22]/75 via-[#0e522f]/60 to-[#072917]/85" />
+        {/* Parrot Green 70% Opacity Overlay Layer */}
+        <div className="absolute inset-0 bg-[#0e5c33]/70 bg-gradient-to-b from-[#0b3e23]/75 via-[#0f5c34]/70 to-[#072c18]/85" />
       </div>
 
       <Container className="relative z-10">
