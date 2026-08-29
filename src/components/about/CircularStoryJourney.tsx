@@ -19,7 +19,7 @@ export const CircularStoryJourney: React.FC = () => {
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
-  // Cyclic auto-rotation every 4 seconds unless hovered
+  // Auto-rotate active step every 4 seconds unless hovered
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
@@ -31,130 +31,93 @@ export const CircularStoryJourney: React.FC = () => {
   const getStageIcon = (stepNumber: string) => {
     switch (stepNumber) {
       case '01':
-        return <Layers className="w-4 h-4 text-agri-accent" />;
+        return <Layers className="w-5 h-5 text-emerald-600" />;
       case '02':
-        return <Leaf className="w-4 h-4 text-agri-accent" />;
+        return <Leaf className="w-5 h-5 text-emerald-600" />;
       case '03':
-        return <FlaskConical className="w-4 h-4 text-agri-accent" />;
+        return <FlaskConical className="w-5 h-5 text-emerald-600" />;
       case '04':
-        return <ShieldCheck className="w-4 h-4 text-agri-accent" />;
+        return <ShieldCheck className="w-5 h-5 text-emerald-600" />;
       case '05':
-        return <HeartHandshake className="w-4 h-4 text-agri-accent" />;
+        return <HeartHandshake className="w-5 h-5 text-emerald-600" />;
       default:
-        return <Leaf className="w-4 h-4 text-agri-accent" />;
+        return <Leaf className="w-5 h-5 text-emerald-600" />;
     }
   };
 
   return (
-    <section className="relative py-8 sm:py-12 bg-gradient-to-b from-white via-agri-pale/30 to-white overflow-hidden border-y border-agri-border/60">
-      {/* Background Soft Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-r from-emerald-500/5 via-amber-500/5 to-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative py-12 sm:py-16 bg-gradient-to-b from-slate-50/50 via-emerald-50/20 to-slate-50/50 overflow-hidden border-y border-slate-200">
+      {/* Soft Ambient Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-emerald-500/5 via-amber-500/5 to-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <Container className="relative z-10">
-        {/* Compact Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-1.5 mb-6 sm:mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-agri-pale text-agri-primary text-[11px] font-extrabold uppercase tracking-wider border border-agri-accent/20 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-agri-accent" />
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center space-y-2 mb-10 sm:mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100/80 text-emerald-900 text-xs font-black uppercase tracking-wider border border-emerald-300/60 shadow-2xs">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
             OUR STORY
           </div>
 
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-agri-dark tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
             The Journey Begins in the Soil
           </h2>
 
-          <p className="text-xs sm:text-sm text-agri-muted max-w-xl mx-auto font-normal">
-            Swayur Agrotech LLP was founded to address soil degradation in Indian farming using beneficial microbiology.
+          <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto font-normal leading-relaxed">
+            Swayur Agrotech LLP was founded to address decades of soil degradation in Indian farming using beneficial microbiology.
           </p>
         </div>
 
         {/* ============================================================ */}
-        {/* DESKTOP VIEW: 5-CARD CIRCULAR LAYOUT WITH ANIMATED PROCESS   */}
+        {/* DESKTOP VIEW: ELEGANT 5-STAGE CIRCULAR INFOGRAPHIC (lg+)     */}
         {/* ============================================================ */}
         <div
-          className="hidden lg:block relative max-w-5xl mx-auto h-[580px]"
+          className="hidden lg:block relative max-w-5xl mx-auto h-[620px]"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Concentric Spinning Dashed Orbit Ring with Process Arrowheads (580px Diameter) */}
+          {/* Concentric Dashed Ring (580px Diameter) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[580px] h-[580px] pointer-events-none z-0">
             <svg className="w-full h-full overflow-visible" viewBox="0 0 100 100">
-              <defs>
-                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#15803d" stopOpacity="0.8" />
-                  <stop offset="50%" stopColor="#d97706" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#15803d" stopOpacity="0.8" />
-                </linearGradient>
-
-                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#15803d" />
-                </marker>
-
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="2" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-
-              {/* Background Process Orbit Ring */}
               <circle
                 cx="50"
                 cy="50"
                 r="46"
                 fill="none"
-                stroke="url(#ringGrad)"
-                strokeWidth="1.5"
-                strokeDasharray="6 4"
-                className="animate-[spin_40s_linear_infinite] origin-[50px_50px]"
-              />
-
-              {/* Active Animated Process Arrowhead Pulse Arc */}
-              <circle
-                cx="50"
-                cy="50"
-                r="46"
-                fill="none"
-                stroke="#10b981"
-                strokeWidth="2.5"
-                strokeDasharray="25 65"
-                strokeLinecap="round"
-                markerEnd="url(#arrow)"
-                filter="url(#glow)"
-                className="animate-[spin_6s_linear_infinite] origin-[50px_50px]"
+                stroke="#15803d"
+                strokeWidth="0.8"
+                strokeDasharray="2 1.5"
+                strokeOpacity="0.4"
+                className="animate-[spin_60s_linear_infinite] origin-[50px_50px]"
               />
             </svg>
           </div>
 
-          {/* Central Swayur Brand Circle with 3-Arrow Revolving Process Loop */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
-            {/* Outer Revolving 3-Arrow Process Ring */}
-            <div className="absolute -inset-4 border-2 border-dashed border-emerald-500/50 rounded-full animate-[spin_25s_linear_infinite]" />
-
-            <div className="w-48 h-48 rounded-full bg-white border-2 border-emerald-500/60 shadow-2xl flex flex-col items-center justify-center p-4 text-center space-y-1.5 group transition-all duration-300 ring-4 ring-emerald-500/20">
-              <Image
-                src="/images/brand/swayur-agrotech-official-logo.png"
-                alt="Swayur Agrotech Official Logo"
-                width={280}
-                height={160}
-                priority
-                className="h-16 sm:h-18 w-auto object-contain transition-transform group-hover:scale-105"
-              />
-              <p className="text-[10px] text-agri-muted italic font-serif leading-tight">
-                &ldquo;{companyData.tagline}&rdquo;
-              </p>
-            </div>
+          {/* Central Swayur Brand Circle */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-56 h-56 rounded-full bg-white border-2 border-emerald-500/30 shadow-xl flex flex-col items-center justify-center p-5 text-center space-y-2 group transition-all duration-300 hover:scale-105 hover:border-emerald-500/60">
+            <Image
+              src="/images/brand/swayur-agrotech-official-logo.png"
+              alt="Swayur Agrotech Official Logo"
+              width={280}
+              height={160}
+              priority
+              className="h-18 w-auto object-contain"
+            />
+            <p className="text-[11px] text-slate-500 italic font-serif leading-tight">
+              &ldquo;{companyData.tagline}&rdquo;
+            </p>
           </div>
 
-          {/* 5 Stage Cards Positioned Clockwise Around Circle */}
+          {/* 5 Stage Cards Positioned Clockwise Around Ring */}
           {aboutStorySteps.map((step, idx) => {
             const isActive = idx === activeStepIndex;
 
-            // Clockwise radial positions overlapping ~40% on top of dashed ring
+            // Clockwise positions on r=290px circle orbit
             const positions = [
               'top-0 left-1/2 -translate-x-1/2',
-              'top-[15%] right-[2%]',
-              'bottom-[6%] right-[4%]',
-              'bottom-[6%] left-[4%]',
-              'top-[15%] left-[2%]',
+              'top-[14%] right-[0%]',
+              'bottom-[6%] right-[2%]',
+              'bottom-[6%] left-[2%]',
+              'top-[14%] left-[0%]',
             ];
 
             return (
@@ -162,72 +125,43 @@ export const CircularStoryJourney: React.FC = () => {
                 key={step.step}
                 onClick={() => setActiveStepIndex(idx)}
                 className={cn(
-                  'absolute z-30 w-64 p-4 rounded-2xl bg-white backdrop-blur-xs border transition-all duration-300 cursor-pointer group shadow-md',
+                  'absolute z-30 w-72 p-5 rounded-2xl bg-white border transition-all duration-300 cursor-pointer group shadow-sm',
                   positions[idx],
                   isActive
-                    ? 'border-2 border-emerald-500 ring-4 ring-emerald-400/40 -translate-y-1.5 shadow-2xl bg-gradient-to-br from-emerald-50/90 via-white to-emerald-50/50 scale-[1.03]'
-                    : 'border-agri-border/80 hover:border-emerald-500/40 hover:-translate-y-0.5'
+                    ? 'border-2 border-emerald-500 ring-4 ring-emerald-100 shadow-xl -translate-y-1'
+                    : 'border-slate-200/90 hover:border-emerald-400/60 hover:shadow-md'
                 )}
               >
                 {/* Background Watermark Number */}
-                <span
-                  className={cn(
-                    'absolute -bottom-2 -right-1 text-5xl font-black select-none pointer-events-none transition-colors',
-                    isActive ? 'text-emerald-500/20' : 'text-agri-pale/80'
-                  )}
-                >
+                <span className="absolute bottom-2 right-3 text-5xl font-black text-slate-100 select-none pointer-events-none">
                   {step.step}
                 </span>
 
                 {/* Overlapping Stage Badge */}
-                <div className="absolute -top-3 left-4 z-20 flex items-center gap-1.5">
+                <div className="absolute -top-3.5 left-5 z-20">
                   <span
                     className={cn(
-                      'px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase shadow-2xs border transition-all',
+                      'px-3 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase shadow-2xs border',
                       isActive
-                        ? 'bg-emerald-600 text-white border-emerald-600 shadow-md animate-pulse'
-                        : 'bg-agri-dark text-white border-agri-dark'
+                        ? 'bg-emerald-700 text-white border-emerald-700'
+                        : 'bg-[#0d472a] text-white border-[#0d472a]'
                     )}
                   >
                     Stage {step.step}
                   </span>
-                  {isActive && (
-                    <span className="px-2 py-0.5 rounded-full bg-amber-500 text-white text-[9px] font-black uppercase tracking-wider shadow-xs">
-                      Active
-                    </span>
-                  )}
                 </div>
 
-                <div className="space-y-1.5 pt-1 relative z-10">
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={cn(
-                        'p-1.5 rounded-lg border shrink-0 transition-colors',
-                        isActive
-                          ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs'
-                          : 'bg-agri-pale text-agri-primary border-agri-accent/20'
-                      )}
-                    >
-                      {React.cloneElement(getStageIcon(step.step), {
-                        className: cn('w-4 h-4', isActive ? 'text-white' : 'text-agri-accent'),
-                      })}
+                <div className="space-y-2 pt-1 relative z-10">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/70 shrink-0">
+                      {getStageIcon(step.step)}
                     </div>
-                    <h4
-                      className={cn(
-                        'text-xs sm:text-sm font-extrabold tracking-tight leading-snug transition-colors',
-                        isActive ? 'text-emerald-950 font-black' : 'text-agri-dark group-hover:text-agri-primary'
-                      )}
-                    >
+                    <h4 className="text-sm font-extrabold text-slate-800 group-hover:text-emerald-700 transition-colors leading-snug">
                       {step.title}
                     </h4>
                   </div>
 
-                  <p
-                    className={cn(
-                      'text-[11px] leading-relaxed font-normal transition-colors',
-                      isActive ? 'text-emerald-900 font-medium' : 'text-agri-muted'
-                    )}
-                  >
+                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
                     {step.description}
                   </p>
                 </div>
@@ -236,47 +170,23 @@ export const CircularStoryJourney: React.FC = () => {
           })}
         </div>
 
-        {/* Desktop Process Step Navigator Bar */}
-        <div className="hidden lg:flex items-center justify-center gap-2 pt-4">
-          {aboutStorySteps.map((step, idx) => {
-            const isActive = idx === activeStepIndex;
-
-            return (
-              <button
-                key={step.step}
-                type="button"
-                onClick={() => setActiveStepIndex(idx)}
-                className={cn(
-                  'flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer',
-                  isActive
-                    ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
-                    : 'bg-white text-agri-muted hover:text-agri-dark border-agri-border hover:border-emerald-500/30'
-                )}
-              >
-                <span className={cn('w-2 h-2 rounded-full', isActive ? 'bg-white animate-ping' : 'bg-agri-muted/50')} />
-                <span>Stage {step.step}</span>
-              </button>
-            );
-          })}
-        </div>
-
         {/* Mobile & Tablet Vertical Timeline View */}
         <div className="lg:hidden space-y-6 max-w-xl mx-auto">
-          <div className="p-5 rounded-2xl bg-white border-2 border-agri-accent/30 shadow-sm text-center space-y-2">
+          <div className="p-6 rounded-2xl bg-white border-2 border-emerald-500/30 shadow-md text-center space-y-2">
             <Image
               src="/images/brand/swayur-agrotech-official-logo.png"
               alt="Swayur Agrotech Official Logo"
               width={280}
               height={160}
               priority
-              className="h-14 w-auto object-contain mx-auto"
+              className="h-16 w-auto object-contain mx-auto"
             />
-            <p className="text-xs text-agri-muted italic font-serif">
+            <p className="text-xs text-slate-500 italic font-serif">
               &ldquo;{companyData.tagline}&rdquo;
             </p>
           </div>
 
-          <div className="relative pl-6 sm:pl-8 space-y-4 border-l-2 border-agri-accent/40">
+          <div className="relative pl-6 sm:pl-8 space-y-4 border-l-2 border-emerald-500/40">
             {aboutStorySteps.map((step, idx) => {
               const isActive = idx === activeStepIndex;
 
@@ -287,26 +197,26 @@ export const CircularStoryJourney: React.FC = () => {
                   className={cn(
                     'relative p-4 rounded-xl bg-white border transition-all duration-200 cursor-pointer shadow-2xs',
                     isActive
-                      ? 'border-agri-accent ring-2 ring-agri-pale shadow-sm bg-gradient-to-br from-white via-agri-pale/30 to-white'
-                      : 'border-agri-border hover:border-agri-accent/30'
+                      ? 'border-2 border-emerald-500 ring-2 ring-emerald-100 shadow-md'
+                      : 'border-slate-200 hover:border-emerald-400/50'
                   )}
                 >
-                  <div className="absolute -left-[31px] sm:-left-[39px] top-5 w-4 h-4 rounded-full bg-white border-2 border-agri-accent flex items-center justify-center shadow-2xs">
-                    <div className="w-1.5 h-1.5 rounded-full bg-agri-accent" />
+                  <div className="absolute -left-[31px] sm:-left-[39px] top-5 w-4 h-4 rounded-full bg-white border-2 border-emerald-600 flex items-center justify-center shadow-2xs">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                   </div>
 
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-agri-primary px-2 py-0.5 rounded-full bg-agri-pale border border-agri-accent/20">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-white px-2.5 py-0.5 rounded-full bg-[#0d472a]">
                         Stage {step.step}
                       </span>
-                      <div className="p-1 rounded-md bg-agri-pale text-agri-primary">
+                      <div className="p-1 rounded-md bg-emerald-50 text-emerald-700">
                         {getStageIcon(step.step)}
                       </div>
                     </div>
 
-                    <h4 className="text-sm font-extrabold text-agri-dark">{step.title}</h4>
-                    <p className="text-xs text-agri-muted leading-relaxed font-normal">
+                    <h4 className="text-sm font-extrabold text-slate-800">{step.title}</h4>
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
                       {step.description}
                     </p>
                   </div>
