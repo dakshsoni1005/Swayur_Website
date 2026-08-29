@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import {
   Microscope,
   FlaskConical,
@@ -8,6 +9,8 @@ import {
   Sprout,
   Recycle,
   FileCheck2,
+  Sparkles,
+  CheckCircle2,
 } from 'lucide-react';
 import { seoData } from '@/data/seo';
 import {
@@ -15,12 +18,12 @@ import {
   qualityPromiseData,
 } from '@/data/science';
 import { Container } from '@/components/layout/Container';
-import { PageHeader } from '@/components/layout/PageHeader';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { CTASection } from '@/components/sections/CTASection';
 import { PipelineSection } from '@/components/science/PipelineSection';
 import { Badge } from '@/components/ui/Badge';
+import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: seoData['our-science']?.metaTitle || 'Our Science & R&D | Swayur Agrotech',
@@ -49,13 +52,60 @@ export default function OurSciencePage() {
 
   return (
     <div className="space-y-16 sm:space-y-24 pb-12">
-      {/* 1. Science Hero */}
-      <PageHeader
-        badge="OUR SCIENCE"
-        title="Backed by Microbiology. Built for Farms."
-        subtitle="The science behind KshetraPal products is not theoretical. It is the result of deep expertise in applied microbiology, soil science, and agricultural biotechnology — applied to the real challenges Indian farmers face every season."
-        breadcrumbs={[{ label: 'Our Science' }]}
-      />
+      {/* 1. Science 2-Column Hero Section with Microbiology Illustration */}
+      <div className="bg-gradient-to-b from-agri-pale/80 via-agri-pale/30 to-transparent py-10 sm:py-14 border-b border-agri-border/60">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Column: Title, Subtitle, Badges */}
+            <div className="lg:col-span-6 space-y-4">
+              <Breadcrumbs items={[{ label: 'Our Science' }]} className="mb-2" />
+
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0d472a] text-white text-xs font-black uppercase tracking-wider shadow-2xs">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                OUR SCIENCE & R&D
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+                Backed by Microbiology. Built for Farms.
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+                The science behind KshetraPal products is not theoretical. It is the result of deep expertise in applied microbiology, soil science, and agricultural biotechnology — applied to the real challenges Indian farmers face every season.
+              </p>
+
+              <div className="pt-2 flex flex-wrap gap-3">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-extrabold text-slate-800 shadow-2xs">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>MTCC / ATCC Strains</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-extrabold text-slate-800 shadow-2xs">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>FCO 1985 Compliant</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-extrabold text-slate-800 shadow-2xs">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>100% Residue-Free</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: User Science Microbiology Asset Illustration */}
+            <div className="lg:col-span-6 flex justify-center">
+              <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-emerald-500/40 group bg-slate-950">
+                <Image
+                  src="/images/science/microbiology-science-hero.jpg"
+                  alt="Swayur Agrotech Applied Microbiology & Soil Science"
+                  width={800}
+                  height={540}
+                  priority
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-3xl pointer-events-none" />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
 
       {/* 2. R&D Development Pipeline */}
       <PipelineSection />
