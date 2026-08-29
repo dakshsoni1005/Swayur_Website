@@ -32,11 +32,11 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full transition-all duration-200 bg-white border-b border-agri-border shadow-xs">
-      {/* Tier 1: Main Header (Official Swayur Agrotech Logo + Top Brand Badges) */}
+      {/* Tier 1: Main Header (Official Swayur Agrotech Logo on Left + Official KshetraPal Logo on Right) */}
       <div className="py-2.5 sm:py-3.5 border-b border-agri-border/60 bg-white">
         <Container>
           <div className="flex items-center justify-between gap-4 w-full">
-            {/* Left: Official Swayur Agrotech Logo */}
+            {/* Left: Official Swayur Agrotech Corporate Logo */}
             <Link href="/" className="flex items-center gap-3 shrink-0 group focus:outline-none py-0.5">
               <Image
                 src="/images/brand/swayur-agrotech-official-logo.png"
@@ -48,12 +48,17 @@ export const Header: React.FC = () => {
               />
             </Link>
 
-            {/* Top Right Quick Brand Badges & FCO Compliance */}
-            <div className="hidden lg:flex items-center gap-3 shrink-0">
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-agri-pale text-agri-primary border border-agri-accent/30 flex items-center gap-1.5">
-                🌱 {companyData.brand} ({companyData.brandGujarati}) — Biological Inputs
-              </span>
-              <span className="text-xs font-semibold text-agri-muted">
+            {/* Top Right: Official KshetraPal Product Brand Logo & FCO Compliance */}
+            <div className="hidden lg:flex items-center gap-4 shrink-0">
+              <Image
+                src="/images/brand/kshetrapal-official-logo.png"
+                alt="KshetraPal Brand Logo"
+                width={600}
+                height={200}
+                priority
+                className="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-transform hover:scale-105"
+              />
+              <span className="text-xs font-semibold text-agri-muted border-l border-agri-border/60 pl-3">
                 FCO 1985 Schedule I Compliant
               </span>
             </div>
