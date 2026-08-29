@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowRight, Award, CheckCircle2 } from 'lucide-react';
 import { companyData } from '@/data/company';
 import { Container } from '@/components/layout/Container';
@@ -73,9 +74,14 @@ export const HeroSection: React.FC = () => {
               {/* Product Range Feature Card */}
               <div className="relative rounded-3xl bg-white/90 backdrop-blur-md p-8 border-2 border-agri-accent/30 shadow-xl space-y-6">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-2xl bg-agri-pale flex items-center justify-center text-agri-primary font-bold text-xl">
-                    🌱
-                  </div>
+                  <Image
+                    src="/images/brand/kshetrapal-official-logo.png"
+                    alt="KshetraPal Brand Logo"
+                    width={300}
+                    height={100}
+                    priority
+                    className="h-10 sm:h-12 w-auto object-contain"
+                  />
                   <Badge variant="gold">Biological Inputs</Badge>
                 </div>
 
