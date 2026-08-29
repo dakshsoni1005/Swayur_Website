@@ -89,18 +89,20 @@ export default function OurSciencePage() {
               </div>
             </div>
 
-            {/* Right Column: User Science Microbiology Asset Illustration */}
+            {/* Right Column: Transparent Microbiology Science Illustration */}
             <div className="lg:col-span-6 flex justify-center">
-              <div className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-xl border-2 border-emerald-500/30 group bg-white p-1.5">
+              <div className="relative w-full max-w-lg p-3 sm:p-4 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-emerald-50/40 to-amber-500/10 border border-emerald-500/20 backdrop-blur-sm shadow-xl flex items-center justify-center group">
+                {/* Ambient Soft Radial Glow */}
+                <div className="absolute inset-0 bg-emerald-400/10 rounded-3xl blur-2xl pointer-events-none group-hover:bg-emerald-400/20 transition-colors" />
+
                 <Image
-                  src="/images/science/microbiology-science-hero.jpg"
+                  src="/images/science/microbiology-science-hero.png"
                   alt="Swayur Agrotech Applied Microbiology & Soil Science"
-                  width={714}
-                  height={682}
+                  width={784}
+                  height={677}
                   priority
-                  className="w-full h-auto object-contain rounded-2xl transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105 relative z-10"
                 />
-                <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-3xl pointer-events-none" />
               </div>
             </div>
           </div>
