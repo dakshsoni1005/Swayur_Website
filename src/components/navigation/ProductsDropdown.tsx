@@ -31,7 +31,7 @@ export const ProductsDropdown: React.FC<ProductsDropdownProps> = ({ onClose }) =
           KshetraPal Range (6 Products)
         </span>
         <Link
-          href="/products#explore-products"
+          href="/products"
           onClick={onClose}
           className="text-xs font-semibold text-agri-primary hover:text-agri-accent flex items-center gap-0.5"
         >

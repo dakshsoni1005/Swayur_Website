@@ -18,7 +18,7 @@ export const ProductRangeSection: React.FC = () => {
         <ProductGrid products={productsData} />
 
         <div className="mt-12 text-center">
-          <Button href="/products#explore-products" size="lg" variant="outline" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+          <Button href="/products" size="lg" variant="outline" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
             Explore All 6 Product Specifications & Dosage Guides
           </Button>
         </div>

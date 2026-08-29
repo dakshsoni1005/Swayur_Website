@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <div>
-      <ProductsAutoScroll />
 
       <PageHeader
         badge="KHETRAPAL RANGE"
