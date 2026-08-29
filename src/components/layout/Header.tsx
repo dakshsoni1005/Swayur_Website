@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, ChevronDown, Phone } from 'lucide-react';
 import { siteConfig } from '@/config/site';
@@ -33,23 +34,26 @@ export const Header: React.FC = () => {
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-200 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-agri-border/60 py-2.5'
-          : 'bg-white/90 backdrop-blur-md border-b border-agri-border py-3.5'
+          ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-agri-border/60 py-2'
+          : 'bg-white/90 backdrop-blur-md border-b border-agri-border py-3'
       }`}
     >
       <Container>
         <div className="flex items-center justify-between gap-4 w-full">
-          {/* Logo & Brand */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group focus:outline-none">
-            <div className="w-10 h-10 rounded-xl bg-agri-dark text-white flex items-center justify-center font-bold text-xl shadow-xs group-hover:bg-agri-primary transition-colors shrink-0">
-              🌱
-            </div>
-            <div className="flex flex-col shrink-0">
-              <div className="flex items-baseline gap-1.5">
-                <span className="font-bold text-base sm:text-lg lg:text-xl tracking-tight text-agri-dark group-hover:text-agri-primary transition-colors whitespace-nowrap">
-                  Swayur Agrotech
-                </span>
-              </div>
+          {/* Official Swayur Agrotech Logo & Brand */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 group focus:outline-none py-0.5">
+            <Image
+              src="/images/brand/swayur-official-logo.png"
+              alt="Swayur Agrotech Logo"
+              width={600}
+              height={400}
+              priority
+              className="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+            />
+            <div className="flex flex-col shrink-0 border-l border-agri-border/60 pl-2.5">
+              <span className="font-extrabold text-base sm:text-lg lg:text-xl tracking-tight text-agri-dark group-hover:text-agri-primary transition-colors whitespace-nowrap">
+                Swayur Agrotech
+              </span>
               <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-agri-muted whitespace-nowrap">
                 <span className="text-agri-accent font-bold">{companyData.brand}</span>
                 <span>({companyData.brandGujarati})</span>
