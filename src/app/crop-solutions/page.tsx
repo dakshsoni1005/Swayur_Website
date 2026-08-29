@@ -61,7 +61,7 @@ export default function CropSolutionsPage() {
                           key={pIdx}
                           className="px-2.5 py-1 rounded bg-agri-pale text-agri-primary text-xs font-semibold border border-agri-accent/20"
                         >
-                          🌱 {p}
+                          {p}
                         </span>
                       ))}
                     </div>
@@ -145,7 +145,7 @@ export default function CropSolutionsPage() {
             >
               <div className="space-y-1">
                 <h4 className="text-base font-extrabold text-agri-dark">
-                  🌾 {row.cropGroup}
+                  {row.cropGroup}
                 </h4>
                 {row.recommendedHighlights && (
                   <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-800 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200">

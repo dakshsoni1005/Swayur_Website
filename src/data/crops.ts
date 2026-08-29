@@ -3,7 +3,7 @@ import { CropMatrixItem, ProductCombo } from '@/types';
 export interface CropOption {
   id: string;
   name: string;
-  icon: string;
+  icon?: string;
   description: string;
   recommendedProductIds: string[];
   starProductId?: string;
@@ -14,101 +14,90 @@ export const cropOptionsData: CropOption[] = [
   {
     id: 'cotton',
     name: 'Cotton',
-    icon: '🪴',
     description: 'Bollworm, whitefly, mealybug management and high nutrient demand during squaring and boll development.',
     recommendedProductIds: ['bio-npk-consortia', 'bio-zsb', 'beauveria-bassiana', 'mycorrhiza', 'trichoderma-viride', 'pseudomonas-fluorescens'],
     starProductId: 'beauveria-bassiana',
-    featuredComboTitle: '🌻 Cotton Complete Pack',
+    featuredComboTitle: 'Cotton Complete Pack',
   },
   {
     id: 'cereals',
     name: 'Cereals (Wheat, Rice, Maize)',
-    icon: '🌾',
     description: 'Requires balanced nitrogen, phosphorus, zinc solubilization, and bacterial blight protection in paddy.',
     recommendedProductIds: ['bio-npk-consortia', 'pseudomonas-fluorescens', 'bio-zsb', 'mycorrhiza', 'trichoderma-viride', 'beauveria-bassiana'],
     starProductId: 'pseudomonas-fluorescens',
-    featuredComboTitle: '🌾 Rice Special Pack',
+    featuredComboTitle: 'Rice Special Pack',
   },
   {
     id: 'pulses',
     name: 'Pulses & Legumes (Soybean, Gram)',
-    icon: '🫘',
     description: 'High nitrogen fixation and nodulation requirements along with root rot and wilt prevention.',
     recommendedProductIds: ['bio-npk-consortia', 'bio-zsb', 'trichoderma-viride', 'mycorrhiza', 'beauveria-bassiana', 'pseudomonas-fluorescens'],
     starProductId: 'bio-npk-consortia',
-    featuredComboTitle: '🌾 Soil Foundation Combo (All Crops)',
+    featuredComboTitle: 'Soil Foundation Combo (All Crops)',
   },
   {
     id: 'vegetables',
     name: 'Vegetables (Tomato, Chilli, Potato)',
-    icon: '🍅',
     description: 'Susceptible to soil-borne damping-off, fusarium wilt, root rot, whiteflies, aphids, and thrips.',
     recommendedProductIds: ['trichoderma-viride', 'beauveria-bassiana', 'pseudomonas-fluorescens', 'bio-npk-consortia', 'bio-zsb', 'mycorrhiza'],
     starProductId: 'trichoderma-viride',
-    featuredComboTitle: '🍅 Vegetable Protection Combo',
+    featuredComboTitle: 'Vegetable Protection Combo',
   },
   {
     id: 'fruits',
     name: 'Fruits (Mango, Banana, Citrus)',
-    icon: '🍌',
     description: 'Deep perennial root development, heavy micronutrient absorption, and long-term soil carbon needs.',
     recommendedProductIds: ['mycorrhiza', 'bio-npk-consortia', 'pseudomonas-fluorescens', 'bio-zsb', 'trichoderma-viride', 'beauveria-bassiana'],
     starProductId: 'mycorrhiza',
-    featuredComboTitle: '🌿 Horticulture Premium Pack',
+    featuredComboTitle: 'Horticulture Premium Pack',
   },
   {
     id: 'grapes',
     name: 'Grapes & Pomegranate',
-    icon: '🍇',
     description: 'High export quality standards requiring residue-free biological protection and root zone mycorrhizal networks.',
     recommendedProductIds: ['mycorrhiza', 'bio-npk-consortia', 'pseudomonas-fluorescens', 'bio-zsb', 'trichoderma-viride', 'beauveria-bassiana'],
     starProductId: 'mycorrhiza',
-    featuredComboTitle: '🌿 Horticulture Premium Pack',
+    featuredComboTitle: 'Horticulture Premium Pack',
   },
   {
     id: 'oilseeds',
     name: 'Oilseeds (Groundnut, Mustard)',
-    icon: '🌻',
     description: 'Requires phosphorus and zinc solubilization for seed oil synthesis and pod development.',
     recommendedProductIds: ['bio-npk-consortia', 'bio-zsb', 'mycorrhiza', 'trichoderma-viride', 'beauveria-bassiana', 'pseudomonas-fluorescens'],
     starProductId: 'bio-npk-consortia',
-    featuredComboTitle: '🌾 Soil Foundation Combo (All Crops)',
+    featuredComboTitle: 'Soil Foundation Combo (All Crops)',
   },
   {
     id: 'sugarcane',
     name: 'Sugarcane',
-    icon: '🎋',
     description: 'Long duration crop requiring sustained biological NPK availability and root borer management.',
     recommendedProductIds: ['bio-npk-consortia', 'bio-zsb', 'beauveria-bassiana', 'mycorrhiza', 'trichoderma-viride', 'pseudomonas-fluorescens'],
     starProductId: 'bio-npk-consortia',
-    featuredComboTitle: '🌾 Soil Foundation Combo (All Crops)',
+    featuredComboTitle: 'Soil Foundation Combo (All Crops)',
   },
   {
     id: 'spices',
     name: 'Spices (Cumin, Coriander, Fennel)',
-    icon: '🌶️',
     description: 'Prone to wilt and blight diseases; requires organic nutrient solubilization.',
     recommendedProductIds: ['trichoderma-viride', 'pseudomonas-fluorescens', 'bio-npk-consortia', 'bio-zsb', 'mycorrhiza', 'beauveria-bassiana'],
     starProductId: 'trichoderma-viride',
-    featuredComboTitle: '🍅 Vegetable Protection Combo',
+    featuredComboTitle: 'Vegetable Protection Combo',
   },
   {
     id: 'plantation',
     name: 'Plantation Crops (Tea, Coffee)',
-    icon: '🍃',
     description: 'Sustained soil health, mycorrhizal root colonization, and biological pest management.',
     recommendedProductIds: ['mycorrhiza', 'bio-npk-consortia', 'pseudomonas-fluorescens', 'bio-zsb', 'trichoderma-viride', 'beauveria-bassiana'],
     starProductId: 'mycorrhiza',
-    featuredComboTitle: '🌿 Horticulture Premium Pack',
+    featuredComboTitle: 'Horticulture Premium Pack',
   },
   {
     id: 'nursery',
     name: 'Nursery & Floriculture',
-    icon: '🪴',
     description: 'Reduces transplant shock, boosts root establishment in seedlings, and prevents damping-off.',
     recommendedProductIds: ['mycorrhiza', 'pseudomonas-fluorescens', 'trichoderma-viride', 'bio-npk-consortia', 'bio-zsb', 'beauveria-bassiana'],
     starProductId: 'mycorrhiza',
-    featuredComboTitle: '🌿 Horticulture Premium Pack',
+    featuredComboTitle: 'Horticulture Premium Pack',
   },
 ];
 
@@ -223,27 +212,27 @@ export const cropMatrixData: CropMatrixItem[] = [
 
 export const productCombosData: ProductCombo[] = [
   {
-    title: '🌾 Soil Foundation Combo (All Crops)',
+    title: 'Soil Foundation Combo (All Crops)',
     products: ['Bio-NPK Consortia', 'Bio-ZSB', 'Mycorrhiza'],
     description: 'Complete nutrition + root health + micronutrient availability — the ideal start to any season.',
   },
   {
-    title: '🍅 Vegetable Protection Combo',
+    title: 'Vegetable Protection Combo',
     products: ['Trichoderma viride', 'Beauveria bassiana', 'Pseudomonas fluorescens'],
     description: 'Full biological protection package — soil-borne disease, foliar pests, and systemic resistance.',
   },
   {
-    title: '🌿 Horticulture Premium Pack',
+    title: 'Horticulture Premium Pack',
     products: ['Mycorrhiza', 'Bio-NPK Consortia', 'Pseudomonas fluorescens'],
     description: 'Root development + nutrition + disease protection for fruit and plantation crops.',
   },
   {
-    title: '🌾 Rice Special Pack',
+    title: 'Rice Special Pack',
     products: ['Bio-NPK Consortia', 'Pseudomonas fluorescens', 'Beauveria bassiana'],
     description: 'Nitrogen nutrition + bacterial blight protection + insect control for paddy crops.',
   },
   {
-    title: '🌻 Cotton Complete Pack',
+    title: 'Cotton Complete Pack',
     products: ['Bio-NPK Consortia', 'Bio-ZSB', 'Beauveria bassiana'],
     description: 'Full nutrition + zinc + whitefly/mealybug control for cotton.',
   },
