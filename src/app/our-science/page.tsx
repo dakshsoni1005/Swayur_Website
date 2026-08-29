@@ -91,16 +91,16 @@ export default function OurSciencePage() {
 
             {/* Right Column: User Science Microbiology Asset Illustration */}
             <div className="lg:col-span-6 flex justify-center">
-              <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-emerald-500/40 group bg-slate-950">
+              <div className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-xl border-2 border-emerald-500/30 group bg-white p-1.5">
                 <Image
                   src="/images/science/microbiology-science-hero.jpg"
                   alt="Swayur Agrotech Applied Microbiology & Soil Science"
-                  width={800}
-                  height={540}
+                  width={714}
+                  height={682}
                   priority
-                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-auto object-contain rounded-2xl transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-3xl pointer-events-none" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-3xl pointer-events-none" />
               </div>
             </div>
           </div>
