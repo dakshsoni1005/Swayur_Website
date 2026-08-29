@@ -13,7 +13,7 @@ export const siteConfig = {
     { name: 'About', href: '/about' },
     {
       name: 'Products',
-      href: '/products',
+      href: '/products#explore-products',
       dropdown: [
         { name: 'Bio-NPK Consortia', href: '/products/bio-npk-consortia', category: 'Biofertilizer' },
         { name: 'Bio-ZSB', href: '/products/bio-zsb', category: 'Biofertilizer' },

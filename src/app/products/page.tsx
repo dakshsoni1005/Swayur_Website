@@ -7,6 +7,7 @@ import { PageHeader } from '@/components/layout/PageHeader';
 import { ProductFilter } from '@/components/products/ProductFilter';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { CTASection } from '@/components/sections/CTASection';
+import { ProductsAutoScroll } from '@/components/products/ProductsAutoScroll';
 
 export const metadata: Metadata = {
   title: seoData.products.metaTitle,
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <div>
+      <ProductsAutoScroll />
+
       <PageHeader
         badge="KHETRAPAL RANGE"
         title="The KshetraPal Range"
@@ -25,12 +28,14 @@ export default function ProductsPage() {
 
       <div className="py-12 sm:py-16 space-y-16">
         <Container>
-          <SectionHeading
-            badge="All 6 Products"
-            title="Explore Biofertilizers & Biopesticides"
-            subtitle="Filter by category or click on any product card for detailed technical composition, dosage, application methods, and crop compatibility."
-          />
-          <ProductFilter products={productsData} />
+          <div id="explore-products" className="scroll-mt-24 sm:scroll-mt-28">
+            <SectionHeading
+              badge="All 6 Products"
+              title="Explore Biofertilizers & Biopesticides"
+              subtitle="Filter by category or click on any product card for detailed technical composition, dosage, application methods, and crop compatibility."
+            />
+            <ProductFilter products={productsData} />
+          </div>
         </Container>
 
         <CTASection
