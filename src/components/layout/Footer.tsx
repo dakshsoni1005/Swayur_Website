@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, Mail, MapPin, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { companyData } from '@/data/company';
 import { productsData } from '@/data/products';
@@ -10,8 +11,21 @@ export const Footer: React.FC = () => {
     'https://www.google.com/maps/place/Swayur+Agrotech+LLP/@22.5315834,72.9538916,17z/data=!3m1!4b1!4m6!3m5!1s0x395e4d010d0ce825:0xb321fd17142a7cbb!8m2!3d22.5315834!4d72.9538916!16s%2Fg%2F11zdrsj1v9';
 
   return (
-    <footer className="bg-agri-dark text-white pt-16 pb-12 border-t border-agri-primary/30">
-      <Container>
+    <footer className="relative overflow-hidden text-white pt-16 pb-12 border-t border-agri-accent/40">
+      {/* Background Image with Parrot Green Overlay */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/backgrounds/footer-bg.jpg"
+          alt="Swayur Agrotech Agricultural Field"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/* Parrot Green (60-85% Opacity Layer) for Contrast & Vitality */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b3d26]/85 via-[#0e482d]/80 to-[#072417]/90 backdrop-blur-[1px]" />
+      </div>
+
+      <Container className="relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-white/10">
           {/* Col 1: Brand & Tagline */}
           <div className="lg:col-span-4 space-y-4">
