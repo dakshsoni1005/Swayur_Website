@@ -83,7 +83,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`h-full ${plusJakartaSans.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`h-full ${plusJakartaSans.variable}`}>
       <head>
         <script
           type="application/ld+json"
