@@ -71,18 +71,18 @@ export const CircularStoryJourney: React.FC = () => {
         {/* DESKTOP VIEW: COMPACT FIT CIRCULAR JOURNEY LAYOUT (lg+)       */}
         {/* ============================================================ */}
         <div
-          className="hidden lg:block relative max-w-5xl mx-auto h-[560px]"
+          className="hidden lg:block relative max-w-5xl mx-auto h-[600px]"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* SVG Concentric Circular Ring (520px Diameter, Perfect Center) */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] pointer-events-none z-0">
+          {/* SVG Concentric Circular Ring (660px Diameter - Intersects ~40% through each card) */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[660px] h-[660px] pointer-events-none z-0">
             <svg className="w-full h-full overflow-visible" viewBox="0 0 100 100">
               <defs>
                 <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#15803d" stopOpacity="0.5" />
-                  <stop offset="50%" stopColor="#d97706" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="#15803d" stopOpacity="0.5" />
+                  <stop offset="0%" stopColor="#15803d" stopOpacity="0.75" />
+                  <stop offset="50%" stopColor="#d97706" stopOpacity="0.75" />
+                  <stop offset="100%" stopColor="#15803d" stopOpacity="0.75" />
                 </linearGradient>
               </defs>
               <circle
@@ -91,9 +91,9 @@ export const CircularStoryJourney: React.FC = () => {
                 r="46"
                 fill="none"
                 stroke="url(#ringGrad)"
-                strokeWidth="0.8"
+                strokeWidth="1.2"
                 strokeDasharray="2.5 1.8"
-                className="animate-[spin_50s_linear_infinite] origin-[50px_50px]"
+                className="animate-[spin_45s_linear_infinite] origin-[50px_50px]"
               />
             </svg>
           </div>
@@ -113,17 +113,17 @@ export const CircularStoryJourney: React.FC = () => {
             </p>
           </div>
 
-          {/* 5 Circular Stage Cards Positioned Clockwise along Ring Orbit */}
+          {/* 5 Circular Stage Cards Positioned Overlapping ~40% on top of Ring Orbit */}
           {aboutStorySteps.map((step, idx) => {
             const isActive = idx === activeStepIndex;
 
-            // Clockwise radial positions passing through ring orbit
+            // Radial positions overlapping ~40% on top of 660px ring
             const positions = [
-              'top-0 left-1/2 -translate-x-1/2',
-              'top-[12%] right-[1.5%]',
-              'bottom-[8%] right-[3.5%]',
-              'bottom-[8%] left-[3.5%]',
-              'top-[12%] left-[1.5%]',
+              'top-[1%] left-1/2 -translate-x-1/2',
+              'top-[15%] right-[6%]',
+              'bottom-[9%] right-[8%]',
+              'bottom-[9%] left-[8%]',
+              'top-[15%] left-[6%]',
             ];
 
             return (
