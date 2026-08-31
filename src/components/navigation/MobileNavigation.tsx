@@ -24,21 +24,21 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
   return (
     <div className="fixed inset-0 z-50 lg:hidden flex flex-col bg-white">
       {/* Drawer Header with Official Swayur & KshetraPal Logos */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-agri-border bg-agri-dark text-white">
-        <Link href="/" onClick={onClose} className="flex items-center gap-2">
+      <div className="flex items-center justify-between px-3 sm:px-4 py-3 border-b border-agri-border bg-agri-dark text-white">
+        <Link href="/" onClick={onClose} className="flex items-center gap-1.5 sm:gap-2 min-w-0">
           <Image
             src="/images/brand/swayur-agrotech-official-logo.png"
             alt="Swayur Agrotech"
             width={600}
             height={400}
-            className="h-10 w-auto object-contain bg-white rounded-md p-1"
+            className="h-8 sm:h-10 w-auto object-contain bg-white rounded-md p-0.5 sm:p-1 shrink-0"
           />
           <Image
             src="/images/brand/kshetrapal-official-logo.png"
             alt="KshetraPal"
             width={600}
             height={200}
-            className="h-8 w-auto object-contain bg-white/90 rounded-md p-0.5"
+            className="h-6 sm:h-8 w-auto object-contain bg-white/90 rounded-md p-0.5 shrink-0"
           />
         </Link>
         <button

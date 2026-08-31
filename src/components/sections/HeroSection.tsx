@@ -72,7 +72,7 @@ export const HeroSection: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Product Range Feature Card */}
-              <div className="relative rounded-3xl bg-white/90 backdrop-blur-md p-8 border-2 border-agri-accent/30 shadow-xl space-y-6">
+              <div className="relative rounded-3xl bg-white/90 backdrop-blur-md p-5 sm:p-8 border-2 border-agri-accent/30 shadow-xl space-y-5 sm:space-y-6">
                 <div className="flex items-center justify-between">
                   <Image
                     src="/images/brand/kshetrapal-official-logo.png"
@@ -89,7 +89,7 @@ export const HeroSection: React.FC = () => {
                   <span className="text-xs font-bold text-agri-muted uppercase tracking-wider block">
                     Product Brand
                   </span>
-                  <h3 className="text-2xl font-extrabold text-agri-dark">
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-agri-dark">
                     KshetraPal (ક્ષેત્રપાલ)
                   </h3>
                   <p className="text-xs text-agri-muted font-serif italic">
@@ -98,15 +98,15 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 <div className="space-y-2.5 pt-2 border-t border-agri-border/60 text-xs">
-                  <div className="flex justify-between items-center py-1 border-b border-agri-border/40">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-1 border-b border-agri-border/40 gap-0.5 sm:gap-0">
                     <span className="text-agri-muted">Biofertilizers</span>
                     <span className="font-extrabold text-agri-dark">Bio-NPK, Bio-ZSB, Mycorrhiza</span>
                   </div>
-                  <div className="flex justify-between items-center py-1 border-b border-agri-border/40">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-1 border-b border-agri-border/40 gap-0.5 sm:gap-0">
                     <span className="text-agri-muted">Biopesticides</span>
                     <span className="font-extrabold text-agri-dark">Trichoderma, Beauveria</span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-1 gap-0.5 sm:gap-0">
                     <span className="text-agri-muted">Biocontrol</span>
                     <span className="font-extrabold text-agri-dark">Pseudomonas fluorescens</span>
                   </div>

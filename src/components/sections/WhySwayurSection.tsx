@@ -84,51 +84,51 @@ export const WhySwayurSection: React.FC = () => {
           </p>
         </div>
 
-        {/* 3 Cards Grid: ONE HORIZONTAL ROW ON MOBILE (grid-cols-3) AND DESKTOP (lg:grid-cols-3) */}
-        <div className="grid grid-cols-3 gap-1.5 sm:gap-6 lg:gap-8 items-stretch max-w-full">
+        {/* 3 Cards Grid: Responsive Stack on Mobile (grid-cols-1), 3 Columns on Tablet/Desktop (md:grid-cols-3) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch max-w-full">
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className="relative group rounded-2xl sm:rounded-3xl bg-white border border-slate-200 sm:border-2 hover:border-agri-accent/50 p-2.5 sm:p-8 lg:p-9 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
+              className="relative group rounded-2xl sm:rounded-3xl bg-white border border-slate-200 sm:border-2 hover:border-agri-accent/50 p-6 sm:p-8 lg:p-9 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
             >
               {/* Top Accent Gradient Bar */}
               <div
                 className={`absolute top-0 left-0 right-0 h-1 sm:h-1.5 bg-gradient-to-r ${pillar.accentGradient} opacity-80 group-hover:opacity-100 transition-opacity`}
               />
 
-              <div className="space-y-2 sm:space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Header: Icon Box + Number Badge */}
                 <div className="flex items-center justify-between">
-                  <div className="w-7 h-7 sm:w-14 sm:h-14 rounded-lg sm:rounded-2xl bg-agri-pale text-agri-primary border border-agri-accent/30 flex items-center justify-center shadow-xs shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-agri-pale text-agri-primary border border-agri-accent/30 flex items-center justify-center shadow-xs shrink-0">
                     {React.cloneElement(pillar.icon, {
-                      className: 'w-4 h-4 sm:w-7 sm:h-7 transition-colors duration-300 group-hover:text-white',
+                      className: 'w-6 h-6 sm:w-7 sm:h-7 transition-colors duration-300 group-hover:text-white',
                     })}
                   </div>
-                  <span className="text-sm sm:text-3xl font-mono font-black text-emerald-600/60 sm:text-agri-accent/30 group-hover:text-agri-accent transition-colors">
+                  <span className="text-2xl sm:text-3xl font-mono font-black text-emerald-600/60 sm:text-agri-accent/30 group-hover:text-agri-accent transition-colors">
                     {pillar.number}
                   </span>
                 </div>
 
                 {/* Card Title & Subtitle */}
-                <div className="space-y-0.5 sm:space-y-1">
-                  <span className="inline-block text-[8px] sm:text-[11px] font-black uppercase tracking-wider text-agri-primary truncate max-w-full">
+                <div className="space-y-1">
+                  <span className="inline-block text-xs font-black uppercase tracking-wider text-agri-primary truncate max-w-full">
                     {pillar.badge}
                   </span>
-                  <h3 className="text-[11px] sm:text-2xl font-black text-agri-dark tracking-tight leading-tight">
+                  <h3 className="text-xl sm:text-2xl font-black text-agri-dark tracking-tight leading-tight">
                     {pillar.title}
                   </h3>
-                  <p className="hidden sm:block text-xs font-semibold text-agri-muted">
+                  <p className="text-xs sm:text-sm font-semibold text-agri-muted">
                     {pillar.subtitle}
                   </p>
                 </div>
 
                 {/* Description */}
-                <p className="text-[9px] sm:text-sm text-agri-muted leading-tight sm:leading-relaxed font-normal line-clamp-3 sm:line-clamp-none">
+                <p className="text-xs sm:text-sm text-agri-muted leading-relaxed font-normal">
                   {pillar.desc}
                 </p>
 
-                {/* Key Bullet Highlights (Desktop / Tablet) */}
-                <div className="hidden sm:block space-y-2.5 pt-4 border-t border-agri-border/60">
+                {/* Key Bullet Highlights */}
+                <div className="space-y-2.5 pt-4 border-t border-agri-border/60">
                   {pillar.highlights.map((item, hIdx) => (
                     <div key={hIdx} className="flex items-center gap-2.5 text-xs text-agri-dark font-medium">
                       <CheckCircle2 className="w-4 h-4 text-agri-accent shrink-0" />
@@ -138,17 +138,16 @@ export const WhySwayurSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bottom Compact Action Link */}
-              <div className="pt-2 sm:pt-6 mt-2 sm:mt-6 border-t border-slate-100 sm:border-agri-border/60 flex items-center justify-between">
+              {/* Bottom Action Link */}
+              <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-slate-100 sm:border-agri-border/60 flex items-center justify-between">
                 <Link
                   href="/our-science"
-                  className="inline-flex items-center gap-0.5 sm:gap-1.5 text-[9px] sm:text-xs font-black text-agri-primary hover:text-agri-accent transition-colors group/link"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-black text-agri-primary hover:text-agri-accent transition-colors group/link"
                 >
-                  <span className="sm:hidden">Learn →</span>
-                  <span className="hidden sm:inline">Learn Our Science</span>
-                  <ArrowRight className="hidden sm:inline w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
+                  <span>Learn Our Science</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                 </Link>
-                <span className="hidden sm:inline-block text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-agri-pale text-agri-primary border border-agri-accent/30">
+                <span className="text-[10px] sm:text-xs font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-agri-pale text-agri-primary border border-agri-accent/30">
                   Verified Standard
                 </span>
               </div>

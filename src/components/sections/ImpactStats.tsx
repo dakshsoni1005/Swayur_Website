@@ -41,11 +41,11 @@ export const ImpactStats: React.FC = () => {
   return (
     <section className="py-12 sm:py-16 bg-gradient-to-b from-white via-emerald-50/30 to-white border-y border-emerald-900/10 relative overflow-hidden">
       <Container>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="relative group p-6 rounded-2xl bg-white/90 backdrop-blur-xs border border-emerald-900/10 hover:border-emerald-500/40 shadow-xs hover:shadow-xl hover:shadow-emerald-950/5 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
+              className="relative group p-5 sm:p-6 rounded-2xl bg-white/90 backdrop-blur-xs border border-emerald-900/10 hover:border-emerald-500/40 shadow-xs hover:shadow-xl hover:shadow-emerald-950/5 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
             >
               {/* Top Accent Gradient Bar */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600 opacity-80 group-hover:opacity-100 transition-opacity" />

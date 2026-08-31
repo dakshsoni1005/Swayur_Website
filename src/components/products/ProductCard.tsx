@@ -13,23 +13,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Link href={`/products/${product.slug}`} className="block h-full group focus:outline-none">
-      <div className="flex flex-col justify-between h-full bg-white rounded-3xl border border-agri-border/80 p-6 shadow-2xs group-hover:shadow-xl group-hover:border-agri-accent/60 transition-all duration-300 group-hover:-translate-y-1 cursor-pointer">
-        <div className="space-y-5">
+      <div className="flex flex-col justify-between h-full bg-white rounded-3xl border border-agri-border/80 p-5 sm:p-6 shadow-2xs group-hover:shadow-xl group-hover:border-agri-accent/60 transition-all duration-300 group-hover:-translate-y-1 cursor-pointer">
+        <div className="space-y-4 sm:space-y-5">
           {/* Centralized Product Image Container */}
           <ProductImage product={product} size="md" />
 
           {/* Header Badges: Category, Net Content, Formulation */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="px-3 py-1 rounded-lg border border-emerald-300 text-emerald-800 bg-emerald-50/50 font-bold text-[11px] uppercase tracking-wider">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <span className="px-2.5 sm:px-3 py-1 rounded-lg border border-emerald-300 text-emerald-800 bg-emerald-50/50 font-bold text-[10px] sm:text-[11px] uppercase tracking-wider">
               {product.category}
             </span>
 
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-amber-400 text-amber-900 bg-amber-50/80 font-extrabold text-[11px]">
-              <Package className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+            <span className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-lg border border-amber-400 text-amber-900 bg-amber-50/80 font-extrabold text-[10px] sm:text-[11px]">
+              <Package className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-amber-700 shrink-0" />
               {netVol}
             </span>
 
-            <span className="px-3 py-1 rounded-lg bg-[#0C382B] text-white font-extrabold text-[11px] uppercase tracking-wider ml-auto">
+            <span className="px-2.5 sm:px-3 py-1 rounded-lg bg-[#0C382B] text-white font-extrabold text-[10px] sm:text-[11px] uppercase tracking-wider ml-auto">
               {product.formulation === 'Powder (WP)' ? 'POWDER' : 'LIQUID'}
             </span>
           </div>

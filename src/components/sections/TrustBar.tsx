@@ -15,16 +15,16 @@ export const TrustBar: React.FC = () => {
   return (
     <section className="bg-gradient-to-r from-agri-pale/80 via-white to-agri-pale/80 border-b border-agri-border/80 py-4 sm:py-5 shadow-2xs">
       <Container>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4">
           {trustItems.map((item, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-agri-border/80 shadow-2xs hover:border-agri-accent/40 hover:shadow-xs transition-all duration-200"
+              className="flex items-center gap-2 p-2.5 sm:p-3 rounded-xl bg-white border border-agri-border/80 shadow-2xs hover:border-agri-accent/40 hover:shadow-xs transition-all duration-200"
             >
               <div className="p-1.5 rounded-lg bg-agri-pale text-agri-primary shrink-0">
                 {item.icon}
               </div>
-              <span className="text-xs font-bold text-agri-dark leading-tight">
+              <span className="text-[11px] sm:text-xs font-bold text-agri-dark leading-tight">
                 {item.text}
               </span>
             </div>
